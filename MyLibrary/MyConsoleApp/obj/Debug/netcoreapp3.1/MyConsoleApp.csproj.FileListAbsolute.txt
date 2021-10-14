@@ -1,0 +1,5 @@
+D:\.Net\MyLibrary\MyConsoleApp\obj\Debug\netcoreapp3.1\MyConsoleApp.csproj.AssemblyReference.cache
+D:\.Net\MyLibrary\MyConsoleApp\obj\Debug\netcoreapp3.1\MyConsoleApp.GeneratedMSBuildEditorConfig.editorconfig
+D:\.Net\MyLibrary\MyConsoleApp\obj\Debug\netcoreapp3.1\MyConsoleApp.AssemblyInfoInputs.cache
+D:\.Net\MyLibrary\MyConsoleApp\obj\Debug\netcoreapp3.1\MyConsoleApp.AssemblyInfo.cs
+D:\.Net\MyLibrary\MyConsoleApp\obj\Debug\netcoreapp3.1\MyConsoleApp.csproj.CoreCompileInputs.cache
