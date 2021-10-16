@@ -13,22 +13,22 @@
     <!-- CSS
     ================================================== -->
     <!-- Base + Vendors CSS -->
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/fonts/font-awesome/css/font-awesome.css">
-    <link rel="stylesheet" href="css/fonts/entypo/css/entypo.css">
-    <link rel="stylesheet" href="vendor/owl-carousel/owl.carousel.css" media="screen">
-    <link rel="stylesheet" href="vendor/owl-carousel/owl.theme.css" media="screen">
-    <link rel="stylesheet" href="vendor/magnific-popup/magnific-popup.css" media="screen">
+    <link rel="stylesheet" href="@Url.Content("~/css/bootstrap.min.css")">
+    <link rel="stylesheet" href="@Url.Content("~/css/fonts/font-awesome/css/font-awesome.css")">
+    <link rel="stylesheet" href="@Url.Content("~/css/fonts/entypo/css/entypo.css")">
+    <link rel="stylesheet" href="@Url.Content("~/vendor/owl-carousel/owl.carousel.css")" media="screen">
+    <link rel="stylesheet" href="@Url.Content("~/vendor/owl-carousel/owl.theme.css")" media="screen">
+    <link rel="stylesheet" href="@Url.Content("~/vendor/magnific-popup/magnific-popup.css")" media="screen">
 
     <!-- Theme CSS-->
-    <link rel="stylesheet" href="css/theme.css">
-    <link rel="stylesheet" href="css/theme-elements.css">
-    <link rel="stylesheet" href="css/animate.min.css">
+    <link rel="stylesheet" href=@Url.Content("~/css/theme.css")>
+    <link rel="stylesheet" href=@Url.Content("~/css/theme-elements.css")>
+    <link rel="stylesheet" href="@Url.Content("~/css/animate.min.css")">
 
 
 
     <!-- Head Libs -->
-    <script src="vendor/modernizr.js"></script>
+    <script src=@Url.Content("~/vendor/modernizr.js")></script>
 
     <!--[if lt IE 9]>
         <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -39,11 +39,11 @@
     <![endif]-->
     <!-- Favicons
     ================================================== -->
-    <link rel="shortcut icon" href="images/favicon.ico">
-    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
-    <link rel="apple-touch-icon" sizes="144x144" href="images/apple-touch-icon-144x144.png">
+    <link rel="shortcut icon" href=@Url.Content("~/images/favicon.ico")>
+    <link rel="apple-touch-icon" href=@Url.Content("~/images/apple-touch-icon.png")>
+    <link rel="apple-touch-icon" sizes="72x72" href=@Url.Content("~/images/apple-touch-icon-72x72.png")>
+    <link rel="apple-touch-icon" sizes="114x114" href=@Url.Content("~/images/apple-touch-icon-114x114.png")>
+    <link rel="apple-touch-icon" sizes="144x144" href=@Url.Content("~/images/apple-touch-icon-144x144.png")>
 </head>
 <body>
     <div class="site-wrapper site-wrapper__boxed">
@@ -73,8 +73,7 @@
 
                     <!-- Logo -->
                     <div class="logo">
-                        <a href="index.html"><img src="images/logo.png" alt="Babysitter"></a>
-                        <!-- <h1><a href="index.html"><strong>Baby</strong>sitter</a></h1> -->
+                        <a href="index.html"><img src=@Url.Content("~/images/logo.png") alt="Babysitter"></a>
                         <p class="tagline hidden-xs hidden-sm">Best care for baby!</p>
                     </div>
                     <!-- Logo / End -->
@@ -152,7 +151,7 @@
                                 <li><a href="blog-post.html">Single Post</a></li>
                             </ul>
                         </li>
-                        <li class="active"><a href="contacts.html">Contacts</a></li>
+                        <li><a href="contacts.html">Contacts</a></li>
                     </ul>
                 </div>
             </nav>
@@ -160,10 +159,9 @@
 
         </header>
         <!-- Header / End -->
-        <div class="container">
-            <main role="main" class="pb-3">
-                @RenderBody()
-            </main>
+
+        <div class="main" role="main">
+            @RenderBody()
         </div>
 
         <!-- Footer -->
@@ -273,28 +271,29 @@
     </div>
     <!-- Javascript Files
     ================================================== -->
-    <script src="vendor/jquery-1.11.0.min.js"></script>
-    <script src="vendor/jquery-migrate-1.2.1.min.js"></script>
-    <script src="vendor/bootstrap.js"></script>
-    <script src="vendor/jquery.flexnav.min.js"></script>
-    <script src="vendor/jquery.hoverIntent.minified.js"></script>
-    <script src="vendor/jquery.flickrfeed.js"></script>
-    <script src="vendor/magnific-popup/jquery.magnific-popup.js"></script>
-    <script src="vendor/owl-carousel/owl.carousel.min.js"></script>
-    <script src="vendor/jquery.fitvids.js"></script>
-    <script src="vendor/jquery.appear.js"></script>
-    <script src="vendor/jquery.stellar.min.js"></script>
+    <script src=@Url.Content("~/vendor/jquery-1.11.0.min.js")></script>
+    <script src=@Url.Content("~/vendor/jquery-migrate-1.2.1.min.js")></script>
+    <script src=@Url.Content("~/vendor/bootstrap.js")></script>
+    <script src=@Url.Content("~/vendor/jquery.flexnav.min.js")></script>
+    <script src=@Url.Content("~/vendor/jquery.hoverIntent.minified.js")></script>
+    <script src=@Url.Content("~/vendor/jquery.flickrfeed.js")></script>
+    <script src=@Url.Content("~/vendor/magnific-popup/jquery.magnific-popup.js")></script>
+    <script src=@Url.Content("~/vendor/owl-carousel/owl.carousel.min.js")></script>
+    <script src=@Url.Content("~/vendor/jquery.fitvids.js")></script>
+    <script src=@Url.Content("~/vendor/jquery.appear.js")></script>
+    <script src=@Url.Content("~/vendor/jquery.stellar.min.js")></script>
 
-    <script src="js/custom.js"></script>
+    <script src=@Url.Content("~/js/custom.js")></script>
 
 
     <!-- Contact Page specific scripts
     ================================================== -->
     <!-- Contact Form -->
-    <script src="vendor/jquery.validate.js"></script>
-    <script src="js/contact.js"></script>
+    <script src=@Url.Content("~/vendor/jquery.validate.js")></script>
+    <script src=@Url.Content("~/js/contact.js")></script>
 
     <!-- Newsletter Form -->
-    <script src="js/newsletter.js"></script>
+    <script src=@Url.Content("~/js/newsletter.js")></script>
+    @RenderSection("Scripts", required: false)
 </body>
 </html>

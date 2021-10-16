@@ -35,3 +35,42 @@ D:\.Net\BabySit\BabySit\obj\Debug\netcoreapp3.1\BabySit.dll
 D:\.Net\BabySit\BabySit\obj\Debug\netcoreapp3.1\BabySit.pdb
 D:\.Net\BabySit\BabySit\obj\Debug\netcoreapp3.1\BabySit.genruntimeconfig.cache
 D:\.Net\BabySit\BabySit\obj\Debug\netcoreapp3.1\BabySit.csproj.CopyComplete
+C:\Users\bekim\OneDrive\Máy tính\New folder\BabySit\BabySit\bin\Debug\netcoreapp3.1\appsettings.Development.json
+C:\Users\bekim\OneDrive\Máy tính\New folder\BabySit\BabySit\bin\Debug\netcoreapp3.1\appsettings.json
+C:\Users\bekim\OneDrive\Máy tính\New folder\BabySit\BabySit\bin\Debug\netcoreapp3.1\BabySit.exe
+C:\Users\bekim\OneDrive\Máy tính\New folder\BabySit\BabySit\bin\Debug\netcoreapp3.1\BabySit.deps.json
+C:\Users\bekim\OneDrive\Máy tính\New folder\BabySit\BabySit\bin\Debug\netcoreapp3.1\BabySit.runtimeconfig.json
+C:\Users\bekim\OneDrive\Máy tính\New folder\BabySit\BabySit\bin\Debug\netcoreapp3.1\BabySit.runtimeconfig.dev.json
+C:\Users\bekim\OneDrive\Máy tính\New folder\BabySit\BabySit\bin\Debug\netcoreapp3.1\BabySit.dll
+C:\Users\bekim\OneDrive\Máy tính\New folder\BabySit\BabySit\bin\Debug\netcoreapp3.1\BabySit.pdb
+C:\Users\bekim\OneDrive\Máy tính\New folder\BabySit\BabySit\bin\Debug\netcoreapp3.1\BabySit.Views.dll
+C:\Users\bekim\OneDrive\Máy tính\New folder\BabySit\BabySit\bin\Debug\netcoreapp3.1\BabySit.Views.pdb
+C:\Users\bekim\OneDrive\Máy tính\New folder\BabySit\BabySit\obj\Debug\netcoreapp3.1\BabySit.csproj.AssemblyReference.cache
+C:\Users\bekim\OneDrive\Máy tính\New folder\BabySit\BabySit\obj\Debug\netcoreapp3.1\BabySit.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\bekim\OneDrive\Máy tính\New folder\BabySit\BabySit\obj\Debug\netcoreapp3.1\BabySit.AssemblyInfoInputs.cache
+C:\Users\bekim\OneDrive\Máy tính\New folder\BabySit\BabySit\obj\Debug\netcoreapp3.1\BabySit.AssemblyInfo.cs
+C:\Users\bekim\OneDrive\Máy tính\New folder\BabySit\BabySit\obj\Debug\netcoreapp3.1\BabySit.csproj.CoreCompileInputs.cache
+C:\Users\bekim\OneDrive\Máy tính\New folder\BabySit\BabySit\obj\Debug\netcoreapp3.1\BabySit.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\bekim\OneDrive\Máy tính\New folder\BabySit\BabySit\obj\Debug\netcoreapp3.1\BabySit.RazorAssemblyInfo.cache
+C:\Users\bekim\OneDrive\Máy tính\New folder\BabySit\BabySit\obj\Debug\netcoreapp3.1\BabySit.RazorAssemblyInfo.cs
+C:\Users\bekim\OneDrive\Máy tính\New folder\BabySit\BabySit\obj\Debug\netcoreapp3.1\staticwebassets\BabySit.StaticWebAssets.Manifest.cache
+C:\Users\bekim\OneDrive\Máy tính\New folder\BabySit\BabySit\obj\Debug\netcoreapp3.1\staticwebassets\BabySit.StaticWebAssets.xml
+C:\Users\bekim\OneDrive\Máy tính\New folder\BabySit\BabySit\obj\Debug\netcoreapp3.1\scopedcss\bundle\BabySit.styles.css
+C:\Users\bekim\OneDrive\Máy tính\New folder\BabySit\BabySit\obj\Debug\netcoreapp3.1\BabySit.TagHelpers.input.cache
+C:\Users\bekim\OneDrive\Máy tính\New folder\BabySit\BabySit\obj\Debug\netcoreapp3.1\BabySit.TagHelpers.output.cache
+C:\Users\bekim\OneDrive\Máy tính\New folder\BabySit\BabySit\obj\Debug\netcoreapp3.1\BabySit.RazorCoreGenerate.cache
+C:\Users\bekim\OneDrive\Máy tính\New folder\BabySit\BabySit\obj\Debug\netcoreapp3.1\Razor\Views\Home\Index.cshtml.g.cs
+C:\Users\bekim\OneDrive\Máy tính\New folder\BabySit\BabySit\obj\Debug\netcoreapp3.1\Razor\Views\Home\Privacy.cshtml.g.cs
+C:\Users\bekim\OneDrive\Máy tính\New folder\BabySit\BabySit\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Error.cshtml.g.cs
+C:\Users\bekim\OneDrive\Máy tính\New folder\BabySit\BabySit\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_Layout.cshtml.g.cs
+C:\Users\bekim\OneDrive\Máy tính\New folder\BabySit\BabySit\obj\Debug\netcoreapp3.1\Razor\Views\_ViewImports.cshtml.g.cs
+C:\Users\bekim\OneDrive\Máy tính\New folder\BabySit\BabySit\obj\Debug\netcoreapp3.1\Razor\Views\_ViewStart.cshtml.g.cs
+C:\Users\bekim\OneDrive\Máy tính\New folder\BabySit\BabySit\obj\Debug\netcoreapp3.1\BabySit.RazorTargetAssemblyInfo.cache
+C:\Users\bekim\OneDrive\Máy tính\New folder\BabySit\BabySit\obj\Debug\netcoreapp3.1\BabySit.RazorTargetAssemblyInfo.cs
+C:\Users\bekim\OneDrive\Máy tính\New folder\BabySit\BabySit\obj\Debug\netcoreapp3.1\BabySit.Views.pdb
+C:\Users\bekim\OneDrive\Máy tính\New folder\BabySit\BabySit\obj\Debug\netcoreapp3.1\BabySit.dll
+C:\Users\bekim\OneDrive\Máy tính\New folder\BabySit\BabySit\obj\Debug\netcoreapp3.1\BabySit.pdb
+C:\Users\bekim\OneDrive\Máy tính\New folder\BabySit\BabySit\obj\Debug\netcoreapp3.1\BabySit.genruntimeconfig.cache
+C:\Users\bekim\OneDrive\Máy tính\New folder\BabySit\BabySit\obj\Debug\netcoreapp3.1\BabySit.csproj.CopyComplete
+C:\Users\bekim\OneDrive\Máy tính\New folder\BabySit\BabySit\obj\Debug\netcoreapp3.1\Razor\Views\Home\ContactUs.cshtml.g.cs
+C:\Users\bekim\OneDrive\Máy tính\New folder\BabySit\BabySit\obj\Debug\netcoreapp3.1\Razor\Views\Home\RegisterLogin.cshtml.g.cs
