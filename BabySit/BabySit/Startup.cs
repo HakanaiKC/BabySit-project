@@ -51,7 +51,7 @@ namespace BabySit
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
-                    name: "default",
+                    name: "babysit",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
                 
             });
