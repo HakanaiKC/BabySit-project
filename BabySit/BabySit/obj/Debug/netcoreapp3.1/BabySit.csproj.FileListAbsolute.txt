@@ -116,3 +116,4 @@ C:\Users\bekim\OneDrive\Máy tính\New folder\BabySit\BabySit\obj\Debug\netcorea
 C:\Users\bekim\OneDrive\Máy tính\New folder\BabySit\BabySit\obj\Debug\netcoreapp3.1\Razor\Views\Home\Register.cshtml.g.cs
 C:\Users\bekim\OneDrive\Máy tính\New folder\BabySit\BabySit\obj\Debug\netcoreapp3.1\Razor\Views\Home\Verify.cshtml.g.cs
 C:\Users\bekim\OneDrive\Máy tính\New folder\BabySit\BabySit\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_AdminLayout.cshtml.g.cs
+C:\Users\bekim\OneDrive\Máy tính\New folder\BabySit\BabySit\obj\Debug\netcoreapp3.1\Razor\Views\Home\ForgotPass.cshtml.g.cs

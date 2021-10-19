@@ -1,4 +1,51 @@
 ﻿@{
-    ViewData["Title"] = "Đăng ký";
+    ViewData["Title"] = "Đăng nhập";
 }
-<h1>Login</h1>
+<div class="d-flex align-items-center" style="min-height: 100vh">
+    <div class="col-sm-8 col-md-6 col-lg-4 mx-auto" style="min-width: 300px;">
+        <div class="d-flex justify-content-center mb-5 navbar-light">
+            <a asp-controller="Home" asp-action="Index"
+               class="navbar-brand m-0">
+                BabySit
+            </a>
+        </div>
+        <div class="card navbar-shadow">
+            <div class="card-body">
+                <form action="#" method="get">
+                    <div class="form-group">
+                        <h4 class="card-title text-center">Đăng nhập</h4>
+                        <label class="form-label" for="email">Email:</label>
+                        <div class="input-group input-group-merge">
+                            <input id="email"
+                                   type="email"
+                                   required
+                                   class="form-control form-control-prepended">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="password">Mật khẩu:</label>
+                        <div class="input-group input-group-merge">
+                            <input id="password"
+                                   type="password"
+                                   required
+                                   maxlength="32"
+                                   minlength="8"
+                                   class="form-control form-control-prepended">
+                        </div>
+                    </div>
+                    <div class="form-group ">
+                        <button type="submit" class="btn btn-success btn-block">
+                            Đăng nhập
+                        </button>
+                    </div>
+                    <div class="text-center">
+                        <a asp-controller="Home" asp-action="ForgotPass" class="text-black-70" style="text-decoration: underline;">Quên mật khẩu?</a>
+                    </div>
+                </form>
+            </div>
+            <div class="card-footer text-center text-black-50">
+                Chưa có tài khoản? <a asp-controller="Home" asp-action="Register">Đăng ký</a>
+            </div>
+        </div>
+    </div>
+</div>
