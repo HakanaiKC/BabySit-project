@@ -1,9 +1,11 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
-<link rel="stylesheet" href="~/css/Index.css" type="text/css" />
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-<div class="text-center" style="padding-top:8em;">
+<link rel="stylesheet" href="~/css/owl.carousel.min.css">
+<link rel="stylesheet" href="~/css/owl.theme.default.min.css">
+<link rel="stylesheet" href="~/css/Index.css">
+<script src="~/js/owl.carousel.min.js"></script>
+<div class="text-center" style="padding-top:6em;">
     <div class="page">
         <div class="row">
             <div class="col-md-4">
@@ -42,7 +44,7 @@
                 </div>
                 <!-- Icon Box / End -->
             </div>
-            
+
             <div class="col-md-4" style="padding-top: 2em;">
                 <!-- Icon Box -->
                 <div class="icon-box">
@@ -80,5 +82,143 @@
                 <!-- Icon Box / End -->
             </div>
         </div>
-    </div>  
+
+        <div class="owl-carousel owl-theme">
+            @*Slide*@
+            <div class="item">
+                <div class="card mb-2">
+                    <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(34).jpg"
+                         alt="Card image cap">
+                    <div class="card-body">
+                        <h4 class="card-title">Tên bảo mẫu</h4>
+                        <p class="card-text">
+                            Mô tả gì đó
+                        </p>
+                        <button class="btn btn-primary">Button</button>
+                    </div>
+                </div>
+            </div>
+            @*End Slide*@
+            @*Slide*@
+            <div class="item">
+                <div class="card mb-2">
+                    <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(34).jpg"
+                         alt="Card image cap">
+                    <div class="card-body">
+                        <h4 class="card-title">Tên bảo mẫu</h4>
+                        <p class="card-text">
+                            Mô tả gì đó
+                        </p>
+                        <button class="btn btn-primary">Button</button>
+                    </div>
+                </div>
+            </div>
+            @*End Slide*@
+
+            @*Slide*@
+            <div class="item">
+                <div class="card mb-2">
+                    <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(34).jpg"
+                         alt="Card image cap">
+                    <div class="card-body">
+                        <h4 class="card-title">Tên bảo mẫu</h4>
+                        <p class="card-text">
+                            Mô tả gì đó
+                        </p>
+                        <button class="btn btn-primary">Button</button>
+                    </div>
+                </div>
+            </div>
+            @*End Slide*@
+
+            @*Slide*@
+            <div class="item">
+                <div class="card mb-2">
+                    <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(34).jpg"
+                         alt="Card image cap">
+                    <div class="card-body">
+                        <h4 class="card-title">Tên bảo mẫu</h4>
+                        <p class="card-text">
+                            Mô tả gì đó
+                        </p>
+                        <button class="btn btn-primary">Button</button>
+                    </div>
+                </div>
+            </div>
+            @*End Slide*@
+
+            @*Slide*@
+            <div class="item">
+                <div class="card mb-2">
+                    <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(34).jpg"
+                         alt="Card image cap">
+                    <div class="card-body">
+                        <h4 class="card-title">Tên bảo mẫu</h4>
+                        <p class="card-text">
+                            Mô tả gì đó
+                        </p>
+                        <button class="btn btn-primary">Button</button>
+                    </div>
+                </div>
+            </div>
+            @*End Slide*@
+
+            @*Slide*@
+            <div class="item">
+                <div class="card mb-2">
+                    <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(34).jpg"
+                         alt="Card image cap">
+                    <div class="card-body">
+                        <h4 class="card-title">Tên bảo mẫu</h4>
+                        <p class="card-text">
+                            Mô tả gì đó
+                        </p>
+                        <button class="btn btn-primary">Button</button>
+                    </div>
+                </div>
+            </div>
+            @*End Slide*@
+
+            @*Slide*@
+            <div class="item">
+                <div class="card mb-2">
+                    <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(34).jpg"
+                         alt="Card image cap">
+                    <div class="card-body">
+                        <h4 class="card-title">Tên bảo mẫu</h4>
+                        <p class="card-text">
+                            Mô tả gì đó
+                        </p>
+                        <button class="btn btn-primary">Button</button>
+                    </div>
+                </div>
+            </div>
+            @*End Slide*@
+
+            @*Slide*@
+            <div class="item">
+                <div class="card mb-2">
+                    <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(34).jpg"
+                         alt="Card image cap">
+                    <div class="card-body">
+                        <h4 class="card-title">Tên bảo mẫu</h4>
+                        <p class="card-text">
+                            Mô tả gì đó
+                        </p>
+                        <button class="btn btn-primary">Button</button>
+                    </div>
+                </div>
+            </div>
+            @*End Slide*@
+        </div>
+    </div>
 </div>
+<script>
+    $('.owl-carousel').owlCarousel({
+        loop: true,
+        margin: 10,
+        nav: true,
+        items: 4,
+        navText: ["<div class='nav-button owl-prev'>‹</div>", "<div class='nav-button owl-next'>›</div>"]
+    })
+</script>
