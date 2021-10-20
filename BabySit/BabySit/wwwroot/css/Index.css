@@ -1,5 +1,5 @@
 ﻿.owl-carousel {
-    width: 1000px;
+    width: 90%;
     margin: auto;
     position: relative;
     text-align: center;
@@ -20,7 +20,9 @@
 .owl-carousel .item {
     text-align: center;
 }
-
+.owl-carousel .item img{
+    padding: 10px;
+}
 .owl-carousel .nav-button {
     cursor: pointer;
     position: absolute;
@@ -54,7 +56,4 @@
 
 .owl-carousel .next-carousel:hover {
     background-position: -24px -53px;
-}
-.img {
-    border-radius: 50%;
 }

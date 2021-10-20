@@ -13,19 +13,21 @@
     .sidenav a {
         padding: 6px 6px 6px 32px;
         text-decoration: none;
-        font-size: 25px;
+        font-size: 23px;
         color: #20c997;
         display: block;
     }
 
         .sidenav a:hover {
             color: #20c997;
-            background-color:whitesmoke;
+            background-color: whitesmoke;
         }
+
 .btn {
     color: white;
     background-color: #20c997;
 }
+
 .main {
     margin-left: 200px; /* Same as the width of the sidenav */
 }
@@ -39,6 +41,7 @@
             font-size: 18px;
         }
 }
+
 .container-1 {
     display: flex;
     align-content: flex-end;
@@ -48,17 +51,24 @@
     padding: 20px;
     background-color: whitesmoke;
 }
+
 #search {
     width: 70%;
     padding: 2px;
     border-color: lightseagreen;
 }
+
 .icon {
     padding: 1em;
 }
+
 .card {
     margin-bottom: 2em;
     width: 80%;
     border-width: thin;
     border-color: lightseagreen;
+}
+
+.card-img {
+    width: 77%;
 }
