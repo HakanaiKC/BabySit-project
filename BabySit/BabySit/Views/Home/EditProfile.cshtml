@@ -1,3 +1,33 @@
 ﻿@{
     ViewData["Title"] = "Tài khoản";
 }
+<div class="card-img" style="padding-top: 5em;">
+    <img style="padding: 20px; width:30%;" data-holder-rendered="true" class="card-img rounded-circle" src="https://mdbootstrap.com/img/Photos/Avatars/img%20(31).jpg">
+</div>
+<h2>Chi tiết về bản thân</h2>
+<form>
+    <div class="row">
+        <div class="col">
+            Tên <input type="text" class="form-control" placeholder="Họ và tên">
+        </div>
+        <div class="col">
+            <div class="form-group">
+                <label>Giới tính</label>
+                <select class="browser-default custom-select">
+                    <option selected>Giới tính</option>
+                    <option value="1">Nam</option>
+                    <option value="2">Nữ</option>
+                </select>
+            </div>
+        </div>
+        <div class="col">
+            Ngày sinh <input type="text" class="form-control" placeholder="Họ và tên">
+        </div>
+        <div class="col">
+            Địa chỉ <input type="text" class="form-control" placeholder="Địa chỉ">
+        </div>
+        <div class="col">
+            Mô tả bản thân <textarea rows="5" type="text" class="form-control" placeholder="Mô tả"></textarea>
+        </div>
+    </div>
+</form>
