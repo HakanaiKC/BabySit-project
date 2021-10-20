@@ -1,0 +1,64 @@
+﻿.sidenav {
+    height: 100%;
+    width: 200px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: whitesmoke;
+    overflow-x: hidden;
+    padding-top: 20px;
+}
+
+    .sidenav a {
+        padding: 6px 6px 6px 32px;
+        text-decoration: none;
+        font-size: 25px;
+        color: #20c997;
+        display: block;
+    }
+
+        .sidenav a:hover {
+            color: #20c997;
+            background-color:whitesmoke;
+        }
+.btn {
+    color: white;
+    background-color: #20c997;
+}
+.main {
+    margin-left: 200px; /* Same as the width of the sidenav */
+}
+
+@media screen and (max-height: 450px) {
+    .sidenav {
+        padding-top: 15px;
+    }
+
+        .sidenav a {
+            font-size: 18px;
+        }
+}
+.container-1 {
+    display: flex;
+    align-content: flex-end;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background-color: whitesmoke;
+}
+#search {
+    width: 70%;
+    padding: 2px;
+    border-color: lightseagreen;
+}
+.icon {
+    padding: 1em;
+}
+.card {
+    margin-bottom: 2em;
+    width: 80%;
+    border-width: thin;
+    border-color: lightseagreen;
+}

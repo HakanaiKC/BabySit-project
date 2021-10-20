@@ -1,5 +1,45 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
+﻿@{
+    Layout = null;
+    ViewData["Title"] = "Trang chủ";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
+<link rel="stylesheet" href="~/css/HomePage.css">
+
+<div class="card">
+    <div class="box">
+        <div class="container-1">
+            <input type="search" id="search" placeholder="Tìm kiếm..." />
+            <a class="icon" href="#"><i class="fa fa-search"></i></a>
+        </div>
+    </div>
+</div>
+
+<div class="card">
+    <div class="box">
+        <div class="container-1">
+            <div class="row no-gutters">
+                <div class="col-sm-5">
+                    <img style="padding: 20px;" class="card-img rounded-circle" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(34).jpg">
+                </div>
+                <div class="col-sm-7">
+                    <div class="card-body">
+                        <div class="info-1 row">
+                            <h5 class="card-title col-md-6">Tên bảo mẫu</h5>
+                            <p class="col-md-6"></p>
+                            <p class="col-md-6">Nơi làm việc</p>
+                            <p class="col-md-6">Tuổi</p>
+                            <p class="col-md-6">Đánh giá</p>
+                            <p class="col-md-6">Kinh nghiệm</p>
+                        </div>
+                        <div class="info-2 row">
+                            <p class="col-md-3">Kỹ năng 1</p>
+                            <p class="col-md-3">Kỹ năng 2</p>
+                            <p class="col-md-3">Kỹ năng 3</p>
+                            <p class="col-md-3">Kỹ năng 4</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

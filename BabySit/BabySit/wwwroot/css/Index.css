@@ -55,3 +55,6 @@
 .owl-carousel .next-carousel:hover {
     background-position: -24px -53px;
 }
+.img {
+    border-radius: 50%;
+}

@@ -1,5 +1,5 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Trang chủ";
 }
 <link rel="stylesheet" href="~/css/owl.carousel.min.css">
 <link rel="stylesheet" href="~/css/owl.theme.default.min.css">
@@ -83,18 +83,18 @@
             </div>
         </div>
 
-        <div class="owl-carousel owl-theme">
+        <div class="owl-carousel owl-theme" style="padding-top:3em;">
             @*Slide*@
             <div class="item">
                 <div class="card mb-2">
-                    <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(34).jpg"
-                         alt="Card image cap">
+                    <a asp-controller="Home" asp-action="Babysitter">
+                        <img class="card-img-top rounded-circle" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(34).jpg">
+                    </a>
                     <div class="card-body">
                         <h4 class="card-title">Tên bảo mẫu</h4>
                         <p class="card-text">
                             Mô tả gì đó
                         </p>
-                        <button class="btn btn-primary">Button</button>
                     </div>
                 </div>
             </div>
