@@ -55,7 +55,7 @@
 #search {
     width: 70%;
     padding: 2px;
-    border-color: lightseagreen;
+    border-color: lightseagreen;    
 }
 
 .icon {
@@ -63,12 +63,9 @@
 }
 
 .card {
+    margin: auto;
     margin-bottom: 2em;
     width: 80%;
     border-width: thin;
     border-color: lightseagreen;
-}
-
-.card-img {
-    width: 77%;
 }

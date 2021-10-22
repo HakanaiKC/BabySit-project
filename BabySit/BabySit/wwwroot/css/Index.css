@@ -57,3 +57,6 @@
 .owl-carousel .next-carousel:hover {
     background-position: -24px -53px;
 }
+.fa fa-circle {
+    color: lightgreen;
+}
