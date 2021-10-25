@@ -1,0 +1,35 @@
+﻿body {
+}
+.container-1 {
+    display: flex;
+    align-content: flex-end;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background-color: whitesmoke;
+}
+
+#Ten{
+margin: 0;
+padding: 0;
+padding-bottom: 10px;
+}
+
+#search {
+    width: 70%;
+    padding: 2px;
+    border-color: lightseagreen;
+}
+
+.icon {
+    padding: 1em;
+}
+
+.card {
+    margin: auto;
+    margin-bottom: 2em;
+    width: 80%;
+    border-width: thin;
+    border-color: lightseagreen;
+}
