@@ -1,3 +1,148 @@
 ﻿@{
     ViewData["Title"] = "Tạo hợp đồng";
 }
+<section class="page-content" style="padding-top: 6em;">
+    <div class="container">
+
+        <div class="introAndContact row">
+            <div class="intro col-md-8">
+                <h3>Người thuê</h3>
+                <h3>Người được thuê</h3>
+            </div>
+
+            <div class="contract col-md-4">
+                <h3>Tình trạng hợp đồng</h3>
+            </div>
+        </div>
+        <br />
+
+        <div class="mo_ta">
+            <h1>Mô tả</h1>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        </div>
+        <br />
+
+        @*Time table*@
+        <div class="time-shift">
+            <h3>Thời gian làm việc</h3>
+            <div class="table-responsive">
+                <table class="table table-striped table-bordered table-schedule">
+                    <thead>
+                    <th class="empty"></th>
+                    <th>Thứ Hai</th>
+                    <th>Thứ Ba</th>
+                    <th>Thứ Tư</th>
+                    <th>Thứ Năm</th>
+                    <th>Thứ Sáu</th>
+                    <th>Thứ Bảy</th>
+                    <th>Chủ Nhật</th>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="time">Sáng</td>
+                            <td><i class="fas fa-check"></i></td>
+                            <td><i class="fas fa-check"></i></td>
+                            <td><i class="fas fa-times"></i></td>
+                            <td><i class="fas fa-check"></i></td>
+                            <td><i class="fas fa-times"></i></td>
+                            <td><i class="fas fa-times"></i></td>
+                            <td><i class="fas fa-check"></i></td>
+                        </tr>
+
+                        <tr>
+                            <td class="time">Chiều</td>
+                            <td><i class="fas fa-check"></i></td>
+                            <td><i class="fas fa-check"></i></td>
+                            <td><i class="fas fa-times"></i></td>
+                            <td><i class="fas fa-times"></i></td>
+                            <td><i class="fas fa-times"></i></td>
+                            <td><i class="fas fa-check"></i></td>
+                            <td><i class="fas fa-check"></i></td>
+                        </tr>
+
+                        <tr>
+                            <td class="time">Tối</td>
+                            <td><i class="fas fa-check"></i></td>
+                            <td><i class="fas fa-check"></i></td>
+                            <td><i class="fas fa-times"></i></td>
+                            <td><i class="fas fa-check"></i></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <br />
+
+        @*Skill*@
+        <div class="numberOfChildren">
+            <h3>Số trẻ</h3>
+        </div>
+
+        @*Co kinh nghiem voi*@
+        <div class="ages">
+            <h3>Độ tuổi</h3>
+            <div class="card-group text-center">
+                <div class="card">
+                    <img class="card-img-top" src="~/images/child.png" alt="Trẻ sơ sinh">
+                    <div class="card-body">
+                        <h5 class="card-title">Trẻ sơ sinh</h5>
+                    </div>
+                </div>
+                <div class="card">
+                    <img class="card-img-top" src="~/images/child.png" alt="1-2 tuổi">
+                    <div class="card-body">
+                        <h5 class="card-title">1-2 tuổi</h5>
+                    </div>
+                </div>
+                <div class="card">
+                    <img class="card-img-top" src="~/images/child.png" alt="Mầm non">
+                    <div class="card-body">
+                        <h5 class="card-title">Mầm non</h5>
+                    </div>
+                </div>
+                <div class="card">
+                    <img class="card-img-top" src="~/images/child.png" alt="Tiểu học">
+                    <div class="card-body">
+                        <h5 class="card-title">Tiểu học</h5>
+                    </div>
+                </div>
+                <div class="card">
+                    <img class="card-img-top" src="~/images/child.png" alt="Trung học">
+                    <div class="card-body">
+                        <h5 class="card-title">Trung học</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br />
+
+        <div class="rate">
+            <h3>Ngày bắt đầu</h3><p>dd/MM/yyyy</p>
+            <h3>Ngày kết thúc</h3><p>dd/MM/yyyy</p>
+        </div>
+
+        <div class="address">
+            <h3>Địa điểm</h3>
+            <p>gầm cầu Long Biên</p>
+        </div>
+
+        <div class="salary">
+            <h3>Mức lương</h3>
+            <p>30.000.000 VND</p>
+        </div>
+
+        <div class="privacy">
+            <h3>Điều khoản hợp đồng</h3>
+            <p>Something very long here</p>
+        </div>
+
+        <div class="buton row">
+            <div class="col-md-6">
+                <button></button>
+            </div>
+        </div>
+    </div>
+</section>

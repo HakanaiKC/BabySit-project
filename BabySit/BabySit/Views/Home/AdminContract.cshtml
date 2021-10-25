@@ -2,31 +2,33 @@
     ViewData["Title"] = "Quản lý hợp đồng";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
+
 <link rel="stylesheet" href="~/css/AdminContract.css">
 <div class="card search">
     <div class="box">
         <div class="container-1">
             <div class="row">
                 <div class="row col-sm-6">
-
-                    <p class="col-sm-11" id="Ten"> Tên <input type="text" id="search_user" placeholder="Tên..." /></p>
-
-                    Vai trò<div class="field select-style col-sm-11">
-                        <select name="gender" id="gender" class="form-control">
-                            <option value="0">-------</option>
-                            <option value="Babysitter">Babysitter</option>
-                            <option value="Parent">Parent</option>
-                        </select>
-                    </div>
-
-
+                    <p>Từ</p><input type="text" id="date_to" />
+                    <p>Đến</p><input type="text" id="date_from" />
+                    <button class="btn btn-outline-success" type="submit"><i class="fa fa-search"></i>Search</button>
                 </div>
                 <div class="col-sm-5" S>
-                    <p class="col-sm-11"> ID<input type="text" id="search_user" placeholder="ID..." /></p>
+                    <fieldset class="fieldset-gender">
+                        <label for="job_category">Tình trạng</label>
+                        <div class="field select-style">
+                            <select name="gender" id="gender" class="form-control">
+                                <option value="0">-------</option>
+                                <option value="Nhan_tien">Đã nhận tiền</option>
+                                <option value="Thanh_toan">Đã thanh toán</option>
+                                <option value="Hoan_thanh">Đã hoàn thành</option>
+                            </select>
+                        </div>
+                    </fieldset>
                 </div>
                 <div class="col-sm-11" S>
-
-                    <button type="submit"><i class="fa fa-search"></i>Search</button>
+                    <p>Người thuê</p><input type="text" id="hirer" />
+                    <p>Người được thuê</p><input type="text" id="hired" />
                 </div>
             </div>
         </div>
@@ -34,29 +36,22 @@
 </div>
 
 <div class="row">
-
-
     @*User 1*@
     <div class="card babysitter row col-fuild">
         <div class="no-gutters row">
-            <div class="col-sm-5">
-                <img style="padding: 10px; height: 200px; width: 200px;" data-holder-rendered="true" class="card-img rounded-circle" src="https://mdbootstrap.com/img/Photos/Avatars/img%20(31).jpg">
+            <div class="col-sm-6">
+                Người thuê
             </div>
-            <div class="col-sm-4">
+            <div class="col-sm-6">
                 <div class="card-body">
-                    <div class="info-1 row">
-                        <h3 class="card-title col-md-11">Tên </h3>
-                        <p class="col-md-11">ID</p>
-
-                    </div>
-
+                    <p>Người được thuê</p>
                 </div>
             </div>
-            <div class="col-sm-3">
-                <div class="info-2 row">
-                    <p>Chặn người dùng này</p>
-                </div>
-            </div>
+        </div>
+        <div class="row">
+            <p>Từ</p><input type="text" id="date_to" />
+            <p>Đến</p><input type="text" id="date_from" />
+            <p>Tình trạng</p>
         </div>
         @*End User 1*@
     </div>
