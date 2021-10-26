@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+
+#nullable disable
 
 namespace BabySit.Models
 {
-    public class Skill
+    public partial class Skill
     {
-        private int SkillID { get; set; }
+        public int SkillId { get; set; }
         public string SkillName { get; set; }
     }
 }

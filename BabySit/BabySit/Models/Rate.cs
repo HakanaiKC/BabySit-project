@@ -1,15 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+
+#nullable disable
 
 namespace BabySit.Models
 {
-    public class Rate
+    public partial class Rate
     {
-        private int BabySitterID { get; set; }
-        private int ParenttID { get; set; }
-        private int RateID { get; set; }
-        public float rate { get; set; }
+        public int RateId { get; set; }
+        public int ParentId { get; set; }
+        public int BabySitterId { get; set; }
+        public double? Rate1 { get; set; }
+
+        public virtual User BabySitter { get; set; }
+        public virtual User Parent { get; set; }
     }
 }

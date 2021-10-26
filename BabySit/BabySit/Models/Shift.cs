@@ -1,16 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+
+#nullable disable
 
 namespace BabySit.Models
 {
-    public class Shift
+    public partial class Shift
     {
-        private bool Morning { get; set; }
-        private bool Afternoon { get; set; }
-        private bool Night { get; set; }
-        private int BabySitterID { get; set; }
-        private DateTime date { get; set; }
+        public int BabySitterId { get; set; }
+        public DateTime Date { get; set; }
+        public bool Morning { get; set; }
+        public bool Afternoon { get; set; }
+        public bool Night { get; set; }
+
+        public virtual User BabySitter { get; set; }
     }
 }

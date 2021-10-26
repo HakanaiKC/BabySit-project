@@ -1,17 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+
+#nullable disable
 
 namespace BabySit.Models
 {
-    public class ContractShiftWork
+    public partial class ContractShiftWork
     {
-        private int ContractID { get; set; }
-        private int BabySitterID { get; set; }
-        private DateTime date { get; set; }
-        private bool Morning { get; set; }
-        private bool Afternoon { get; set; }
-        private bool Night { get; set; }
+        public int ContractId { get; set; }
+        public int BabySitterId { get; set; }
+        public DateTime Date { get; set; }
+        public bool Morning { get; set; }
+        public bool Afternoon { get; set; }
+        public bool Night { get; set; }
+
+        public virtual User BabySitter { get; set; }
+        public virtual Contract Contract { get; set; }
     }
 }

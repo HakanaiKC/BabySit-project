@@ -1,16 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+
+#nullable disable
 
 namespace BabySit.Models
 {
-    public class Feedback
+    public partial class FeedBack
     {
-        private int FeedbackID { get; set; }
-        private int BabySitterID { get; set; }
-        private int ParenttID { get; set; }
+        public int FeedBackId { get; set; }
+        public int BabySitterId { get; set; }
+        public int ParentId { get; set; }
         public string Comment { get; set; }
         public DateTime DateComment { get; set; }
+
+        public virtual User BabySitter { get; set; }
+        public virtual User Parent { get; set; }
     }
 }

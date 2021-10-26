@@ -1,13 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+
+#nullable disable
 
 namespace BabySit.Models
 {
-    public class Location
+    public partial class Location
     {
-        private int ProvinceID { get; set; }
-        private string ProvinceName { get; set; }
+        public Location()
+        {
+            Users = new HashSet<User>();
+        }
+
+        public int ProvinceId { get; set; }
+        public string ProvinceName { get; set; }
+
+        public virtual ICollection<User> Users { get; set; }
     }
 }
