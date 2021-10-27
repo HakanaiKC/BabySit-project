@@ -158,7 +158,6 @@ C:\Users\bekim\OneDrive\Máy tính\BabySit\BabySit\BabySit\bin\Debug\netcoreapp3
 C:\Users\bekim\OneDrive\Máy tính\BabySit\BabySit\BabySit\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Protocols.dll
 C:\Users\bekim\OneDrive\Máy tính\BabySit\BabySit\BabySit\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 C:\Users\bekim\OneDrive\Máy tính\BabySit\BabySit\BabySit\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Tokens.dll
-C:\Users\bekim\OneDrive\Máy tính\BabySit\BabySit\BabySit\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
 C:\Users\bekim\OneDrive\Máy tính\BabySit\BabySit\BabySit\bin\Debug\netcoreapp3.1\System.Collections.Immutable.dll
 C:\Users\bekim\OneDrive\Máy tính\BabySit\BabySit\BabySit\bin\Debug\netcoreapp3.1\System.ComponentModel.Annotations.dll
 C:\Users\bekim\OneDrive\Máy tính\BabySit\BabySit\BabySit\bin\Debug\netcoreapp3.1\System.Configuration.ConfigurationManager.dll
@@ -169,13 +168,9 @@ C:\Users\bekim\OneDrive\Máy tính\BabySit\BabySit\BabySit\bin\Debug\netcoreapp3
 C:\Users\bekim\OneDrive\Máy tính\BabySit\BabySit\BabySit\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
 C:\Users\bekim\OneDrive\Máy tính\BabySit\BabySit\BabySit\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
 C:\Users\bekim\OneDrive\Máy tính\BabySit\BabySit\BabySit\bin\Debug\netcoreapp3.1\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.dll
-C:\Users\bekim\OneDrive\Máy tính\BabySit\BabySit\BabySit\bin\Debug\netcoreapp3.1\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.pdb
 C:\Users\bekim\OneDrive\Máy tính\BabySit\BabySit\BabySit\bin\Debug\netcoreapp3.1\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.dll
-C:\Users\bekim\OneDrive\Máy tính\BabySit\BabySit\BabySit\bin\Debug\netcoreapp3.1\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.pdb
 C:\Users\bekim\OneDrive\Máy tính\BabySit\BabySit\BabySit\bin\Debug\netcoreapp3.1\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll
-C:\Users\bekim\OneDrive\Máy tính\BabySit\BabySit\BabySit\bin\Debug\netcoreapp3.1\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.pdb
 C:\Users\bekim\OneDrive\Máy tính\BabySit\BabySit\BabySit\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
-C:\Users\bekim\OneDrive\Máy tính\BabySit\BabySit\BabySit\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.pdb
 C:\Users\bekim\OneDrive\Máy tính\BabySit\BabySit\BabySit\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
 C:\Users\bekim\OneDrive\Máy tính\BabySit\BabySit\BabySit\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\bekim\OneDrive\Máy tính\BabySit\BabySit\BabySit\obj\Debug\netcoreapp3.1\BabySit.csproj.AssemblyReference.cache
@@ -217,3 +212,15 @@ C:\Users\bekim\OneDrive\Máy tính\BabySit\BabySit\BabySit\obj\Debug\netcoreapp3
 C:\Users\bekim\OneDrive\Máy tính\BabySit\BabySit\BabySit\obj\Debug\netcoreapp3.1\BabySit.dll
 C:\Users\bekim\OneDrive\Máy tính\BabySit\BabySit\BabySit\obj\Debug\netcoreapp3.1\BabySit.pdb
 C:\Users\bekim\OneDrive\Máy tính\BabySit\BabySit\BabySit\obj\Debug\netcoreapp3.1\BabySit.genruntimeconfig.cache
+C:\Users\bekim\OneDrive\Máy tính\BabySit\BabySit\BabySit\bin\Debug\netcoreapp3.1\Azure.Core.dll
+C:\Users\bekim\OneDrive\Máy tính\BabySit\BabySit\BabySit\bin\Debug\netcoreapp3.1\Azure.Identity.dll
+C:\Users\bekim\OneDrive\Máy tính\BabySit\BabySit\BabySit\bin\Debug\netcoreapp3.1\Microsoft.Bcl.AsyncInterfaces.dll
+C:\Users\bekim\OneDrive\Máy tính\BabySit\BabySit\BabySit\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Configuration.dll
+C:\Users\bekim\OneDrive\Máy tính\BabySit\BabySit\BabySit\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Configuration.FileExtensions.dll
+C:\Users\bekim\OneDrive\Máy tính\BabySit\BabySit\BabySit\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Configuration.Json.dll
+C:\Users\bekim\OneDrive\Máy tính\BabySit\BabySit\BabySit\bin\Debug\netcoreapp3.1\Microsoft.Extensions.FileProviders.Abstractions.dll
+C:\Users\bekim\OneDrive\Máy tính\BabySit\BabySit\BabySit\bin\Debug\netcoreapp3.1\Microsoft.Extensions.FileProviders.Physical.dll
+C:\Users\bekim\OneDrive\Máy tính\BabySit\BabySit\BabySit\bin\Debug\netcoreapp3.1\Microsoft.Extensions.FileSystemGlobbing.dll
+C:\Users\bekim\OneDrive\Máy tính\BabySit\BabySit\BabySit\bin\Debug\netcoreapp3.1\Microsoft.Identity.Client.Extensions.Msal.dll
+C:\Users\bekim\OneDrive\Máy tính\BabySit\BabySit\BabySit\bin\Debug\netcoreapp3.1\System.Text.Encodings.Web.dll
+C:\Users\bekim\OneDrive\Máy tính\BabySit\BabySit\BabySit\bin\Debug\netcoreapp3.1\System.Text.Json.dll

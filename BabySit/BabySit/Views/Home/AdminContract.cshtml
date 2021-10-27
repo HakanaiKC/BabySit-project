@@ -8,16 +8,19 @@
     <div class="box">
         <div class="container-1">
             <div class="row">
-                <div class="row col-sm-6">
-                    <p>Từ</p><input type="text" id="date_to" />
-                    <p>Đến</p><input type="text" id="date_from" />
-                    <button class="btn btn-outline-success" type="submit"><i class="fa fa-search"></i>Search</button>
-                </div>
-                <div class="col-sm-5" S>
-                    <fieldset class="fieldset-gender">
-                        <label for="job_category">Tình trạng</label>
-                        <div class="field select-style">
-                            <select name="gender" id="gender" class="form-control">
+                <div class="row col-md-12">
+                    <div class="col-md-4">
+                        <label>Từ</label>
+                        <input type="text" id="date_to" />
+                    </div>
+                    <div class="col-md-4">
+                        <label>Đến</label>
+                        <input type="text" id="date_from" />
+                    </div>
+                    <fieldset class="fieldset-status col-md-4">
+                        <label for="status">Tình trạng</label>
+                        <div class="field select-style" style="float:right;">
+                            <select name="status" id="status" class="form-control">
                                 <option value="0">-------</option>
                                 <option value="Nhan_tien">Đã nhận tiền</option>
                                 <option value="Thanh_toan">Đã thanh toán</option>
@@ -26,9 +29,21 @@
                         </div>
                     </fieldset>
                 </div>
-                <div class="col-sm-11" S>
-                    <p>Người thuê</p><input type="text" id="hirer" />
-                    <p>Người được thuê</p><input type="text" id="hired" />
+
+                <div class="col-md-12 row" style="padding-top: 2em;">
+                    <div class="col-md-5">
+                        <label>Người thuê</label>
+                        <input type="text" id="hirer" />
+                    </div>
+                    <div class="col-md-6">
+                        <label>Người được thuê</label>
+                        <input type="text" id="hired" />
+                    </div>
+                </div>
+
+                <div class="col-md-12" style="padding-top: 2em;">
+                    <div class="col-md-3"></div>
+                    <button class="btn btn-outline-success col-sm-2" type="submit"><i class="fa fa-search"></i>Tìm kiếm</button>
                 </div>
             </div>
         </div>
@@ -39,20 +54,31 @@
     @*User 1*@
     <div class="card babysitter row col-fuild">
         <div class="no-gutters row">
-            <div class="col-sm-6">
-                Người thuê
-            </div>
-            <div class="col-sm-6">
+            <div class="col-md-4">
                 <div class="card-body">
-                    <p>Người được thuê</p>
+                    Người thuê
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card-body">
+                    Người được thuê
                 </div>
             </div>
         </div>
-        <div class="row">
-            <p>Từ</p><input type="text" id="date_to" />
-            <p>Đến</p><input type="text" id="date_from" />
-            <p>Tình trạng</p>
+        <div class="row col-md-12">
+            <div class="col-md-4">
+                <label>Từ</label>
+                <input type="text" id="date_to" />
+            </div>
+            <div class="col-md-4">
+                <label>Đến</label>
+                <input type="text" id="date_from" />
+            </div>
+            <div class="col-md-4">
+                <label>Tình trạng</label>
+                <input type="text" id="status" />
+            </div>
         </div>
-        @*End User 1*@
     </div>
 </div>
+@*End User 1*@
