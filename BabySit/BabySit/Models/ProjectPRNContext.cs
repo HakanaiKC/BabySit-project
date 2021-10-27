@@ -1,8 +1,6 @@
 ﻿using System;
-using System.IO;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.Extensions.Configuration;
 
 #nullable disable
 
@@ -23,7 +21,6 @@ namespace BabySit.Models
         public virtual DbSet<ContractShiftWork> ContractShiftWorks { get; set; }
         public virtual DbSet<FeedBack> FeedBacks { get; set; }
         public virtual DbSet<Location> Locations { get; set; }
-        public virtual DbSet<Rate> Rates { get; set; }
         public virtual DbSet<Shift> Shifts { get; set; }
         public virtual DbSet<Skill> Skills { get; set; }
         public virtual DbSet<User> Users { get; set; }
@@ -31,11 +28,11 @@ namespace BabySit.Models
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            var builder = new ConfigurationBuilder()
-                                             .SetBasePath(Directory.GetCurrentDirectory())
-                                             .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
-            IConfigurationRoot configuration = builder.Build();
-            optionsBuilder.UseSqlServer(configuration.GetConnectionString("ProjectPRNDB"));
+            if (!optionsBuilder.IsConfigured)
+            {
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
+                optionsBuilder.UseSqlServer("server =(local); database = ProjectPRN;uid=sa;pwd=123;");
+            }
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -102,9 +99,7 @@ namespace BabySit.Models
 
                 entity.Property(e => e.BabySitterId).HasColumnName("BabySitterID");
 
-                entity.Property(e => e.Comment)
-                    .IsRequired()
-                    .HasMaxLength(500);
+                entity.Property(e => e.Comment).HasMaxLength(500);
 
                 entity.Property(e => e.DateComment).HasColumnType("date");
 
@@ -134,31 +129,6 @@ namespace BabySit.Models
                 entity.Property(e => e.ProvinceName)
                     .IsRequired()
                     .HasMaxLength(50);
-            });
-
-            modelBuilder.Entity<Rate>(entity =>
-            {
-                entity.ToTable("Rate");
-
-                entity.Property(e => e.RateId).HasColumnName("RateID");
-
-                entity.Property(e => e.BabySitterId).HasColumnName("BabySitterID");
-
-                entity.Property(e => e.ParentId).HasColumnName("ParentID");
-
-                entity.Property(e => e.Rate1).HasColumnName("Rate");
-
-                entity.HasOne(d => d.BabySitter)
-                    .WithMany(p => p.RateBabySitters)
-                    .HasForeignKey(d => d.BabySitterId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Rate_User1");
-
-                entity.HasOne(d => d.Parent)
-                    .WithMany(p => p.RateParents)
-                    .HasForeignKey(d => d.ParentId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Rate_User");
             });
 
             modelBuilder.Entity<Shift>(entity =>

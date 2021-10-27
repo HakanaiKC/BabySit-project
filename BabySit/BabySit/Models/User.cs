@@ -13,8 +13,6 @@ namespace BabySit.Models
             ContractParents = new HashSet<Contract>();
             FeedBackBabySitters = new HashSet<FeedBack>();
             FeedBackParents = new HashSet<FeedBack>();
-            RateBabySitters = new HashSet<Rate>();
-            RateParents = new HashSet<Rate>();
         }
 
         public int UserId { get; set; }
@@ -40,7 +38,5 @@ namespace BabySit.Models
         public virtual ICollection<Contract> ContractParents { get; set; }
         public virtual ICollection<FeedBack> FeedBackBabySitters { get; set; }
         public virtual ICollection<FeedBack> FeedBackParents { get; set; }
-        public virtual ICollection<Rate> RateBabySitters { get; set; }
-        public virtual ICollection<Rate> RateParents { get; set; }
     }
 }

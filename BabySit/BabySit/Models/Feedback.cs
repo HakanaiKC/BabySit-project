@@ -12,6 +12,7 @@ namespace BabySit.Models
         public int ParentId { get; set; }
         public string Comment { get; set; }
         public DateTime DateComment { get; set; }
+        public double? Rate { get; set; }
 
         public virtual User BabySitter { get; set; }
         public virtual User Parent { get; set; }
