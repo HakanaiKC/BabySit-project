@@ -54,6 +54,8 @@ namespace BabySit.Controllers
                 }
                 else
                 {
+                    //Session["UserID"] = userDetails.UserId;
+                    
                     return RedirectToAction("HomePage");
                 }
             }
