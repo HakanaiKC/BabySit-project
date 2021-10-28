@@ -24,6 +24,11 @@
                         </div>
                         @Html.ValidationMessageFor(mess => mess.Password, null, new { @class = "text-danger" })
                     </div>
+                    <div>
+                        @Html.CheckBox("remember", false)
+                        <label>Nhớ mật khẩu</label>
+                    </div>
+                    
                     if (@ViewBag.Message != null)
                     {
                         <label class="text-danger">@ViewBag.Message</label>
