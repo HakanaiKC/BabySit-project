@@ -40,6 +40,13 @@ namespace BabySit.Controllers
         {
             return View();
         }
+
+        [HttpPost]
+        public IActionResult Authorize()
+        {
+            return View();
+        }
+
         public IActionResult Register()
         {
             return View();
