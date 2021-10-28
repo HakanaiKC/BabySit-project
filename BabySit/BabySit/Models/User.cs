@@ -17,6 +17,7 @@ namespace BabySit.Models
             FeedBackParents = new HashSet<FeedBack>();
         }
         [Key]
+        
         public int UserId { get; set; }
 
         [Required(ErrorMessage = "Không được bỏ trống trường này")]

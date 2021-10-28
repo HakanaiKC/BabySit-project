@@ -15,7 +15,7 @@ namespace BabySit.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-
+        
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
@@ -44,6 +44,7 @@ namespace BabySit.Controllers
         [HttpPost]
         public IActionResult Login(BabySit.Models.User user)
         {
+           
             using (ProjectPRNContext db = new ProjectPRNContext())
             {
                 var userDetails = db.Users.Where(x => x.Email == user.Email && x.Password == user.Password).FirstOrDefault();
@@ -53,9 +54,7 @@ namespace BabySit.Controllers
                     return View();
                 }
                 else
-                {
-                    //Session["UserID"] = userDetails.UserId;
-                    
+                {                 
                     return RedirectToAction("HomePage");
                 }
             }

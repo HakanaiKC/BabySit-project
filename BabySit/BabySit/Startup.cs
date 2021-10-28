@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -24,14 +24,6 @@ namespace BabySit
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDistributedMemoryCache();
-
-            services.AddSession(options =>
-            {
-                options.IdleTimeout = TimeSpan.FromSeconds(10);
-                options.Cookie.HttpOnly = true;
-                options.Cookie.IsEssential = true;
-            });
             services.AddControllersWithViews();
 
         }
@@ -51,7 +43,7 @@ namespace BabySit
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-            app.UseSession();
+
             app.UseRouting();
 
             app.UseAuthorization();
