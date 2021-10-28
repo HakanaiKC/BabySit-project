@@ -224,4 +224,3 @@ C:\Users\bekim\OneDrive\Máy tính\BabySit\BabySit\BabySit\bin\Debug\netcoreapp3
 C:\Users\bekim\OneDrive\Máy tính\BabySit\BabySit\BabySit\bin\Debug\netcoreapp3.1\Microsoft.Identity.Client.Extensions.Msal.dll
 C:\Users\bekim\OneDrive\Máy tính\BabySit\BabySit\BabySit\bin\Debug\netcoreapp3.1\System.Text.Encodings.Web.dll
 C:\Users\bekim\OneDrive\Máy tính\BabySit\BabySit\BabySit\bin\Debug\netcoreapp3.1\System.Text.Json.dll
-C:\Users\bekim\OneDrive\Máy tính\Babysit\BabySit\BabySit\bin\Debug\netcoreapp3.1\web.config

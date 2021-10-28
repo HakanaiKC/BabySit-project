@@ -30,7 +30,6 @@ namespace BabySit.Models
         public int Role { get; set; }
         public DateTime RegisterDate { get; set; }
 
-        [Required(ErrorMessage = "Không được bỏ trống trường này")]
         public string Avatar { get; set; }
 
         [Required(ErrorMessage = "Không được bỏ trống trường này")]
@@ -57,7 +56,6 @@ namespace BabySit.Models
         public int? Status { get; set; }
         public string AccountNumber { get; set; }
         public string Bank { get; set; }
-
         public virtual Location Province { get; set; }
         public virtual ICollection<Contract> ContractBabySitters { get; set; }
         public virtual ICollection<Contract> ContractParents { get; set; }

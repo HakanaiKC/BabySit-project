@@ -19,7 +19,7 @@ namespace BabySit.Controllers
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
-        }       
+        }
 
         public IActionResult Index()
         {
@@ -42,9 +42,21 @@ namespace BabySit.Controllers
         }
 
         [HttpPost]
-        public IActionResult Authorize()
+        public IActionResult Login(BabySit.Models.User user)
         {
-            return View();
+            using (ProjectPRNContext db = new ProjectPRNContext())
+            {
+                var userDetails = db.Users.Where(x => x.Email == user.Email && x.Password == user.Password).FirstOrDefault();
+                if (userDetails == null)
+                {
+                    ViewBag.Message = "Tài khoản không tồn tại hoặc sai mật khẩu";
+                    return View();
+                }
+                else
+                {
+                    return RedirectToAction("HomePage");
+                }
+            }
         }
 
         public IActionResult Register()

@@ -6,7 +6,7 @@
     <div class="col-sm-8 col-md-6 col-lg-4 mx-auto" style="min-width: 300px;">
         <div class="card navbar-shadow">
             <div class="card-body">
-                @using (Html.BeginForm("Authorize","Home",FormMethod.Post))
+                @using (Html.BeginForm("Login", "Home", FormMethod.Post))
                 {
                     <div class="form-group">
                         <h4 class="card-title text-center">Đăng nhập</h4>
@@ -14,18 +14,23 @@
                         <div class="input-group input-group-merge">
                             @Html.TextBoxFor(model => model.Email, new { @id = "email", @class = "form-control form-control-prepended" })
                         </div>
-                        @Html.ValidationMessageFor(mess => mess.Email,null, new { @class = "text-danger" })
+                        @Html.ValidationMessageFor(mess => mess.Email, null, new { @class = "text-danger" })
                     </div>
                     <div class="form-group">
                         @Html.LabelFor(model => model.Password)
                         <div class="input-group input-group-merge">
-                            
+
                             @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
                         </div>
-                        @Html.ValidationMessageFor(mess => mess.Password,null, new { @class = "text-danger" })
+                        @Html.ValidationMessageFor(mess => mess.Password, null, new { @class = "text-danger" })
                     </div>
+                    if (@ViewBag.Message != null)
+                    {
+                        <label class="field-validation-error"></label>
+                        @ViewBag.Message
+                    }
                     <div class="form-group ">
-                        <input type="submit" class="btn btn-success btn-block" value="Đăng nhập">                            
+                        <input type="submit" class="btn btn-success btn-block" value="Đăng nhập">
                     </div>
                 }
                 <div class="text-center">
