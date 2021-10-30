@@ -21,6 +21,7 @@ namespace BabySit.Models
         public int UserId { get; set; }
 
         [Required(ErrorMessage = "Không được bỏ trống trường này")]
+        [EmailAddress]
         public string Email { get; set; }
 
         [Required(ErrorMessage = "Không được bỏ trống trường này")]

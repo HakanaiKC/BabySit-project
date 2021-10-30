@@ -1,113 +1,123 @@
 ﻿@{
     ViewData["Title"] = "Trang chủ";
 }
-<link rel="stylesheet" href="~/css/owl.carousel.min.css">
-<link rel="stylesheet" href="~/css/owl.theme.default.min.css">
-<link rel="stylesheet" href="~/css/Index.css">
-<script src="~/js/owl.carousel.min.js"></script>
-<div class="text-center" style="padding-top:6em;">
-    <div class="page">
-        <div class="row">
-            <div class="col-md-4">
-                <!-- Icon Box -->
-                <div class="icon-box">
-                    <div class="icon">
-                        <i class="fas fa-map-marker fa-3x" style="color: #20c997;"></i>
+@Model List<User>
+    <link rel="stylesheet" href="~/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="~/css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="~/css/Index.css">
+    <script src="~/js/owl.carousel.min.js"></script>
+    <div class="text-center" style="padding-top:6em;">
+        <div class="page">
+            <div class="row">
+                <div class="col-md-4">
+                    <!-- Icon Box -->
+                    <div class="icon-box">
+                        <div class="icon">
+                            <i class="fas fa-map-marker fa-3x" style="color: #20c997;"></i>
+                        </div>
+                        <div class="icon-box-body">
+                            <h4>6,666 bảo mẫu đang hoạt động</h4>
+                        </div>
                     </div>
-                    <div class="icon-box-body">
-                        <h4>6,666 bảo mẫu đang hoạt động</h4>
-                    </div>
+                    <!-- Icon Box / End -->
                 </div>
-                <!-- Icon Box / End -->
-            </div>
-            <div class="col-md-4">
-                <!-- Icon Box -->
-                <div class="icon-box">
-                    <div class="icon">
-                        <i class="fas fa-hands-helping fa-3x" style="color: #20c997;"></i>
+                <div class="col-md-4">
+                    <!-- Icon Box -->
+                    <div class="icon-box">
+                        <div class="icon">
+                            <i class="fas fa-hands-helping fa-3x" style="color: #20c997;"></i>
+                        </div>
+                        <div class="icon-box-body">
+                            <h4>Miễn phí cho bảo mẫu</h4>
+                        </div>
                     </div>
-                    <div class="icon-box-body">
-                        <h4>Miễn phí cho bảo mẫu</h4>
-                    </div>
+                    <!-- Icon Box / End -->
                 </div>
-                <!-- Icon Box / End -->
-            </div>
-            <div class="col-md-4">
-                <!-- Icon Box -->
-                <div class="icon-box">
-                    <div class="icon">
-                        <i class="fas fa-coins fa-3x" style="color: #20c997;"></i>
+                <div class="col-md-4">
+                    <!-- Icon Box -->
+                    <div class="icon-box">
+                        <div class="icon">
+                            <i class="fas fa-coins fa-3x" style="color: #20c997;"></i>
+                        </div>
+                        <div class="icon-box-body">
+                            <h4>Giá thành hợp với mọi gia đình</h4>
+                        </div>
                     </div>
-                    <div class="icon-box-body">
-                        <h4>Giá thành hợp với mọi gia đình</h4>
-                    </div>
+                    <!-- Icon Box / End -->
                 </div>
-                <!-- Icon Box / End -->
+
+                <div class="col-md-4" style="padding-top: 2em;">
+                    <!-- Icon Box -->
+                    <div class="icon-box">
+                        <div class="icon">
+                            <i class="far fa-comments fa-3x" style="color: #20c997;"></i>
+                        </div>
+                        <div class="icon-box-body">
+                            <h4>Bảo mật tin nhắn</h4>
+                        </div>
+                    </div>
+                    <!-- Icon Box / End -->
+                </div>
+                <div class="col-md-4" style="padding-top: 2em;">
+                    <!-- Icon Box -->
+                    <div class="icon-box">
+                        <div class="icon">
+                            <i class="far fa-user-circle fa-3x" style="color: #20c997;"></i>
+                        </div>
+                        <div class="icon-box-body">
+                            <h4>Các bài đánh giá hữu ích</h4>
+                        </div>
+                    </div>
+                    <!-- Icon Box / End -->
+                </div>
+                <div class="col-md-4" style="padding-top: 2em;">
+                    <!-- Icon Box -->
+                    <div class="icon-box">
+                        <div class="icon">
+                            <i class="fas fa-user-shield fa-3x" style="color: #20c997;"></i>
+                        </div>
+                        <div class="icon-box-body">
+                            <h4>Đảm bảo bảo mật thông tin</h4>
+                        </div>
+                    </div>
+                    <!-- Icon Box / End -->
+                </div>
             </div>
 
-            <div class="col-md-4" style="padding-top: 2em;">
-                <!-- Icon Box -->
-                <div class="icon-box">
-                    <div class="icon">
-                        <i class="far fa-comments fa-3x" style="color: #20c997;"></i>
-                    </div>
-                    <div class="icon-box-body">
-                        <h4>Bảo mật tin nhắn</h4>
-                    </div>
-                </div>
-                <!-- Icon Box / End -->
-            </div>
-            <div class="col-md-4" style="padding-top: 2em;">
-                <!-- Icon Box -->
-                <div class="icon-box">
-                    <div class="icon">
-                        <i class="far fa-user-circle fa-3x" style="color: #20c997;"></i>
-                    </div>
-                    <div class="icon-box-body">
-                        <h4>Các bài đánh giá hữu ích</h4>
-                    </div>
-                </div>
-                <!-- Icon Box / End -->
-            </div>
-            <div class="col-md-4" style="padding-top: 2em;">
-                <!-- Icon Box -->
-                <div class="icon-box">
-                    <div class="icon">
-                        <i class="fas fa-user-shield fa-3x" style="color: #20c997;"></i>
-                    </div>
-                    <div class="icon-box-body">
-                        <h4>Đảm bảo bảo mật thông tin</h4>
-                    </div>
-                </div>
-                <!-- Icon Box / End -->
-            </div>
-        </div>
+            @using (Html.BeginForm("Babysitter", "Home", FormMethod.Get))
+            {
+                <div class="owl-carousel owl-theme" style="padding-top:3em;">
+                    @*Slide*@
 
-        <div class="owl-carousel owl-theme" style="padding-top:3em;">
-            @*Slide*@
-            <div class="item">
-                <div class="card mb-2">
-                    <a asp-controller="Home" asp-action="Babysitter">
-                        <img style="padding: 20px;" data-holder-rendered="true" class="z-depth-2 card-img-top rounded-circle" src="https://mdbootstrap.com/img/Photos/Avatars/img%20(30).jpg">
-                    </a>
-                    <div class="card-footer">
-                        <h4 class="card-title">Tên bảo mẫu</h4>
-                        <p class="card-text">
-                            Mô tả gì đó
-                        </p>
+                    @foreach (var item in Model)
+                    {
+                    <div class="item">
+                        <div class="card mb-2">
+                            <input hidden value="@item.UserId" />
+                            <a id="@item.UserId" asp-controller="Home" asp-action="Babysitter">
+                                <img style="padding: 20px;" data-holder-rendered="true" class="z-depth-2 card-img-top rounded-circle" src="@item.Avatar">
+                            </a>
+                            <div class="card-footer">
+                                <h4 class="card-title">@item.Name</h4>
+                                <p class="card-text">
+                                    @item.Description
+                                </p>
+                            </div>
+                        </div>
+                        @Html.ActionLink("Tìm hiểu", "Babysitter", new { id = item.UserId }, new {@class= "btn btn-success btn-block" })
                     </div>
+                    }
                 </div>
-            </div>
+            }
             @*End Slide*@
         </div>
     </div>
-</div>
-<script>
-    $('.owl-carousel').owlCarousel({
-        loop: true,
-        margin: 10,
-        nav: true,
-        items: 5,
-        navText: ["<div class='nav-button owl-prev'>‹</div>", "<div class='nav-button owl-next'>›</div>"]
-    })
-</script>
+    <script>
+        $('.owl-carousel').owlCarousel({
+            loop: false,
+            margin: 10,
+            nav: true,
+            items: 3,
+            navText: ["<div class='nav-button owl-prev'>‹</div>", "<div class='nav-button owl-next'>›</div>"]
+        })
+    </script>

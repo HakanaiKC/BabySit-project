@@ -16,15 +16,20 @@ namespace BabySit.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        
+
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(BabySit.Models.User user)
         {
-            return View();
+            using (ProjectPRNContext db = new ProjectPRNContext())
+            {
+                var userDetails = db.Users.Where(x => x.Role == 2).ToList();
+                ViewData.Model = userDetails;
+                return View();
+            }
         }
 
         public IActionResult Verify()
@@ -45,7 +50,6 @@ namespace BabySit.Controllers
         [HttpPost]
         public IActionResult Login(BabySit.Models.User user)
         {
-           
             using (ProjectPRNContext db = new ProjectPRNContext())
             {
                 var userDetails = db.Users.Where(x => x.Email == user.Email && x.Password == user.Password).FirstOrDefault();
@@ -55,7 +59,7 @@ namespace BabySit.Controllers
                     return View();
                 }
                 else
-                {                 
+                {
                     return RedirectToAction("HomePage");
                 }
             }
@@ -77,9 +81,22 @@ namespace BabySit.Controllers
         {
             return View();
         }
-        public IActionResult Babysitter()
+
+        [HttpGet]
+        public IActionResult Babysitter(BabySit.Models.User user, int id)
         {
-            return View();
+            using (ProjectPRNContext db = new ProjectPRNContext())
+            {
+                var babysitDetails = db.Users.Where(x => x.UserId == id).ToList();
+                ViewData.Model = babysitDetails;
+                return View(babysitDetails);
+            }
+
+        }
+
+        public IActionResult Babysitter(int id)
+        {
+            return Redirect(@Url.Action("Babysitter", "Home", new { id = id }));
         }
         public IActionResult CreateContract()
         {
@@ -91,6 +108,7 @@ namespace BabySit.Controllers
         }
         public IActionResult HomePage()
         {
+
             return View();
         }
         public IActionResult ForgotPass()
