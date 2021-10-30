@@ -91,18 +91,16 @@
 
                     @foreach (var item in Model)
                     {
-                    <div class="item">
-                        <div class="card mb-2">
-                            <input hidden value="@item.UserId" />
-                            <a id="@item.UserId" asp-controller="Home" asp-action="Babysitter">
+                        <div class="item">
+                            <div class="card mb-2">
+                                <input hidden value="@item.UserId" />
                                 <img style="padding: 20px;" data-holder-rendered="true" class="z-depth-2 card-img-top rounded-circle" src="@item.Avatar">
-                            </a>
-                            <div class="card-footer">
-                                <h4 class="card-title">@item.Name</h4>
+                                <div class="card-footer">
+                                    <h4 class="card-title">@item.Name</h4>
+                                </div>
                             </div>
+                            @Html.ActionLink("Tìm hiểu", "Babysitter", new { id = item.UserId }, new { @class = "btn btn-success btn-block" })
                         </div>
-                        @Html.ActionLink("Tìm hiểu", "Babysitter", new { id = item.UserId }, new {@class= "btn btn-success btn-block" })
-                    </div>
                     }
                 </div>
             }

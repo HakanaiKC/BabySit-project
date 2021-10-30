@@ -52,7 +52,7 @@
                 <h3>Kinh nghiệm</h3>
                 @if (item.YearsOfExperience < 1)
                 {
-                    <p>dưới một năm</p>
+                    <p>Dưới một năm</p>
                 }
                 else
                 {
@@ -76,19 +76,16 @@
         </div>
 
         @*Co kinh nghiem voi*@
-        <div class="experience-with">
-            <h3>Có kinh nghiệm với</h3>
-            <div class="card-group text-center">
-                @foreach (var skill in Model.skills.Where(x => x.SkillId >= 1 && x.SkillId <= 5))
-                {
-                    <div class="card">
-                        <img class="card-img-top" src="~/images/child.png" alt="Trẻ sơ sinh">
-                        <div class="card-body">
-                            <h5 class="card-title">@skill.SkillName</h5>
-                        </div>
+        <h3>Có kinh nghiệm với</h3>
+        <div class="experience-with row">
+            @foreach (var skill in Model.skills.Where(x => x.SkillId >= 1 && x.SkillId <= 5))
+            {
+                <div class="col-sm-2 py-2 text-center">
+                    <div class="card card-body h-100">
+                        @skill.SkillName
                     </div>
-                }
-            </div>
+                </div>
+            }
         </div>
 
         <br />
