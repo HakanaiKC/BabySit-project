@@ -1,4 +1,4 @@
-﻿@model IEnumerable<BabySit.Models.User>
+﻿@model BabySit.Database_Acess.Babysitter
 @{
     ViewData["Title"] = "Bảo mẫu";
 }
@@ -6,14 +6,15 @@
 <script src="~/js/jquery.star-rating-svg.js"></script>
 
 <section class="page-content" style="padding-top: 6em;">
-    @foreach (var item in Model)
-    {
-        <div class="container">
+
+    <div class="container">
+        @foreach (var item in Model.users)
+        {
             <div class="card babysitter row col-md-12">
                 @*Babysitter card*@
                 <div class="no-gutters row">
                     <div class="col-lg-3">
-                        <img style="padding: 20px; height:200px; width:200px;" data-holder-rendered="true" class="card-img rounded-circle" src="https://mdbootstrap.com/img/Photos/Avatars/img%20(31).jpg">
+                        <img style="padding: 20px; height:200px; width:200px;" data-holder-rendered="true" class="card-img rounded-circle" src="@item.Avatar">
                     </div>
                     <div class="col-lg-8">
                         <div class="card-body">
@@ -25,8 +26,8 @@
                         </div>
                     </div>
                 </div>
-
             </div>
+
             <br />
 
             <div class="introAndContact row">
@@ -39,7 +40,7 @@
                 @*Contract*@
                 <div class="contract col-md-4 card" style="margin:auto;">
                     <h3>Mức lương yêu cầu</h3>
-                    <strong>@Html.DisplayFor(model => item.SalaryPerHour) VND</strong>
+                    <strong>@Html.DisplayFor(model => item.SalaryPerHour) VND/ giờ</strong>
                     <div class="card-body">
                         <a class="btn btn-outline-success" asp-controller="Home" asp-action="CreateContract">Tạo hợp đồng</a>
                     </div>
@@ -49,110 +50,121 @@
             @*Kinh nghiem*@
             <div class="kinhnghiem">
                 <h3>Kinh nghiệm</h3>
-            </div>
-            <br />
+                @if (item.YearsOfExperience < 1)
+                {
+                    <p>dưới một năm</p>
+                }
+                else
+                {
+                    <p>@Html.DisplayFor(model => item.YearsOfExperience) năm</p>
+                }
 
-            @*Skill*@
-            <div class="skill">
-                <h3>Kỹ năng</h3>
-                <div class="skills row col-md-5">
-                    <p class="col-md-4">Kĩ năng 1</p>
-                    <p class="col-md-4">Kĩ năng 2</p>
-                    <p class="col-md-4">Kĩ năng 3</p>
-                    <p class="col-md-4">Kĩ năng 4</p>
-                    <p class="col-md-4">Kĩ năng 5</p>
-                    <p class="col-md-4">Kĩ năng 6</p>
-                    <p class="col-md-4">Kĩ năng 7</p>
-                    <p class="col-md-4">Kĩ năng 8</p>
-                </div>
             </div>
+        }
+        <br />
 
-            @*Co kinh nghiem voi*@
-            <div class="experience-with">
-                <h3>Có kinh nghiệm với</h3>
-                <div class="card-group text-center">
+        @*Skill*@
+        <div class="skill">
+            <h3>Kỹ năng</h3>
+            <div class="skills row col-md-5">
+                @foreach (var skill in Model.skills.Where(x => x.SkillId >= 6 && x.SkillId <= 12))
+                {
+                    <p class="col-md-4">@skill.SkillName</p>
+                }
+
+            </div>
+        </div>
+
+        @*Co kinh nghiem voi*@
+        <div class="experience-with">
+            <h3>Có kinh nghiệm với</h3>
+            <div class="card-group text-center">
+                @foreach (var skill in Model.skills.Where(x => x.SkillId >= 1 && x.SkillId <= 5))
+                {
                     <div class="card">
                         <img class="card-img-top" src="~/images/child.png" alt="Trẻ sơ sinh">
                         <div class="card-body">
-                            <h5 class="card-title">Trẻ sơ sinh</h5>
+                            <h5 class="card-title">@skill.SkillName</h5>
                         </div>
                     </div>
-                </div>
+                }
             </div>
-            <br />
-            @*Time table*@
-            <div class="time-shift">
-                <h3>Thời gian làm việc</h3>
-                <div class="table-responsive">
-                    <table class="table table-striped table-bordered table-schedule">
-                        <thead>
-                        <th class="empty"></th>
-                        <th>Thứ Hai</th>
-                        <th>Thứ Ba</th>
-                        <th>Thứ Tư</th>
-                        <th>Thứ Năm</th>
-                        <th>Thứ Sáu</th>
-                        <th>Thứ Bảy</th>
-                        <th>Chủ Nhật</th>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td class="time">Sáng</td>
-                                <td><i class="fas fa-check"></i></td>
-                                <td><i class="fas fa-check"></i></td>
-                                <td><i class="fas fa-times"></i></td>
-                                <td><i class="fas fa-check"></i></td>
-                                <td><i class="fas fa-times"></i></td>
-                                <td><i class="fas fa-times"></i></td>
-                                <td><i class="fas fa-check"></i></td>
-                            </tr>
+        </div>
 
-                            <tr>
-                                <td class="time">Chiều</td>
-                                <td><i class="fas fa-check"></i></td>
-                                <td><i class="fas fa-check"></i></td>
-                                <td><i class="fas fa-times"></i></td>
-                                <td><i class="fas fa-times"></i></td>
-                                <td><i class="fas fa-times"></i></td>
-                                <td><i class="fas fa-check"></i></td>
-                                <td><i class="fas fa-check"></i></td>
-                            </tr>
+        <br />
+        @*Time table*@
+        <div class="time-shift">
+            <h3>Thời gian làm việc</h3>
+            <div class="table-responsive">
+                <table class="table table-striped table-bordered table-schedule">
+                    <thead>
+                    <th class="empty"></th>
+                    <th>Thứ Hai</th>
+                    <th>Thứ Ba</th>
+                    <th>Thứ Tư</th>
+                    <th>Thứ Năm</th>
+                    <th>Thứ Sáu</th>
+                    <th>Thứ Bảy</th>
+                    <th>Chủ Nhật</th>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="time">Sáng</td>
+                            <td><i class="fas fa-check"></i></td>
+                            <td><i class="fas fa-check"></i></td>
+                            <td><i class="fas fa-times"></i></td>
+                            <td><i class="fas fa-check"></i></td>
+                            <td><i class="fas fa-times"></i></td>
+                            <td><i class="fas fa-times"></i></td>
+                            <td><i class="fas fa-check"></i></td>
+                        </tr>
 
-                            <tr>
-                                <td class="time">Tối</td>
-                                <td><i class="fas fa-check"></i></td>
-                                <td><i class="fas fa-check"></i></td>
-                                <td><i class="fas fa-times"></i></td>
-                                <td><i class="fas fa-check"></i></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+                        <tr>
+                            <td class="time">Chiều</td>
+                            <td><i class="fas fa-check"></i></td>
+                            <td><i class="fas fa-check"></i></td>
+                            <td><i class="fas fa-times"></i></td>
+                            <td><i class="fas fa-times"></i></td>
+                            <td><i class="fas fa-times"></i></td>
+                            <td><i class="fas fa-check"></i></td>
+                            <td><i class="fas fa-check"></i></td>
+                        </tr>
+
+                        <tr>
+                            <td class="time">Tối</td>
+                            <td><i class="fas fa-check"></i></td>
+                            <td><i class="fas fa-check"></i></td>
+                            <td><i class="fas fa-times"></i></td>
+                            <td><i class="fas fa-check"></i></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
-            <br />
-            @*Rate*@
-            <div class="rate">
-                <h3>Đánh giá</h3>
-                <div class="no-gutters row">
-                    <div class="col-md-3">
-                        <img style="padding: 20px; height:100px; width:100px;" data-holder-rendered="true" class="card-img rounded-circle" src="https://mdbootstrap.com/img/Photos/Avatars/img%20(31).jpg">
-                    </div>
-                    <div class="star col-md-6">
-                        <label class="col-md-3">Tên</label>
-                        <label class="col-md-3"><span class="rate-total" data-rating="4.8" id="starrate"></span></label>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="date-time">Ngày</div>
-                    </div>
-                    <div class="col-md-12">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-                    </div>
+        </div>
+        <br />
+        @*Rate*@
+        <div class="rate">
+            <h3>Đánh giá</h3>
+            <div class="no-gutters row">
+                <div class="col-md-3">
+                    <img style="padding: 20px; height:100px; width:100px;" data-holder-rendered="true" class="card-img rounded-circle" src="https://mdbootstrap.com/img/Photos/Avatars/img%20(31).jpg">
+                </div>
+                <div class="star col-md-6">
+                    <label class="col-md-3">Tên</label>
+                    <label class="col-md-3"><span class="rate-total" data-rating="4.8" id="starrate"></span></label>
+                </div>
+                <div class="col-md-3">
+                    <div class="date-time">Ngày</div>
+                </div>
+                <div class="col-md-12">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
                 </div>
             </div>
         </div>
+    </div>
     }
 </section>
 

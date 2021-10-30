@@ -1,4 +1,5 @@
-﻿using BabySit.Models;
+﻿using BabySit.Database_Acess;
+using BabySit.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
@@ -16,7 +17,6 @@ namespace BabySit.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
@@ -87,56 +87,42 @@ namespace BabySit.Controllers
         {            
             using (ProjectPRNContext db = new ProjectPRNContext())
             {
-                List<User> users = db.Users.ToList();
-                List<Location> local = db.Locations.ToList();
-                //var babysitDetails = db.Users.Where(x => x.UserId == id).FirstOrDefault();
-                var query = (from baby in users
-                             join localtion in local
-                             on baby.ProvinceId equals localtion.ProvinceId
-                             where baby.UserId == id
-                             select new User()
-                             {
-                                 Name = baby.Name,
-                                 UserId = baby.UserId,
-                                 Avatar = baby.Avatar,
-                                 Gender = baby.Gender,
-                                 BirthOfDate = baby.BirthOfDate,
-                                 Phone = baby.Phone,
-                                 Province = baby.Province,
-                                 Description = baby.Description,
-                                 YearsOfExperience = baby.YearsOfExperience,
-                                 SalaryPerHour = baby.SalaryPerHour
-                             });
-                //var query = db.Users.Select(baby => new User
-                //{
-                //    Name = baby.Name,
-                //    UserId = baby.UserId,
-                //    Avatar = baby.Avatar,
-                //    Gender = baby.Gender,
-                //    BirthOfDate = baby.BirthOfDate,
-                //    Phone = baby.Phone,
-                //    Province = baby.Province,
-                //    Description = baby.Description,
-                //    YearsOfExperience = baby.YearsOfExperience,
-                //    SalaryPerHour = baby.SalaryPerHour
-                //}).Where(x => x.UserId == id).FirstOrDefault();
-                //var person = db.Users.Join(db.Locations,
-                //      baby => baby.ProvinceId,
-                //      local => local.ProvinceId,
-                //      (baby, local) => new {
-                //          Name = baby.Name,
-                //          UserId = baby.UserId,
-                //          Avatar = baby.Avatar,
-                //          Gender = baby.Gender,
-                //          BirthOfDate = baby.BirthOfDate,
-                //          Phone = baby.Phone,
-                //          Province = local.ProvinceName,
-                //          Description = baby.Description,
-                //          YearsOfExperience = baby.YearsOfExperience,
-                //          SalaryPerHour = baby.SalaryPerHour
-                //      }
-                //      ).Where(x => x.UserId == id).FirstOrDefault();
-                return View(query);
+                var model = new Babysitter();
+                model.users = db.Users.ToList();
+                model.skills = db.Skills.ToList();
+                model.locations = db.Locations.ToList();
+                model.userskills = db.UserSkills.ToList();
+
+                var babyDetails = (from baby in model.users
+                                   join localtion in model.locations
+                                   on baby.ProvinceId equals localtion.ProvinceId
+                                   where baby.UserId == id
+                                   select new User()
+                                   {
+                                       Name = baby.Name,
+                                       UserId = baby.UserId,
+                                       Avatar = baby.Avatar,
+                                       Gender = baby.Gender,
+                                       BirthOfDate = baby.BirthOfDate,
+                                       Phone = baby.Phone,
+                                       Province = baby.Province,
+                                       Description = baby.Description,
+                                       YearsOfExperience = baby.YearsOfExperience,
+                                       SalaryPerHour = baby.SalaryPerHour
+                                   });
+
+                var babySkill = (from baby in model.users
+                                 join userskill in model.userskills on baby.UserId equals userskill.UserId
+                                 join skills in model.skills on userskill.SkillId equals skills.SkillId
+                                 where baby.UserId == id
+                                 select new Skill { SkillName = skills.SkillName, SkillId = skills.SkillId });
+
+                Babysitter babysitter = new Babysitter()
+                {
+                    users = babyDetails,
+                    skills = babySkill
+                };
+                return View(babysitter);
             }
         }
         public IActionResult CreateContract()
