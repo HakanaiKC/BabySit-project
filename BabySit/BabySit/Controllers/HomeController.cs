@@ -90,24 +90,52 @@ namespace BabySit.Controllers
                 List<User> users = db.Users.ToList();
                 List<Location> local = db.Locations.ToList();
                 //var babysitDetails = db.Users.Where(x => x.UserId == id).FirstOrDefault();
-                var query = from baby in users
-                            join localtion in local 
-                            on baby.ProvinceId equals localtion.ProvinceId
-                            where baby.UserId == id
-                            select new
-                            {
-                                ten = baby.Name,
-                                babyId = baby.UserId,
-                                avatar = baby.Avatar,
-                                gender = baby.Gender,
-                                bod = baby.BirthOfDate,
-                                phone = baby.Phone,
-                                provine = baby.Province,
-                                descirption = baby.Description,
-                                year = baby.YearsOfExperience,
-                                salary = baby.SalaryPerHour
-                            };
-                ViewData.Model = query;
+                var query = (from baby in users
+                             join localtion in local
+                             on baby.ProvinceId equals localtion.ProvinceId
+                             where baby.UserId == id
+                             select new User()
+                             {
+                                 Name = baby.Name,
+                                 UserId = baby.UserId,
+                                 Avatar = baby.Avatar,
+                                 Gender = baby.Gender,
+                                 BirthOfDate = baby.BirthOfDate,
+                                 Phone = baby.Phone,
+                                 Province = baby.Province,
+                                 Description = baby.Description,
+                                 YearsOfExperience = baby.YearsOfExperience,
+                                 SalaryPerHour = baby.SalaryPerHour
+                             });
+                //var query = db.Users.Select(baby => new User
+                //{
+                //    Name = baby.Name,
+                //    UserId = baby.UserId,
+                //    Avatar = baby.Avatar,
+                //    Gender = baby.Gender,
+                //    BirthOfDate = baby.BirthOfDate,
+                //    Phone = baby.Phone,
+                //    Province = baby.Province,
+                //    Description = baby.Description,
+                //    YearsOfExperience = baby.YearsOfExperience,
+                //    SalaryPerHour = baby.SalaryPerHour
+                //}).Where(x => x.UserId == id).FirstOrDefault();
+                //var person = db.Users.Join(db.Locations,
+                //      baby => baby.ProvinceId,
+                //      local => local.ProvinceId,
+                //      (baby, local) => new {
+                //          Name = baby.Name,
+                //          UserId = baby.UserId,
+                //          Avatar = baby.Avatar,
+                //          Gender = baby.Gender,
+                //          BirthOfDate = baby.BirthOfDate,
+                //          Phone = baby.Phone,
+                //          Province = local.ProvinceName,
+                //          Description = baby.Description,
+                //          YearsOfExperience = baby.YearsOfExperience,
+                //          SalaryPerHour = baby.SalaryPerHour
+                //      }
+                //      ).Where(x => x.UserId == id).FirstOrDefault();
                 return View(query);
             }
         }
