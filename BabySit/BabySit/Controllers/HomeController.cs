@@ -83,20 +83,33 @@ namespace BabySit.Controllers
         }
 
         [HttpGet]
-        public IActionResult Babysitter(BabySit.Models.User user, int id)
-        {
+        public IActionResult Babysitter(int id)
+        {            
             using (ProjectPRNContext db = new ProjectPRNContext())
             {
-                var babysitDetails = db.Users.Where(x => x.UserId == id).ToList();
-                ViewData.Model = babysitDetails;
-                return View(babysitDetails);
+                List<User> users = db.Users.ToList();
+                List<Location> local = db.Locations.ToList();
+                //var babysitDetails = db.Users.Where(x => x.UserId == id).FirstOrDefault();
+                var query = from baby in users
+                            join localtion in local 
+                            on baby.ProvinceId equals localtion.ProvinceId
+                            where baby.UserId == id
+                            select new
+                            {
+                                ten = baby.Name,
+                                babyId = baby.UserId,
+                                avatar = baby.Avatar,
+                                gender = baby.Gender,
+                                bod = baby.BirthOfDate,
+                                phone = baby.Phone,
+                                provine = baby.Province,
+                                descirption = baby.Description,
+                                year = baby.YearsOfExperience,
+                                salary = baby.SalaryPerHour
+                            };
+                ViewData.Model = query;
+                return View(query);
             }
-
-        }
-
-        public IActionResult Babysitter(int id)
-        {
-            return Redirect(@Url.Action("Babysitter", "Home", new { id = id }));
         }
         public IActionResult CreateContract()
         {

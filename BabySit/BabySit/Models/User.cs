@@ -38,6 +38,7 @@ namespace BabySit.Models
         public string Name { get; set; }
 
         [Required(ErrorMessage = "Không được bỏ trống trường này")]
+        [DisplayFormat(DataFormatString = "{0:dd MMM yyyy}")]
         public DateTime? BirthOfDate { get; set; }
 
         [Required(ErrorMessage = "Không được bỏ trống trường này")]
