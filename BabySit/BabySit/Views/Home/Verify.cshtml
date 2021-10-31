@@ -1,6 +1,7 @@
 ﻿@{
     ViewData["Title"] = "Xác minh";
 }
+@model BabySit.Database_Access.VerifyCode
 <div class="d-flex align-items-center"
      style="min-height: 100vh">
     <div class="col-sm-8 col-md-6 col-lg-4 mx-auto"
@@ -18,7 +19,8 @@
         <div class="card navbar-shadow">
             <div class="card-body">
                 <!--Form-->
-                <form action="#" method="post">
+                @using (Html.BeginForm("Verify", "Home", FormMethod.Post))
+                {
                     <h4 class="card-title text-center">Xác minh tài khoản</h4>
                     <p class="Form-subtitle">
                         Chúng tôi đã gửi một mã xác minh về email của bạn.<br> <br>
@@ -28,12 +30,8 @@
                     <div class="form-group">
                         <div class="form-group">
                             <div class="input-group input-group-merge">
-                                <input id="code"
-                                       type="text" name="authcode"
-                                       required
-                                       placeholder="Mã xác minh"
-                                       class="form-control form-control-prepended"
-                                       maxlength="6">
+                                @Html.TextBoxFor(model => model.CodeInput, new
+                                { @id = "codeInput", @class = "form-control form-control-prepended" })
                             </div>
                         </div>
                     </div>
@@ -46,8 +44,9 @@
                             Xác minh
                         </button>
                     </div>
-                    <div class="card-footer text-center text-black-50">Đã có tài khoản? <a asp-controller="Home"asp-action="Login">Đăng nhập</a></div>
-                </form>
+                    <div class="alert text-danger">@ViewBag.IncorrectCodeMessage</div>
+                    <div class="card-footer text-center text-black-50">Đã có tài khoản? <a asp-controller="Home" asp-action="Login">Đăng nhập</a></div>
+                }
             </div>
         </div>
     </div>

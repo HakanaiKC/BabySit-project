@@ -1,72 +1,58 @@
 ﻿@{
     ViewData["Title"] = "Đăng ký";
 }
+@model BabySit.Database_Access.UserRegister
+
 <div class="d-flex align-items-center"
      style="min-height: 100vh">
     <div class="col-sm-8 col-md-6 col-lg-4 mx-auto"
          style="min-width: 300px; padding-top: 5em;">
-        
+
         <div class="card navbar-shadow">
 
             <!--Body-->
             <div class="card-body">
-                <form action="VerifyUser"
-                      method="post">
+                @using (Html.BeginForm("Register", "Home", FormMethod.Post))
+                {
                     <h4 class="card-title text-center">Đăng ký</h4>
                     <!--Name-->
                     <div class="form-group">
-                        <label class="form-label"
-                               for="name">Họ và Tên:</label>
+                        @Html.LabelFor(model => model.user.Name)
                         <div class="input-group input-group-merge">
-                            <input id="name"
-                                   type="text"
-                                   required
-                                   name="user_name"
-                                   class="form-control form-control-prepended">
+                            @Html.TextBoxFor(model => model.user.Name, new
+                            { @id = "name", @class = "form-control form-control-prepended" })
                         </div>
+                        @Html.ValidationMessageFor(mess => mess.user.Name, null, new { @class = "text-danger" })
                     </div>
 
                     <!--Email-->
                     <div class="form-group">
-                        <label class="form-label"
-                               for="email">Email:</label>
+                        @Html.LabelFor(model => model.user.Email)
                         <div class="input-group input-group-merge">
-                            <input id="email"
-                                   name="email"
-                                   type="email"
-                                   required
-                                   class="form-control form-control-prepended">
+                            @Html.TextBoxFor(model => model.user.Email, new
+                            { @id = "email", @class = "form-control form-control-prepended" })
                         </div>
+                        @Html.ValidationMessageFor(mess => mess.user.Email, null, new { @class = "text-danger" })
                     </div>
 
                     <!--Password-->
                     <div class="form-group">
-                        <label class="form-label"
-                               for="password">Mật khẩu:</label>
+                        @Html.LabelFor(model => model.user.Password)
                         <div class="input-group input-group-merge">
-                            <input id="password"
-                                   type="password"
-                                   required
-                                   name="password"
-                                   class="form-control form-control-prepended"
-                                   minlength="8"
-                                   maxlength="32">
+                            @Html.EditorFor(model => model.user.Password, new
+                            { htmlAttributes = new { @class = "form-control" } })
                         </div>
+                        @Html.ValidationMessageFor(mess => mess.user.Password, null, new { @class = "text-danger" })
                     </div>
 
                     <!--Confirm-->
                     <div class="form-group">
-                        <label class="form-label"
-                               for="password2">Nhập lại mật khẩu:</label>
+                        @Html.LabelFor(model => model.confirmPassword)
                         <div class="input-group input-group-merge">
-                            <input id="password2"
-                                   type="password"
-                                   required
-                                   name="re_password"
-                                   class="form-control form-control-prepended"
-                                   minlength="8"
-                                   maxlength="32">
+                            @Html.EditorFor(model => model.confirmPassword, new
+                            { htmlAttributes = new { @class = "form-control" } })
                         </div>
+                        @Html.ValidationMessageFor(mess => mess.confirmPassword, null, new { @class = "text-danger" })
                     </div>
 
                     <!--Checkbox-->
@@ -75,11 +61,11 @@
                                for="password2">Bạn là:</label>
                         <div class="radio-register row">
                             <div class="radio-parent col-md-6">
-                                <input type="radio" name="you_are">
+                                @Html.RadioButton("User.Role", "1", true)
                                 <label>Phụ huynh</label>
                             </div>
                             <div class="radio-babysitter col-md-6">
-                                <input type="radio" name="you_are">
+                                @Html.RadioButton("User.Role", "2")
                                 <label>Bảo mẫu</label>
                             </div>
                         </div>
@@ -103,7 +89,12 @@
                             class="btn btn-success btn-block mb-3">
                         Đăng ký
                     </button>
-                </form>
+                    <label style="color:red;" class="label-danger">@ViewBag.DuplicateMessage</label>
+                    <label style="color:red;">@ViewBag.EmailExistMessage</label>
+                    <label style="color:red;">@ViewBag.PasswordDoNotMatchMessage</label>
+                    <label style="color:red;">@ViewBag.InvalidMessage</label>
+                    <label style="color:red;">@ViewBag.ErrorSendEmailMessage</label>
+                }
             </div>
             <div class="card-footer text-center text-black-50">Đã có tài khoản? <a asp-controller="Home" asp-action="Login">Đăng nhập</a></div>
         </div>

@@ -1,7 +1,7 @@
 ﻿@{
     ViewData["Title"] = "Đăng nhập";
 }
-@model BabySit.Models.User
+@model BabySit.Database_Access.RememberMe
 <div class="d-flex align-items-center" style="min-height: 100vh">
     <div class="col-sm-8 col-md-6 col-lg-4 mx-auto" style="min-width: 300px;">
         <div class="card navbar-shadow">
@@ -12,26 +12,51 @@
                         <h4 class="card-title text-center">Đăng nhập</h4>
                         @Html.LabelFor(model => model.Email)
                         <div class="input-group input-group-merge">
-                            @Html.TextBoxFor(model => model.Email, new { @name = "email", @class = "form-control form-control-prepended" })
+                            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control form-control-prepended" } })
                         </div>
                         @Html.ValidationMessageFor(mess => mess.Email, null, new { @class = "text-danger" })
                     </div>
+
                     <div class="form-group">
                         @Html.LabelFor(model => model.Password)
                         <div class="input-group input-group-merge">
-                            @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control",@name = "pass" } })
+                            @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
                         </div>
                         @Html.ValidationMessageFor(mess => mess.Password, null, new { @class = "text-danger" })
+                    </div>
+
+                    <div class="form-group">
+                        <input type="checkbox" name="remembercheck" value="check" />
                     </div>
 
                     if (@ViewBag.Message != null)
                     {
                         <label class="text-danger">@ViewBag.Message</label>
+                        <label class="text-danger">@ViewBag.pass</label>
+                        <label class="text-danger">@ViewBag.email</label>
                     }
                     <div class="form-group ">
                         <input type="submit" class="btn btn-success btn-block" value="Đăng nhập">
                     </div>
                 }
+                @*<form asp-action="Login" method="post">
+            <h4 class="card-title text-center">Đăng nhập</h4>
+            <hr />
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Email"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Password"></label>
+                <input asp-for="Password" class="form-control" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-success btn-block">Log in</button>
+            </div>
+        </form>*@
                 <div class="text-center">
                     <a asp-controller="Home" asp-action="ForgotPass" class="text-black-70" style="text-decoration: underline;">Quên mật khẩu?</a>
                 </div>

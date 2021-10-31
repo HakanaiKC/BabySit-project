@@ -50,12 +50,15 @@
     align-items: center;
     padding: 20px;
     background-color: whitesmoke;
+    margin: 0;
+    padding: 0;
+    width: 100%;
 }
 
 #search {
-    width: 70%;
+    width: 80%;
     padding: 2px;
-    border-color: lightseagreen;    
+    border-color: lightseagreen;
 }
 
 .icon {
@@ -63,8 +66,6 @@
 }
 
 .card {
-    margin: auto;
-    margin-bottom: 2em;
     width: 80%;
     border-width: thin;
     border-color: lightseagreen;

@@ -1,4 +1,4 @@
-﻿@model BabySit.Database_Acess.Babysitter
+﻿@model BabySit.Database_Access.Babysitter
 @{
     ViewData["Title"] = "Bảo mẫu";
 }
@@ -8,6 +8,7 @@
 <section class="page-content" style="padding-top: 6em;">
 
     <div class="container">
+
         @foreach (var item in Model.users)
         {
             <div class="card babysitter row col-md-12">

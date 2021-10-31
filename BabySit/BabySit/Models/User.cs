@@ -16,8 +16,7 @@ namespace BabySit.Models
             FeedBackBabySitters = new HashSet<FeedBack>();
             FeedBackParents = new HashSet<FeedBack>();
         }
-        [Key]
-        
+        [Key]        
         public int UserId { get; set; }
 
         [Required(ErrorMessage = "Không được bỏ trống trường này")]
@@ -30,7 +29,6 @@ namespace BabySit.Models
         [DataType(DataType.Password)]
         public string Password { get; set; }
 
-        [Required(ErrorMessage = "Không được bỏ trống trường này")]
         public int Role { get; set; }
         public DateTime RegisterDate { get; set; }
 
@@ -39,7 +37,7 @@ namespace BabySit.Models
         [Required(ErrorMessage = "Không được bỏ trống trường này")]
         public string Name { get; set; }
 
-        [DisplayFormat(DataFormatString = "{0:dd MMM yyyy}")]
+        [DisplayFormat(DataFormatString = "{0:yyyy}")]
         public DateTime? BirthOfDate { get; set; }
         public bool? Gender { get; set; }
         public string Phone { get; set; }

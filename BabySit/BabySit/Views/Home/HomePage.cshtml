@@ -1,43 +1,51 @@
-﻿@{
+﻿@{ 
     ViewData["Title"] = "Trang chủ";
-    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml"; 
 }
 <link rel="stylesheet" href="~/css/HomePage.css">
 
-<div class="card search">
-    <div class="box">
-        <div class="container-1">
-            <input type="search" id="search" placeholder="Tìm kiếm..." />
-            <a class="icon" href="#"><i class="fa fa-search"></i></a>
-        </div>
-    </div>
-</div>
-
-<div class="row">
-    @*Babysitter 1*@
-    <div class="card babysitter row col-md-9">
-        <div class="no-gutters row">
-            <div class="col-lg-3">
-                <img style="padding: 20px; height:200px; width:200px;" data-holder-rendered="true" class="card-img rounded-circle" src="https://mdbootstrap.com/img/Photos/Avatars/img%20(31).jpg">
-            </div>
-            <div class="col-lg-8">
-                <div class="card-body">
-                    <div class="info-1 row">
-                        <h3 class="card-title col-md-12">Tên bảo mẫu</h3>
-                        <p class="col-md-6">Nơi làm việc</p>
-                        <p class="col-md-6">Tuổi</p>
-                        <p class="col-md-6">Đánh giá</p>
-                        <p class="col-md-6">Kinh nghiệm</p>
-                    </div>
-                    <div class="info-2 row">
-                        <p class="col-md-4">Kỹ năng 1</p>
-                    </div>
+<div>
+    <div class="row">
+        <div class="card search col-md-9" style=" padding: 0;">
+            <div class="box">
+                <div class="container-1">
+                    <input type="search" id="search" placeholder="Tìm kiếm..." />
+                    <a class="icon" href="#"><i class="fa fa-search"></i></a>
                 </div>
             </div>
         </div>
     </div>
-    @*End Babysitter 1*@
 
-    @*Babysitter 2*@
+    <div class="row" style="margin-left: 0; padding-top:20px;">
+        @*Babysitter 1*@        
+            @foreach (var item in Model.users)
+            {
+                <div class="card babysitter row col-md-9" style="margin-top:20px;">
+
+                    <div class="no-gutters row">
+                        <div class="col-lg-3">
+                            <img style="padding: 20px; height:200px; width:200px;" data-holder-rendered="true" class="card-img rounded-circle" src="@item.Avatar">
+                        </div>
+                        <div class="col-lg-8">
+                            <div class="card-body">
+                                <div class="info-1 row">
+                                    <h3 class="card-title col-md-12">@item.Name</h3>
+                                    <p class="col-md-6">Nơi làm việc: @*@item.Province.ProvinceName*@</p>
+                                    <p class="col-md-6">Tuổi:  @item.BirthOfDate</p>
+                                    <p class="col-md-6">Đánh giá</p>
+                                    <p class="col-md-6">Kinh nghiệm: @item.YearsOfExperience năm</p>
+                                </div>
+                                <div class="info-2 row">
+                                    <p class="col-md-4">Kỹ năng 1</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        
+        @*End Babysitter 1*@
+    </div>
 </div>
+
 

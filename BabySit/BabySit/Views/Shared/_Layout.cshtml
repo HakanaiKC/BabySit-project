@@ -13,46 +13,52 @@
     <link rel="stylesheet" href="~/css/Layout.css" />
     <title>@ViewBag.Title</title>
 </head>
-<body>
-    <nav class="navbar navbar-expand-sm bg-light fixed-top">
+<body>   
+    <nav class="navbar navbar-expand-sm bg-light fixed-top">        
         <a class="navbar-brand" href="">
             <img src="~/images/logo.png" alt="BabySit">
         </a>
         <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-                <a class="nav-link" asp-controller="Home" asp-action="Login">Đăng nhập</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" asp-controller="Home" asp-action="Register">Đăng ký</a>
-            </li>
-            <li class="nav-item">
                 <a class="nav-link" asp-controller="Home" asp-action="ContactUs">Liên hệ</a>
             </li>
-            <li class="nav-item dropdown ml-1 ml-md-3">
-                <a class="nav-link dropdown-toggle"
-                   data-toggle="dropdown"
-                   href="#"
-                   role="button">
-                    <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20(31).jpg"
-                         alt="Avatar"
-                         class="rounded-circle"
-                         width="40">
-                </a>
-                <div class="dropdown-menu dropdown-menu-right">
-                    <a class="dropdown-item" asp-controller="Home" asp-action="EditProfile">
-                        Chỉnh sửa thông tin
+            @if (User.Identity.IsAuthenticated)
+            {
+                <li class="nav-item dropdown ml-1 ml-md-3">
+                    <a class="nav-link dropdown-toggle"
+                       data-toggle="dropdown"
+                       href="#"
+                       role="button">
+                        <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20(31).jpg"
+                             alt="Avatar"
+                             class="rounded-circle"
+                             width="40">
                     </a>
-                    <a class="dropdown-item" asp-controller="Home" asp-action="">
-                        Hợp đồng
-                    </a>
-                    <a class="dropdown-item" asp-controller="Home" asp-action="">
-                        Lịch sử thanh toán
-                    </a>
-                    <a class="dropdown-item" href="@Url.Action("Logout","Home")">
-                        Đăng xuất
-                    </a>
-                </div>
-            </li>
+                    <div class="dropdown-menu dropdown-menu-right">
+                        <a class="dropdown-item" asp-controller="Home" asp-action="EditProfile">
+                            Chỉnh sửa thông tin
+                        </a>
+                        <a class="dropdown-item" asp-controller="Home" asp-action="">
+                            Hợp đồng
+                        </a>
+                        <a class="dropdown-item" asp-controller="Home" asp-action="">
+                            Lịch sử thanh toán
+                        </a>
+                        <a class="dropdown-item" href="@Url.Action("Logout","Home")">
+                            Đăng xuất
+                        </a>
+                    </div>
+                </li>
+            }
+            else
+            {
+                <li class="nav-item">
+                    <a class="nav-link" asp-controller="Home" asp-action="Login">Đăng nhập</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" asp-controller="Home" asp-action="Register">Đăng ký</a>
+                </li>
+            }
         </ul>
 
     </nav>
