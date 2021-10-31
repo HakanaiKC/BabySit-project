@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace BabySit.Models
 {
-    public partial class User
+    public class User
     {
         public User()
         {

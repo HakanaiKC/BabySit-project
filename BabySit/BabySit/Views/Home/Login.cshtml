@@ -12,27 +12,21 @@
                         <h4 class="card-title text-center">Đăng nhập</h4>
                         @Html.LabelFor(model => model.Email)
                         <div class="input-group input-group-merge">
-                            @Html.TextBoxFor(model => model.Email, new { @id = "email", @class = "form-control form-control-prepended" })
+                            @Html.TextBoxFor(model => model.Email, new { @name = "email", @class = "form-control form-control-prepended" })
                         </div>
                         @Html.ValidationMessageFor(mess => mess.Email, null, new { @class = "text-danger" })
                     </div>
                     <div class="form-group">
                         @Html.LabelFor(model => model.Password)
                         <div class="input-group input-group-merge">
-
-                            @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control",@name = "pass" } })
                         </div>
                         @Html.ValidationMessageFor(mess => mess.Password, null, new { @class = "text-danger" })
                     </div>
-                    <div>
-                        @Html.CheckBox("remember", false)
-                        <label>Nhớ mật khẩu</label>
-                    </div>
-                    
+
                     if (@ViewBag.Message != null)
                     {
                         <label class="text-danger">@ViewBag.Message</label>
-
                     }
                     <div class="form-group ">
                         <input type="submit" class="btn btn-success btn-block" value="Đăng nhập">
