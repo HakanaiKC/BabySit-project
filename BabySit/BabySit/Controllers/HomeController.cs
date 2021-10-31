@@ -50,7 +50,7 @@ namespace BabySit.Controllers
         }
 
         [HttpPost]
-        public IActionResult Login(RememberMe user)
+        public IActionResult Login(User user)
         {
             var userDetails = db.Users.Where(x => x.Email == user.Email && x.Password == user.Password).FirstOrDefault();
 
@@ -60,7 +60,7 @@ namespace BabySit.Controllers
             }
             else
             {
-                return RedirectToAction("Login", "Home");
+                return RedirectToAction("HomePage", "Home");
             }
             return View();
         }
