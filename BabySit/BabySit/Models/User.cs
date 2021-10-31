@@ -29,6 +29,8 @@ namespace BabySit.Models
         [StringLength(32, MinimumLength = 8, ErrorMessage = "Độ dài mật khẩu phải từ 8 - 32 chữ cái")]
         [DataType(DataType.Password)]
         public string Password { get; set; }
+
+        [Required(ErrorMessage = "Không được bỏ trống trường này")]
         public int Role { get; set; }
         public DateTime RegisterDate { get; set; }
 
@@ -37,24 +39,13 @@ namespace BabySit.Models
         [Required(ErrorMessage = "Không được bỏ trống trường này")]
         public string Name { get; set; }
 
-        [Required(ErrorMessage = "Không được bỏ trống trường này")]
         [DisplayFormat(DataFormatString = "{0:dd MMM yyyy}")]
         public DateTime? BirthOfDate { get; set; }
-
-        [Required(ErrorMessage = "Không được bỏ trống trường này")]
         public bool? Gender { get; set; }
-
-        [Required(ErrorMessage = "Không được bỏ trống trường này")]
         public string Phone { get; set; }
         public int? ProvinceId { get; set; }
-
-        [Required(ErrorMessage = "Không được bỏ trống trường này")]
         public string Description { get; set; }
-
-        [Required(ErrorMessage = "Không được bỏ trống trường này")]
         public int? YearsOfExperience { get; set; }
-
-        [Required(ErrorMessage = "Không được bỏ trống trường này")]
         public double? SalaryPerHour { get; set; }
         public int? Status { get; set; }
         public string AccountNumber { get; set; }
