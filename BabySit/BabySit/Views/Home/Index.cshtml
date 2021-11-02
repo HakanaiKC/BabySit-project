@@ -106,10 +106,18 @@
             }
             @*End Slide*@
         </div>
+
+        <div style="padding-top: 20px;">
+            @if (User.Identity.IsAuthenticated)
+            {
+                <a class="btn btn-success" asp-action="HomePage" asp-controller="Home">Đi đến trang chính</a>
+            }
+        </div>
+        
     </div>
     <script>
         $('.owl-carousel').owlCarousel({
-            loop: false,
+            loop: true,
             margin: 10,
             nav: true,
             items: 3,

@@ -13,11 +13,20 @@
     <link rel="stylesheet" href="~/css/Layout.css" />
     <title>@ViewBag.Title</title>
 </head>
-<body>   
-    <nav class="navbar navbar-expand-sm bg-light fixed-top">        
-        <a class="navbar-brand" href="">
-            <img src="~/images/logo.png" alt="BabySit">
-        </a>
+<body>
+    <nav class="navbar navbar-expand-sm bg-light fixed-top">
+        @if (User.Identity.IsAuthenticated)
+        {
+            <a class="navbar-brand" asp-controller="Home" asp-action="HomePage">
+                <img src="~/images/logo.png" alt="BabySit">
+            </a>
+        }
+        else
+        {
+            <a class="navbar-brand" asp-controller="Home" asp-action="Index">
+                <img src="~/images/logo.png" alt="BabySit">
+            </a>
+        }
         <ul class="navbar-nav ml-auto">
             <li class="nav-item">
                 <a class="nav-link" asp-controller="Home" asp-action="ContactUs">Liên hệ</a>
@@ -44,7 +53,7 @@
                         <a class="dropdown-item" asp-controller="Home" asp-action="">
                             Lịch sử thanh toán
                         </a>
-                        <a class="dropdown-item" href="@Url.Action("Logout","Home")">
+                        <a class="dropdown-item" href="@Url.Action("Logout","Account")">
                             Đăng xuất
                         </a>
                     </div>
@@ -53,14 +62,13 @@
             else
             {
                 <li class="nav-item">
-                    <a class="nav-link" asp-controller="Home" asp-action="Login">Đăng nhập</a>
+                    <a class="nav-link" asp-controller="Account" asp-action="Login">Đăng nhập</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" asp-controller="Home" asp-action="Register">Đăng ký</a>
+                    <a class="nav-link" asp-controller="Account" asp-action="Register">Đăng ký</a>
                 </li>
             }
         </ul>
-
     </nav>
 
     <div class="container-fluid">

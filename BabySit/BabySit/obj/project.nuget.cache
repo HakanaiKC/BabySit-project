@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Wlho6OypD4QWPrNQ9EohnbX5yC0NfDkF73vsmcTsWUieO705hcJhIin7WNZTlRLdtKgWxABZPWMXeQ1he3Eikg==",
+  "dgSpecHash": "Op+wN67PPUQ8pLnksJJbhJOE+bqleW3pgw86xbr2GflVeCSV+z2Uu8FumHwfxJ15KpAsmy/L5dj8vZQYKzGZUA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\bekim\\OneDrive\\Máy tính\\Babysit\\BabySit\\BabySit\\BabySit.csproj",
+  "projectFilePath": "C:\\Users\\bekim\\OneDrive\\Máy tính\\BabySit\\BabySit\\BabySit\\BabySit.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\bekim\\.nuget\\packages\\azure.core\\1.6.0\\azure.core.1.6.0.nupkg.sha512",
     "C:\\Users\\bekim\\.nuget\\packages\\azure.identity\\1.3.0\\azure.identity.1.3.0.nupkg.sha512",

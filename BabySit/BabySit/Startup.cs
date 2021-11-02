@@ -27,9 +27,14 @@ namespace BabySit
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-                .AddCookie();
-            services.AddSession(o => o.IdleTimeout =
-            TimeSpan.FromMinutes(1440));
+                .AddCookie(options =>
+                {
+                    options.LoginPath = "/Account/Login/";
+                    options.AccessDeniedPath = "/Shared/Error/";
+                    
+                });
+            services.AddSession(o => o.IdleTimeout = TimeSpan.FromMinutes(1440));
+
             services.AddControllersWithViews();
         }
 
@@ -46,18 +51,16 @@ namespace BabySit
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+            var cookiePolicyOptions = new CookiePolicyOptions
+            {
+                MinimumSameSitePolicy = SameSiteMode.Strict,
+            };
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseAuthentication();
             app.UseRouting();
             app.UseSession();
-            var cookiePolicyOptions = new CookiePolicyOptions
-            {
-                MinimumSameSitePolicy = SameSiteMode.Strict,
-                HttpOnly = Microsoft.AspNetCore.CookiePolicy.HttpOnlyPolicy.Always,
-                Secure = CookieSecurePolicy.None,
-            };
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

@@ -22,7 +22,10 @@
                             <div class="info-1 row">
                                 <h3 class="card-title col-md-12">@Html.DisplayFor(model => item.Name)</h3>
                                 <p class="col-md-6">@Html.DisplayFor(model => item.Province.ProvinceName)</p>
-                                <p class="col-md-6">@Html.DisplayFor(model => item.BirthOfDate)</p>
+                                @{
+                                    var age = DateTime.UtcNow.Year - Int32.Parse(item.BirthOfDate.Value.ToString("yyyy"));
+                                    <p class="col-md-6">@Html.DisplayFor(model => age) tuổi</p>
+                                }
                             </div>
                         </div>
                     </div>

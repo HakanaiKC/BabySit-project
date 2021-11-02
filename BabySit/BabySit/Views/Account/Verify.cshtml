@@ -6,20 +6,13 @@
      style="min-height: 100vh">
     <div class="col-sm-8 col-md-6 col-lg-4 mx-auto"
          style="min-width: 300px;">
-        <div class="d-flex justify-content-center mb-5 navbar-light">
-            <!-- Brand -->
-            <a href="Home"
-               class="navbar-brand m-0">
-                BabySit
-            </a>
-        </div>
 
         <!--Login Form-->
 
         <div class="card navbar-shadow">
             <div class="card-body">
                 <!--Form-->
-                @using (Html.BeginForm("Verify", "Home", FormMethod.Post))
+                @using (Html.BeginForm("Verify", "Account", FormMethod.Post))
                 {
                     <h4 class="card-title text-center">Xác minh tài khoản</h4>
                     <p class="Form-subtitle">
@@ -45,7 +38,7 @@
                         </button>
                     </div>
                     <div class="alert text-danger">@ViewBag.IncorrectCodeMessage</div>
-                    <div class="card-footer text-center text-black-50">Đã có tài khoản? <a asp-controller="Home" asp-action="Login">Đăng nhập</a></div>
+                    <div class="card-footer text-center text-black-50">Đã có tài khoản? <a asp-controller="Account" asp-action="Login">Đăng nhập</a></div>
                 }
             </div>
         </div>

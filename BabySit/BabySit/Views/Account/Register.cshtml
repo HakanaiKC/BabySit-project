@@ -12,7 +12,7 @@
 
             <!--Body-->
             <div class="card-body">
-                @using (Html.BeginForm("Register", "Home", FormMethod.Post))
+                @using (Html.BeginForm("Register", "Account", FormMethod.Post))
                 {
                     <h4 class="card-title text-center">Đăng ký</h4>
                     <!--Name-->
@@ -96,7 +96,7 @@
                     <label style="color:red;">@ViewBag.ErrorSendEmailMessage</label>
                 }
             </div>
-            <div class="card-footer text-center text-black-50">Đã có tài khoản? <a asp-controller="Home" asp-action="Login">Đăng nhập</a></div>
+            <div class="card-footer text-center text-black-50">Đã có tài khoản? <a asp-controller="Account" asp-action="Login">Đăng nhập</a></div>
         </div>
     </div>
 </div>

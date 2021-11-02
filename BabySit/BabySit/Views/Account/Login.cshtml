@@ -1,13 +1,12 @@
 ﻿@{
     ViewData["Title"] = "Đăng nhập";
 }
-@model BabySit.Database_Access.RememberMe
+@model BabySit.Models.User
 <div class="d-flex align-items-center" style="min-height: 100vh">
     <div class="col-sm-8 col-md-6 col-lg-4 mx-auto" style="min-width: 300px;">
         <div class="card navbar-shadow">
             <div class="card-body">
-                @using (Html.BeginForm("Login", "Home", FormMethod.Post))
-                {
+                @using (Html.BeginForm("Login", "Account", FormMethod.Post)) {         
                     <div class="form-group">
                         <h4 class="card-title text-center">Đăng nhập</h4>
                         @Html.LabelFor(model => model.Email)
@@ -26,42 +25,24 @@
                     </div>
 
                     <div class="form-group">
-                        <input type="checkbox" name="remembercheck" value="check" />
+                        @Html.CheckBox("remember", false) Nhớ đăng nhập?
                     </div>
 
                     if (@ViewBag.Message != null)
                     {
                         <label class="text-danger">@ViewBag.Message</label>
-                        <label class="text-danger">@ViewBag.pass</label>
-                        <label class="text-danger">@ViewBag.email</label>
+
                     }
                     <div class="form-group ">
-                        <input type="submit" class="btn btn-success btn-block" value="Đăng nhập">
+                        <input type="submit" value="Đăng nhập" class="btn btn-success btn-block"/>
                     </div>
                 }
-                @*<form asp-action="Login" method="post">
-            <h4 class="card-title text-center">Đăng nhập</h4>
-            <hr />
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Email"></label>
-                <input asp-for="Email" class="form-control" />
-                <span asp-validation-for="Email" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Password"></label>
-                <input asp-for="Password" class="form-control" />
-                <span asp-validation-for="Password" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <button type="submit" class="btn btn-success btn-block">Log in</button>
-            </div>
-        </form>*@
+
                 <div class="text-center">
-                    <a asp-controller="Home" asp-action="ForgotPass" class="text-black-70" style="text-decoration: underline;">Quên mật khẩu?</a>
+                    <a asp-controller="Account" asp-action="ForgotPass" class="text-black-70" style="text-decoration: underline;">Quên mật khẩu?</a>
                 </div>
                 <div class="card-footer text-center text-black-50">
-                    Chưa có tài khoản? <a asp-controller="Home" asp-action="Register">Đăng ký</a>
+                    Chưa có tài khoản? <a asp-controller="Account" asp-action="Register">Đăng ký</a>
                 </div>
             </div>
         </div>
