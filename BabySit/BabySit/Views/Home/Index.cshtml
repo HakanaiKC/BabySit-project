@@ -99,7 +99,8 @@
                                     <h4 class="card-title">@item.Name</h4>
                                 </div>
                             </div>
-                            @Html.ActionLink("Tìm hiểu", "Babysitter", new { id = item.UserId }, new { @class = "btn btn-success btn-block" })
+                            @*@Html.ActionLink("Tìm hiểu", "Babysitter", new { id = item.UserId }, new { @class = "btn btn-success btn-block" })*@
+                        <a class="btn btn-success btn-block" href="~/Home/Babysitter/@item.UserId">Tìm hiểu</a>
                         </div>
                     }
                 </div>

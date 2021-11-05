@@ -86,6 +86,7 @@ namespace BabySit.Controllers
             return View();
         }
 
+        [Authorize(Roles = "2, 1")]
         public IActionResult HomePage()
         {
             var model = new LocationAndUser();
