@@ -74,13 +74,13 @@ namespace BabySit.Controllers
             return View(babysitter);
         }
 
-
+        [Authorize(Roles = "1,2")]
         public IActionResult CreateContract()
         {
             return View();
         }
 
-
+        [Authorize(Roles = "1,2")]
         public IActionResult EditProfile()
         {
             return View();
