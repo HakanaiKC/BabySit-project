@@ -33,7 +33,11 @@ namespace BabySit
                     options.AccessDeniedPath = "/Shared/Error/";
                     
                 });
-            services.AddSession(o => o.IdleTimeout = TimeSpan.FromMinutes(1440));
+
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromMinutes(1440);
+            });
 
             services.AddControllersWithViews();
         }

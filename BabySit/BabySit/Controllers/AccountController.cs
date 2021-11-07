@@ -16,6 +16,7 @@ namespace BabySit.Controllers
 {
     public class AccountController : Controller
     {
+
         ProjectPRNContext db = new ProjectPRNContext();
 
         [HttpPost]
@@ -41,77 +42,82 @@ namespace BabySit.Controllers
 
         [HttpGet]
         [AllowAnonymous]
-        public IActionResult Login(string returnUrl)
-        {
-            ViewBag.ReturnUrl = returnUrl;
+        public IActionResult Login()
+        {                        
             return View();
         }
 
         [HttpPost]
         [AllowAnonymous]
-        public async Task<IActionResult> Login(User user, bool remember)
+        public IActionResult Login(User user, bool remember)
         {
             var userDetails = db.Users.Where(x => x.Email == user.Email && x.Password == user.Password).FirstOrDefault();
-
+            
             if (userDetails == null)
             {
                 ViewBag.Message = "Tài khoản không tồn tại hoặc sai mật khẩu";
             }
             else
             {
-                if (userDetails != null && userDetails.Role == 3)
-                {
-                    List<Claim> claims = new List<Claim>
-                    {
-                        new Claim(ClaimTypes.Email, user.Email),
-                        new Claim(ClaimTypes.Role, "3"),
-                    };
-
-                    var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-                    
-                    await HttpContext.SignInAsync(
-                          CookieAuthenticationDefaults.AuthenticationScheme,
-                          new ClaimsPrincipal(claimsIdentity),
-                          new AuthenticationProperties
-                          {
-                              IsPersistent = true
-                          });
-                    return RedirectToAction("AdminDashboard", "Admin");
-                }
-                else if (userDetails != null && (userDetails.Role == 1 || userDetails.Role == 2))
-                {
-                    List<Claim> claims = new List<Claim>
-                    {
-                        new Claim(ClaimTypes.Email, user.Email),
-                        new Claim(ClaimTypes.Role, "1"),
-                        new Claim(ClaimTypes.Role, "2"),
-                    };
-
-                    var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-                    if (remember == true)
-                    {
-                        await HttpContext.SignInAsync(
-                              CookieAuthenticationDefaults.AuthenticationScheme,
-                              new ClaimsPrincipal(claimsIdentity),
-                              new AuthenticationProperties
-                              {
-                                  IsPersistent = true
-                              });
-                    }
-                    else
-                    {
-                        await HttpContext.SignInAsync(
-                              CookieAuthenticationDefaults.AuthenticationScheme,
-                              new ClaimsPrincipal(claimsIdentity),
-                              new AuthenticationProperties
-                              {
-                                  ExpiresUtc = DateTime.Now.AddHours(3)
-                              }); ;
-                    }
-
-                    return RedirectToAction("HomePage", "Home");
-                }
+                HttpContext.Session.SetString("SessionID", JsonConvert.SerializeObject(userDetails));
+                //HttpContext.Session.SetString("SessionUsers", "01");
+                return RedirectToAction("HomePage", "Home");
             }
+            //else
+            //{
+            //    if (userDetails != null && userDetails.Role == 3)
+            //    {
+            //        List<Claim> claims = new List<Claim>
+            //        {
+            //            new Claim(ClaimTypes.Email, user.Email),
+            //            new Claim(ClaimTypes.Role, "3"),
+            //        };
+
+            //        var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+                    
+            //        await HttpContext.SignInAsync(
+            //              CookieAuthenticationDefaults.AuthenticationScheme,
+            //              new ClaimsPrincipal(claimsIdentity),
+            //              new AuthenticationProperties
+            //              {
+            //                  IsPersistent = true
+            //              });
+            //        return RedirectToAction("AdminDashboard", "Admin");
+            //    }
+            //    else if (userDetails != null && (userDetails.Role == 1 || userDetails.Role == 2))
+            //    {
+            //        List<Claim> claims = new List<Claim>
+            //        {
+            //            new Claim(ClaimTypes.Email, user.Email),
+            //            new Claim(ClaimTypes.Role, "1"),
+            //            new Claim(ClaimTypes.Role, "2"),
+            //        };
+
+            //        var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+            //        if (remember == true)
+            //        {
+            //            await HttpContext.SignInAsync(
+            //                  CookieAuthenticationDefaults.AuthenticationScheme,
+            //                  new ClaimsPrincipal(claimsIdentity),
+            //                  new AuthenticationProperties
+            //                  {
+            //                      IsPersistent = true
+            //                  });
+            //        }
+            //        else
+            //        {
+            //            await HttpContext.SignInAsync(
+            //                  CookieAuthenticationDefaults.AuthenticationScheme,
+            //                  new ClaimsPrincipal(claimsIdentity),
+            //                  new AuthenticationProperties
+            //                  {
+            //                      ExpiresUtc = DateTime.Now.AddHours(3)
+            //                  }); ;
+            //        }
+
+            //        return RedirectToAction("HomePage", "Home");
+            //    }
+            //}
             return View();
         }
 

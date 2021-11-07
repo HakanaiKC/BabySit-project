@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -33,7 +34,6 @@ namespace BabySit.Controllers
         }        
 
         [HttpGet]
-        [Authorize(Roles = "1, 2")]
         public IActionResult Babysitter(int id)
         {
             var model = new Babysitter();
@@ -74,24 +74,25 @@ namespace BabySit.Controllers
             return View(babysitter);
         }
 
-        [Authorize(Roles = "1, 2")]
+
         public IActionResult CreateContract()
         {
             return View();
         }
 
-        [Authorize(Roles = "2, 1")]
+
         public IActionResult EditProfile()
         {
             return View();
         }
 
-        [Authorize(Roles = "2, 1")]
         public IActionResult HomePage()
-        {
+        {            
+            int test = (JsonConvert.DeserializeObject<User>(HttpContext.Session.GetString("SessionID"))).UserId;
             var model = new LocationAndUser();
             model.users = db.Users.Where(x => x.Role == 2).ToList();
             model.locations = db.Locations.ToList();
+            ViewBag.test = test;
             return View(model);
         }
         
