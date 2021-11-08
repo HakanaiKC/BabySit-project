@@ -88,11 +88,11 @@ namespace BabySit.Controllers
 
         public IActionResult HomePage()
         {            
-            int test = (JsonConvert.DeserializeObject<User>(HttpContext.Session.GetString("SessionID"))).UserId;
+            //int test = (JsonConvert.DeserializeObject<User>(HttpContext.Session.GetString("SessionID"))).UserId;
             var model = new LocationAndUser();
             model.users = db.Users.Where(x => x.Role == 2).ToList();
             model.locations = db.Locations.ToList();
-            ViewBag.test = test;
+            //ViewBag.test = test;
             return View(model);
         }
         
