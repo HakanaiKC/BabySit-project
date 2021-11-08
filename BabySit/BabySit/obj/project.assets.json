@@ -8065,19 +8065,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\bekim\\.nuget\\packages\\": {}
+    "C:\\Users\\nxhai\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\bekim\\OneDrive\\Máy tính\\Babysit\\BabySit\\BabySit\\BabySit.csproj",
+      "projectUniqueName": "C:\\Users\\nxhai\\OneDrive\\Desktop\\New folder\\BabySit\\BabySit\\BabySit.csproj",
       "projectName": "BabySit",
-      "projectPath": "C:\\Users\\bekim\\OneDrive\\Máy tính\\Babysit\\BabySit\\BabySit\\BabySit.csproj",
-      "packagesPath": "C:\\Users\\bekim\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\bekim\\OneDrive\\Máy tính\\Babysit\\BabySit\\BabySit\\obj\\",
+      "projectPath": "C:\\Users\\nxhai\\OneDrive\\Desktop\\New folder\\BabySit\\BabySit\\BabySit.csproj",
+      "packagesPath": "C:\\Users\\nxhai\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\nxhai\\OneDrive\\Desktop\\New folder\\BabySit\\BabySit\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\bekim\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\nxhai\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

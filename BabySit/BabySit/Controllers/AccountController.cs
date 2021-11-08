@@ -30,6 +30,8 @@ namespace BabySit.Controllers
                 {
                     db.Users.Add(sessionUser);
                     db.SaveChanges();
+
+                    ViewBag.RegisterSuccessfully = "Đăng ký thành công, mời bạn đăng nhập!";
                     return View("Login");
                 }
                 else
@@ -185,9 +187,49 @@ namespace BabySit.Controllers
             }
         }
 
+
+        [HttpGet]
         public IActionResult ForgotPass()
         {
-            return View();
+            return View("ForgotPass");
         }
+
+        [HttpPost]
+        public IActionResult ForgotPass(User user)
+        {
+            Random random = new Random();
+            VerifyCode verifyCode = new VerifyCode();
+            verifyCode.CodeSend = random.Next(10000000, 99999999);
+            using (ProjectPRNContext db = new ProjectPRNContext())
+            {
+                if (db.Users.Where(x => x.Email == user.Email).FirstOrDefault() != null)
+                { //check xem email có trong dtb không
+                    SendEmail sendEmail = new SendEmail();
+                    string subject = "Xin gửi bạn mật khẩu mới của tài khoản Baybysit";
+                    string content = "Mật khẩu mới của bạn là: ";
+                    bool checkSendMail = sendEmail.SendEmailVerify(user.Email, subject, content, verifyCode.CodeSend);
+                    if (checkSendMail == true)
+                    {
+                        int userId = db.Users.FirstOrDefault(t => t.Email.Contains(user.Email)).UserId;//lấy userId từ user trong dtb có email = email đã nhập 
+                        var FindUserByID = db.Users.Find(userId);
+                        FindUserByID.Password = verifyCode.CodeSend.ToString();
+                        db.SaveChanges();
+                        ViewBag.MessageChangePasswordSuccess = "Đổi mật khẩu thành công, mời bạn check email!";
+                        return View("Login");
+                    }
+                    else
+                    {
+                        ViewBag.MessageErrorSendEmail = "Quá trình gửi có thể đã phát sinh lỗi!";
+                        return View("ForgotPass");
+                    }
+                }
+                else
+                {
+                    ViewBag.InvalidEmailMessage = "Email này chưa được đăng ký!";
+                    return View("ForgotPass");
+                }
+            }
+        }
+
     }
 }

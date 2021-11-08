@@ -6,7 +6,8 @@
     <div class="col-sm-8 col-md-6 col-lg-4 mx-auto" style="min-width: 300px;">
         <div class="card navbar-shadow">
             <div class="card-body">
-                @using (Html.BeginForm("Login", "Account", FormMethod.Post)) {         
+                @using (Html.BeginForm("Login", "Account", FormMethod.Post))
+                {
                     <div class="form-group">
                         <h4 class="card-title text-center">Đăng nhập</h4>
                         @Html.LabelFor(model => model.Email)
@@ -33,9 +34,11 @@
                         <label class="text-danger">@ViewBag.Message</label>
 
                     }
+                    <label style="color:green">@ViewBag.RegisterSuccessfully</label>
+                    <label style="color:green">@ViewBag.MessageChangePasswordSuccess</label>
                     <div class="form-group ">
-                        <input type="submit" value="Đăng nhập" class="btn btn-success btn-block"/>
-                    </div>
+                    <input type="submit" value="Đăng nhập" class="btn btn-success btn-block" />
+                </div>
                 }
 
                 <div class="text-center">
