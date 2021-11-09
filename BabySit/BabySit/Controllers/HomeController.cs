@@ -83,7 +83,44 @@ namespace BabySit.Controllers
         [Authorize(Roles = "1,2")]
         public IActionResult EditProfile()
         {
-            return View();
+            int id = (JsonConvert.DeserializeObject<User>(HttpContext.Session.GetString("SessionID"))).UserId;
+            var model = new Babysitter();
+            model.users = db.Users.ToList();
+            model.skills = db.Skills.ToList();
+            model.locations = db.Locations.ToList();
+            model.userskills = db.UserSkills.ToList();
+
+            var babyDetails = (from baby in model.users
+                               join localtion in model.locations
+                               on baby.ProvinceId equals localtion.ProvinceId
+                               where baby.UserId == id
+                               select new User()
+                               {
+                                   Name = baby.Name,
+                                   UserId = baby.UserId,
+                                   Avatar = baby.Avatar,
+                                   Gender = baby.Gender,
+                                   BirthOfDate = baby.BirthOfDate,
+                                   Phone = baby.Phone,
+                                   Province = baby.Province,
+                                   Description = baby.Description,
+                                   YearsOfExperience = baby.YearsOfExperience,
+                                   SalaryPerHour = baby.SalaryPerHour
+                               });
+
+            var babySkill = (from baby in model.users
+                             join userskill in model.userskills on baby.UserId equals userskill.UserId
+                             join skills in model.skills on userskill.SkillId equals skills.SkillId
+                             where baby.UserId == id
+                             select new Skill { SkillName = skills.SkillName, SkillId = skills.SkillId });
+
+            Babysitter babysitter = new Babysitter()
+            {
+                users = babyDetails,
+                skills = babySkill
+            };
+            ViewBag.test = id;
+            return View(babysitter);
         }
 
         public IActionResult HomePage()

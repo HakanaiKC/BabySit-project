@@ -2,357 +2,371 @@
 @{
     ViewData["Title"] = "Tài khoản";
 }
-@{
-    var babysitter = ViewBag.babysitter;
-}
 <link rel="stylesheet" href="~/css/EditProfile.css" />
 <section class="page-content" style="padding-top: 5em;">
     <div class="container">
 
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2" style="margin:auto;">
-                <!-- Profile Form -->
-                <form action="#" method="post" id="submit-edit" class="profile-manager-form" enctype="multipart/form-data">
-                    <!--Avatar-->
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="card-img">
-                                <img style="padding: 20px; height: 200px; width: 200px;" id="image" data-holder-rendered="true" class="card-img rounded-circle" src="https://mdbootstrap.com/img/Photos/Avatars/img%20(31).jpg">
-                            </div>
-                        </div>
-                        <div class="col-md-5" style="margin:auto;">
-                            <fieldset class="fieldset-company_logo">
-                                <label for="company_logo">Hình ảnh</label>
-                                <div class="field">
-                                    <input type="file" class="form-control" name="company_logo" id="avatar" />
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2" style="margin:auto;">
+
+                    @foreach (var item in Model.users)
+                    {
+                        <!-- Profile Form -->
+                        <form action="#" method="post" id="submit-edit" class="profile-manager-form" enctype="multipart/form-data">
+                            <!--Avatar-->
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="card-img">
+                                        <img style="padding: 20px; height: 200px; width: 200px;" id="image" data-holder-rendered="true" class="card-img rounded-circle" src="https://mdbootstrap.com/img/Photos/Avatars/img%20(31).jpg">
+                                    </div>
                                 </div>
-                                <br />
-                                <input type="submit" name="save_avatar" class="btn btn-success" value="Lưu" />
+                                <div class="col-md-5" style="margin:auto;">
+                                    <fieldset class="fieldset-company_logo">
+                                        <label for="company_logo">Hình ảnh</label>
+                                        <div class="field">
+                                            <input type="file" class="form-control" name="company_logo" id="avatar" />
+                                        </div>
+                                        <br />
+                                        <input type="submit" name="save_avatar" class="btn btn-success" value="Lưu" />
+                                    </fieldset>
+                                </div>
+                            </div>
+                        </form>
+                        <script>
+                            document.getElementById("avatar").onchange = function () {
+                                var reader = new FileReader();
+
+                                reader.onload = function (e) {
+                                    // get loaded data and render thumbnail.
+                                    document.getElementById("image").src = e.target.result;
+                                };
+
+                                // read the image file as a data URL.
+                                reader.readAsDataURL(this.files[0]);
+                            };
+                        </script>
+                        <form>
+                            @*<p>@ViewBag.test</p>*@
+                            <h4>Change password</h4>
+                            <table>
+                                <tr>
+                                    <td>Old Pass</td>
+                                    <td><input type="password" /></td>
+                                </tr>
+                                <tr>
+                                    <td>New Pass</td>
+                                    <td><input type="password" /></td>
+                                </tr>
+                                <tr>
+                                    <td>Re new pass</td>
+                                    <td><input type="password" /></td>
+                                </tr>
+                            </table>
+                            <input type="submit" name="save_pass" class="btn btn-success" value="Lưu" />
+                        </form>
+                        <br />
+                        <h2>Chi tiết về bản thân</h2>
+
+                        <form action="~/ChangeInfor/ChangeInformation" method="post">
+                            <!--Name and Gender-->
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <fieldset class="fieldset-fullname">
+                                        <label>Họ và tên</label>
+                                        <div class="field">
+                                            <input type="text" class="form-control" name="fullname" id="fullname" value="@Html.DisplayFor(model => item.Name)" />
+                                        </div>
+                                    </fieldset>
+                                </div>
+
+                                <!--Gender-->
+                                <div class="col-md-4">
+                                    <fieldset class="fieldset-gender">
+                                        <label for="job_category">Giới tính</label>
+                                        @{
+                                            var gender = item.Gender.Value ? "Nam" : "Nữ";
+                                            @*<p class="col-md-6">@Html.DisplayFor(model => gender)</p>*@
+                                        }
+
+                                        <div class="field select-style">
+                                            <select name="gender" id="gender" class="form-control" value="@Html.DisplayFor(model => gender)">
+                                                @*<option value="0">@Html.DisplayFor(model => gender)</option>*@
+                                                <option value="Nam">Nam</option>
+                                                <option value="Nữ">Nữ</option>
+                                            </select>
+                                        </div>
+                                    </fieldset>
+                                </div>
+                            </div>
+                            <br />
+                            <!--Birthdate-->
+                            <div class="row">
+                                <label for="job_category" class="col-md-3">Ngày sinh</label>
+                                @Html.TextBox("txtDate", item.BirthOfDate, "{0:yyyy-MM-dd}", new { type = "date" })
+                            </div>
+                            <br />
+                            <!--Address-->
+                            <fieldset>
+                                <label>Địa chỉ</label>
+                                <div class="field">
+                                    <input type="text" class="form-control" name="address" id="address" value="@Html.DisplayFor(model => item.Province.ProvinceName)" />
+                                </div>
                             </fieldset>
+                            <br />
+                            <!--Description-->
+                            <fieldset class="fieldset-job_description">
+                                <label>Mô tả bản thân</label>
+                                <div class="field">
+                                    <textarea name="textarea" cols="30" rows="8" class="form-control">@Html.DisplayFor(model => item.Description)</textarea>
+                                </div>
+                            </fieldset>
+                            <br />
+                            <!-- Person Availability -->
+                            <input type="submit" value="Submit" />
+                        </form>
+
+
+
+                        <h2>Phần dành riêng cho bảo mẫu</h2>
+                        <label>Thời gian làm việc</label>
+                        <div class="table-responsive">
+                            <table class="table table-striped table-bordered table-schedule">
+                                <thead>
+                                <th class="empty"></th>
+                                <th>Thứ Hai</th>
+                                <th>Thứ Ba</th>
+                                <th>Thứ Tư</th>
+                                <th>Thứ Năm</th>
+                                <th>Thứ Sáu</th>
+                                <th>Thứ Bảy</th>
+                                <th>Chủ Nhật</th>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="time">Sáng</td>
+                                        <td>
+                                            <div class="check-container">
+                                                <input type="checkbox" id="one">
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="check-container">
+                                                <input type="checkbox" id="two">
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="check-container">
+                                                <input type="checkbox" id="three">
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="check-container">
+                                                <input type="checkbox" id="four">
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="check-container">
+                                                <input type="checkbox" id="five">
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="check-container">
+                                                <input type="checkbox" id="six">
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="check-container">
+                                                <input type="checkbox" id="seven">
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="time">Chiều</td>
+                                        <td>
+                                            <div class="check-container">
+                                                <input type="checkbox" id="eight">
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="check-container">
+                                                <input type="checkbox" id="nine">
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="check-container">
+                                                <input type="checkbox" id="ten">
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="check-container">
+                                                <input type="checkbox" id="eleven">
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="check-container">
+                                                <input type="checkbox" id="twelve">
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="check-container">
+                                                <input type="checkbox" id="thirdteen">
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="check-container">
+                                                <input type="checkbox" id="fourteen">
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="time">Tối</td>
+                                        <td>
+                                            <div class="check-container">
+                                                <input type="checkbox" id="fifteen">
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="check-container">
+                                                <input type="checkbox" id="sixteen">
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="check-container">
+                                                <input type="checkbox" id="seventeen">
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="check-container">
+                                                <input type="checkbox" id="eightteen">
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="check-container">
+                                                <input type="checkbox" id="nineteen">
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="check-container">
+                                                <input type="checkbox" id="twenty">
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="check-container">
+                                                <input type="checkbox" id="twentyone">
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
-                    </div>
-                </form>
-                <script>
-                    document.getElementById("avatar").onchange = function () {
-                        var reader = new FileReader();
+                        <!-- Person Availability / End -->
+                        <br />
 
-                        reader.onload = function (e) {
-                            // get loaded data and render thumbnail.
-                            document.getElementById("image").src = e.target.result;
-                        };
-
-                        // read the image file as a data URL.
-                        reader.readAsDataURL(this.files[0]);
-                    };
-                </script>
-                <form>
-                    <h4>Change password</h4>
-                    <table>
-                        <tr>
-                            <td>Old Pass</td>
-                            <td><input type="password" /></td>
-                        </tr>
-                        <tr>
-                            <td>New Pass</td>
-                            <td><input type="password" /></td>
-                        </tr>
-                        <tr>
-                            <td>Re new pass</td>
-                            <td><input type="password" /></td>
-                        </tr>
-                    </table>
-                    <input type="submit" name="save_pass" class="btn btn-success" value="Lưu" />
-                </form>
-                <br />
-                <h2>Chi tiết về bản thân</h2>
-
-                <!--Name and Gender-->
-                <div class="row">
-                    <div class="col-md-8">
-                        <fieldset class="fieldset-fullname">
-                            <label>Họ và tên</label>
+                        <!--Lương-->
+                        <fieldset>
+                            <label>Lương(Theo giờ)</label>
                             <div class="field">
-                                <input type="text" class="form-control" name="fullname" id="fullname" value="" />
+                                <input type="number" min="10000" placeholder="VND/Giờ" class="form-control" name="salary" id="salary" value="@Html.DisplayFor(model => item.SalaryPerHour) " />
                             </div>
                         </fieldset>
-                    </div>
-
-                    <!--Gender-->
-                    <div class="col-md-4">
-                        <fieldset class="fieldset-gender">
-                            <label for="job_category">Giới tính</label>
+                        <br />
+                        <!-- experience -->
+                        <fieldset class="fieldset-experience">
+                            <label for="salary">Kinh nghiệm</label>
                             <div class="field select-style">
-                                <select name="gender" id="gender" class="form-control">
-                                    <option value="0">-------</option>
-                                    <option value="Nam">Nam</option>
-                                    <option value="Nữ">Nữ</option>
+                                <select name="experience" id="experience" class="form-control" value="@Html.DisplayFor(model => item.YearsOfExperience)">
+                                    @*<option value="0">@Html.DisplayFor(model => item.YearsOfExperience)</option>*@
+                                    <option value="under 1"> dưới 1 năm</option>
+                                    <option value="over 1">> 1 năm</option>
+                                    <option value="over 2">> 2 năm</option>
+                                    <option value="over 3">3 năm</option>
+                                    <option value="over 4">4 năm</option>
+                                    <option value="over 5">5 năm</option>
+                                    <option value="over 6">6 năm</option>
+                                    <option value="over 7">7 năm</option>
+                                    <option value="over 8">8 năm</option>
+                                    <option value="over 9">9 năm</option>
+                                    <option value="over 10">10 năm</option>
+                                    <option value="over 11">11 năm</option>
                                 </select>
                             </div>
                         </fieldset>
-                    </div>
-                </div>
-                <br />
-                <!--Birthdate-->
-                <div class="row">
-                    <label for="job_category" class="col-md-3">Ngày sinh</label>
-                    <input type="date" />
-                </div>
-                <br />
-                <!--Address-->
-                <fieldset>
-                    <label>Địa chỉ</label>
-                    <div class="field">
-                        <input type="text" class="form-control" name="address" id="address" value="" />
-                    </div>
-                </fieldset>
-                <br />
-                <!--Description-->
-                <fieldset class="fieldset-job_description">
-                    <label>Mô tả bản thân</label>
-                    <div class="field">
-                        <textarea name="textarea" cols="30" rows="8" class="form-control"></textarea>
-                    </div>
-                </fieldset>
-                <br />
-                <!-- Person Availability -->
-                <label>Thời gian làm việc</label>
-                <div class="table-responsive">
-                    <table class="table table-striped table-bordered table-schedule">
-                        <thead>
-                        <th class="empty"></th>
-                        <th>Thứ Hai</th>
-                        <th>Thứ Ba</th>
-                        <th>Thứ Tư</th>
-                        <th>Thứ Năm</th>
-                        <th>Thứ Sáu</th>
-                        <th>Thứ Bảy</th>
-                        <th>Chủ Nhật</th>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td class="time">Sáng</td>
-                                <td>
-                                    <div class="check-container">
-                                        <input type="checkbox" id="one">
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="check-container">
-                                        <input type="checkbox" id="two">
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="check-container">
-                                        <input type="checkbox" id="three">
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="check-container">
-                                        <input type="checkbox" id="four">
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="check-container">
-                                        <input type="checkbox" id="five">
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="check-container">
-                                        <input type="checkbox" id="six">
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="check-container">
-                                        <input type="checkbox" id="seven">
-                                    </div>
-                                </td>
-                            </tr>
+                        <br />
+                    }
+                        <!--Co kha nang trong-->
+                        <fieldset>
+                            <label>Có khả năng trông</label>
+                            <div class="btn-group btn-group-toggle d-flex flex-column flex-md-row" data-toggle="buttons">
+                                <div style="padding-right:0.5em;">
+                                    <label class="btn btn-outline-success">
+                                        <input type="checkbox" autocomplete="off" style="display:none;"> Trẻ sơ sinh
+                                    </label>
+                                </div>
+                                <div style="padding-right: 0.5em;">
+                                    <label class="btn btn-outline-success">
+                                        <input type="checkbox" autocomplete="off" style="display:none;"> 1-2 tuổi
+                                    </label>
+                                </div>
+                                <div style="padding-right: 0.5em;">
+                                    <label class="btn btn-outline-success">
+                                        <input type="checkbox" autocomplete="off" style="display:none;"> Trẻ mầm non
+                                    </label>
+                                </div>
+                                <div style="padding-right: 0.5em;">
+                                    <label class="btn btn-outline-success">
+                                        <input type="checkbox" autocomplete="off" style="display:none;"> Tiểu học
+                                    </label>
+                                </div>
+                                <div style="padding-right: 0.5em;">
+                                    <label class="btn btn-outline-success">
+                                        <input type="checkbox" autocomplete="off" style="display:none;"> Trung học
+                                    </label>
+                                </div>
+                            </div>
+                        </fieldset>
+                        <br />
+                        <!--Skills-->
+                        <fieldset>
+                            <label>Kỹ năng</label>
+                            <div class="btn-group btn-group-toggle d-flex flex-column flex-md-row" data-toggle="buttons">
+                                <div style="padding-right:0.5em;">
+                                    <label class="btn btn-outline-success">
+                                        <input type="checkbox" autocomplete="off" style="display:none;"> Kỹ năng 1
+                                    </label>
+                                </div>
+                                <div style="padding-right: 0.5em;">
+                                    <label class="btn btn-outline-success">
+                                        <input type="checkbox" autocomplete="off" style="display:none;"> Kỹ năng 2
+                                    </label>
+                                </div>
+                                <div style="padding-right: 0.5em;">
+                                    <label class="btn btn-outline-success">
+                                        <input type="checkbox" autocomplete="off" style="display:none;"> Kỹ năng 3
+                                    </label>
+                                </div>
+                                <div style="padding-right: 0.5em;">
+                                    <label class="btn btn-outline-success">
+                                        <input type="checkbox" autocomplete="off" style="display:none;"> Kỹ năng 4
+                                    </label>
+                                </div>
+                                <div style="padding-right: 0.5em;">
+                                    <label class="btn btn-outline-success">
+                                        <input type="checkbox" autocomplete="off" style="display:none;"> Kỹ năng 5
+                                    </label>
+                                </div>
+                            </div>
+                        </fieldset>
+                        <br />
 
-                            <tr>
-                                <td class="time">Chiều</td>
-                                <td>
-                                    <div class="check-container">
-                                        <input type="checkbox" id="eight">
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="check-container">
-                                        <input type="checkbox" id="nine">
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="check-container">
-                                        <input type="checkbox" id="ten">
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="check-container">
-                                        <input type="checkbox" id="eleven">
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="check-container">
-                                        <input type="checkbox" id="twelve">
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="check-container">
-                                        <input type="checkbox" id="thirdteen">
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="check-container">
-                                        <input type="checkbox" id="fourteen">
-                                    </div>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td class="time">Tối</td>
-                                <td>
-                                    <div class="check-container">
-                                        <input type="checkbox" id="fifteen">
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="check-container">
-                                        <input type="checkbox" id="sixteen">
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="check-container">
-                                        <input type="checkbox" id="seventeen">
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="check-container">
-                                        <input type="checkbox" id="eightteen">
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="check-container">
-                                        <input type="checkbox" id="nineteen">
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="check-container">
-                                        <input type="checkbox" id="twenty">
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="check-container">
-                                        <input type="checkbox" id="twentyone">
-                                    </div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <!-- Person Availability / End -->
-                <br />
-
-                <!--Lương-->
-                <fieldset>
-                    <label>Lương(Theo giờ)</label>
-                    <div class="field">
-                        <input type="number" min="10000" placeholder="VND/Giờ" class="form-control" name="salary" id="salary" value="" />
-                    </div>
-                </fieldset>
-                <br />
-                <!-- experience -->
-                <fieldset class="fieldset-experience">
-                    <label for="salary">Kinh nghiệm</label>
-                    <div class="field select-style">
-                        <select name="experience" id="experience" class="form-control">
-                            <option value="0">Kinh nghiệm</option>
-                            <option value="under 1">< 1 năm</option>
-                            <option value="over 1">> 1 năm</option>
-                            <option value="over 2">> 2 năm</option>
-                            <option value="over 3">3 năm</option>
-                            <option value="over 4">4 năm</option>
-                            <option value="over 5">5 năm</option>
-                            <option value="over 6">6 năm</option>
-                            <option value="over 7">7 năm</option>
-                            <option value="over 8">8 năm</option>
-                            <option value="over 9">9 năm</option>
-                            <option value="over 10">10 năm</option>
-                            <option value="over 11">11 năm</option>
-                        </select>
-                    </div>
-                </fieldset>
-                <br />
-                <!--Co kha nang trong-->
-                <fieldset>
-                    <label>Có khả năng trông</label>
-                    <div class="btn-group btn-group-toggle d-flex flex-column flex-md-row" data-toggle="buttons">
-                        <div style="padding-right:0.5em;">
-                            <label class="btn btn-outline-success">
-                                <input type="checkbox" autocomplete="off" style="display:none;"> Trẻ sơ sinh
-                            </label>
-                        </div>
-                        <div style="padding-right: 0.5em;">
-                            <label class="btn btn-outline-success">
-                                <input type="checkbox" autocomplete="off" style="display:none;"> 1-2 tuổi
-                            </label>
-                        </div>
-                        <div style="padding-right: 0.5em;">
-                            <label class="btn btn-outline-success">
-                                <input type="checkbox" autocomplete="off" style="display:none;"> Trẻ mầm non
-                            </label>
-                        </div>
-                        <div style="padding-right: 0.5em;">
-                            <label class="btn btn-outline-success">
-                                <input type="checkbox" autocomplete="off" style="display:none;"> Tiểu học
-                            </label>
-                        </div>
-                        <div style="padding-right: 0.5em;">
-                            <label class="btn btn-outline-success">
-                                <input type="checkbox" autocomplete="off" style="display:none;"> Trung học
-                            </label>
-                        </div>
-                    </div>
-                </fieldset>
-                <br />
-                <!--Skills-->
-                <fieldset>
-                    <label>Kỹ năng</label>
-                    <div class="btn-group btn-group-toggle d-flex flex-column flex-md-row" data-toggle="buttons">
-                        <div style="padding-right:0.5em;">
-                            <label class="btn btn-outline-success">
-                                <input type="checkbox" autocomplete="off" style="display:none;"> Kỹ năng 1
-                            </label>
-                        </div>
-                        <div style="padding-right: 0.5em;">
-                            <label class="btn btn-outline-success">
-                                <input type="checkbox" autocomplete="off" style="display:none;"> Kỹ năng 2
-                            </label>
-                        </div>
-                        <div style="padding-right: 0.5em;">
-                            <label class="btn btn-outline-success">
-                                <input type="checkbox" autocomplete="off" style="display:none;"> Kỹ năng 3
-                            </label>
-                        </div>
-                        <div style="padding-right: 0.5em;">
-                            <label class="btn btn-outline-success">
-                                <input type="checkbox" autocomplete="off" style="display:none;"> Kỹ năng 4
-                            </label>
-                        </div>
-                        <div style="padding-right: 0.5em;">
-                            <label class="btn btn-outline-success">
-                                <input type="checkbox" autocomplete="off" style="display:none;"> Kỹ năng 5
-                            </label>
-                        </div>
-                    </div>
-                </fieldset>
-                <br />
-
-                <input type="submit" name="save_profile" class="btn btn-success" value="Lưu" />
+                        <input type="submit" name="save_profile" class="btn btn-success" value="Lưu" />
 
 
 
-                <!-- Profile Form / End -->
+                        <!-- Profile Form / End -->
+                    </div>
             </div>
-        </div>
 
-    </div>
+        </div>
 </section>

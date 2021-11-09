@@ -639,3 +639,4 @@ C:\PRN_4\BabySit\BabySit\obj\Debug\netcoreapp3.1\BabySit.csproj.CopyComplete
 C:\PRN_4\BabySit\BabySit\obj\Debug\netcoreapp3.1\BabySit.dll
 C:\PRN_4\BabySit\BabySit\obj\Debug\netcoreapp3.1\BabySit.pdb
 C:\PRN_4\BabySit\BabySit\obj\Debug\netcoreapp3.1\BabySit.genruntimeconfig.cache
+C:\PRN_4\BabySit\BabySit\obj\Debug\netcoreapp3.1\Razor\Views\ChangeInfor\Index.cshtml.g.cs

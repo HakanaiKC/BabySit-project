@@ -37,7 +37,8 @@ namespace BabySit.Models
         [Required(ErrorMessage = "Không được bỏ trống trường này")]
         public string Name { get; set; }
 
-        [DisplayFormat(DataFormatString = "{0:yyyy}")]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+        //[DataType(DataType.Date)]
         public DateTime? BirthOfDate { get; set; }
         public bool? Gender { get; set; }
         public string Phone { get; set; }
