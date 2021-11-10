@@ -74,9 +74,18 @@ namespace BabySit.Controllers
             return View(babysitter);
         }
 
-        public IActionResult CreateContract()
+        [HttpGet]
+        public IActionResult CreateContract(string returnUrl)
         {
-            return View();
+            if (HttpContext.Session.GetString("SessionID") != null)
+            {
+                return View();
+            }
+            else
+            {
+                ViewBag.ReturnUrl = returnUrl;
+                return RedirectToAction("Login", "Account");
+            }
         }
 
         public IActionResult EditProfile()
@@ -124,18 +133,22 @@ namespace BabySit.Controllers
 
         public IActionResult HomePage()
         {
-            var role = (JsonConvert.DeserializeObject<User>(HttpContext.Session.GetString("SessionID"))).Role;
+            if (HttpContext.Session.GetString("SessionID") != null)
+            {
+                var role = (JsonConvert.DeserializeObject<User>(HttpContext.Session.GetString("SessionID"))).Role;
+                if (role > 0)
+                {
+                    ViewBag.role = role;
+                }
+                else
+                {
+                    ViewBag.role = 0;
+                }
+            }           
             var model = new LocationAndUser();
             model.users = db.Users.Where(x => x.Role == 2).ToList();
             model.locations = db.Locations.ToList();
-            if (role>0 && role != null)
-            {
-                ViewBag.role = role;
-            }
-            else
-            {
-                ViewBag.role = 0;
-            }
+            
             return View(model);
         }
         
