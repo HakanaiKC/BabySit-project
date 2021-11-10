@@ -77,7 +77,7 @@ namespace BabySit.Controllers
                     //}
                     //else
                     //{
-                        return RedirectToAction("ContactUs", "Home");
+                        return RedirectToAction("HomePage", "Home");
                     //}
                 }
             }
