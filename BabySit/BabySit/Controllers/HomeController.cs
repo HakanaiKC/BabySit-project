@@ -74,9 +74,18 @@ namespace BabySit.Controllers
             return View(babysitter);
         }
 
-        public IActionResult CreateContract()
+        [HttpGet]
+        public IActionResult CreateContract(string returnUrl)
         {
-            return View();
+            if (HttpContext.Session.GetString("SessionID") != null)
+            {
+                return View();
+            }
+            else
+            {
+                ViewBag.ReturnUrl = returnUrl;
+                return RedirectToAction("Login", "Account");
+            }
         }
 
         public IActionResult EditProfile()
@@ -135,11 +144,11 @@ namespace BabySit.Controllers
                 {
                     ViewBag.role = 0;
                 }
-            }
+            }           
             var model = new LocationAndUser();
             model.users = db.Users.Where(x => x.Role == 2).ToList();
             model.locations = db.Locations.ToList();
-
+            
             return View(model);
         }
         
