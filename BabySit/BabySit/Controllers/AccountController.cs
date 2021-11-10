@@ -70,15 +70,16 @@ namespace BabySit.Controllers
                 else if (userDetails != null && (userDetails.Role == 1 || userDetails.Role == 2))
                 {
                     HttpContext.Session.SetString("SessionID", JsonConvert.SerializeObject(userDetails));
-                    //if (TempData["path"] != null)
-                    //{
-                    //    string url = (string)TempData["path"];
-                    //    return Redirect(url);                       
-                    //}
-                    //else
-                    //{
+                    if (TempData["path"] != null)
+                    {
+                        string url = (string)TempData["path"];
+                        //TempData.Remove("path");
+                        return Redirect(url);
+                    }
+                    else
+                    {
                         return RedirectToAction("HomePage", "Home");
-                    //}
+                    }
                 }
             }
             return View();
