@@ -1,9 +1,44 @@
-﻿@{
+@{
     ViewData["Title"] = "Trang chủ";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 @model BabySit.Database_Access.Babysitter
 <link rel="stylesheet" href="~/css/HomePage.css">
+<style>
+    .multiselect {
+        width: 150px;
+    }
+
+    .selectBox {
+        position: relative;
+    }
+
+        .selectBox select {
+            width: 100%;
+            font-weight: bold;
+        }
+
+    .overSelect {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+    }
+
+    #checkboxes {
+        display: none;
+        border: 1px #dadada solid;
+    }
+
+        #checkboxes label {
+            display: block;
+        }
+
+            #checkboxes label:hover {
+                background-color: #1e90ff;
+            }
+</style>
 
 <div>
     <div class="sidenav dropdown" style="padding-top: 5em;">
@@ -32,11 +67,25 @@
 
         <div class="thoigian" style="padding: 1em; margin: auto;">
             <label>Thời gian làm việc</label>
-            <select name="selectThoiGian" title="Chọn thời gian" id="selectThoiGian" class="selectpicker" data-style="btn-success" data-width="150px" multiple>
-                <option value="1" style="font-size:18px;">Sáng </option>
-                <option value="2" style="font-size:18px;">Chiều</option>
-                <option value="3" style="font-size:18px;">Tối</option>
-            </select>
+            <div class="multiselect">
+                <div class="selectBox" onclick="showCheckboxes()">
+                    <select name="selectThoiGian" title="Chọn thời gian" id="selectThoiGian" class="selectpicker" data-style="btn-success" data-width="150px">
+                        <option>Select an option</option>
+                    </select>
+                    <div class="overSelect"></div>
+                </div>
+                <div id="checkboxes">
+                    <label for="one">
+                        <input type="checkbox" id="one" />Sáng
+                    </label>
+                    <label for="two">
+                        <input type="checkbox" id="two" />Chiều
+                    </label>
+                    <label for="three">
+                        <input type="checkbox" id="three" />Tối
+                    </label>
+                </div>
+            </div>
         </div>
 
         <div class="mucluong" style="padding: 1em; margin: auto;">
@@ -112,4 +161,18 @@
 
         @*End Babysitter 1*@
     </div>
+    <script>
+        var expanded = false;
+
+        function showCheckboxes() {
+            var checkboxes = document.getElementById("checkboxes");
+            if (!expanded) {
+                checkboxes.style.display = "block";
+                expanded = true;
+            } else {
+                checkboxes.style.display = "none";
+                expanded = false;
+            }
+        }
+    </script>
 </div>
