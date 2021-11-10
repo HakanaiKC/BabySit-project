@@ -38,7 +38,7 @@ namespace BabySit.Controllers
         public IActionResult Babysitter(int id)
         {
             var model = new Babysitter();
-            model.users = db.Users.ToList();
+            model.users = db.Users.Where(x => x.Role == 2 && x.Gender != null && x.SalaryPerHour != null && x.ProvinceId != null).ToList();
             model.skills = db.Skills.ToList();
             model.locations = db.Locations.ToList();
             model.userskills = db.UserSkills.ToList();
@@ -129,13 +129,18 @@ namespace BabySit.Controllers
                 users = babyDetails,
                 skills = babySkill
             };
-            ViewBag.test = id;
             ViewBag.locations = db.Locations.ToList();
             return View(babysitter);
         }
 
         public IActionResult HomePage()
         {
+            var model = new Babysitter();
+            model.users = db.Users.Where(x => x.Role == 2 && x.Gender != null && x.SalaryPerHour != null && x.ProvinceId != null).ToList();
+            model.skills = db.Skills.ToList();
+            model.locations = db.Locations.ToList();
+            model.userskills = db.UserSkills.ToList();
+
             if (HttpContext.Session.GetString("SessionID") != null)
             {
                 var role = (JsonConvert.DeserializeObject<User>(HttpContext.Session.GetString("SessionID"))).Role;
@@ -148,9 +153,6 @@ namespace BabySit.Controllers
                     ViewBag.role = 0;
                 }
             }
-            var model = new LocationAndUser();
-            model.users = db.Users.Where(x => x.Role == 2).ToList();
-            model.locations = db.Locations.ToList();
             return View(model);
         }
 
