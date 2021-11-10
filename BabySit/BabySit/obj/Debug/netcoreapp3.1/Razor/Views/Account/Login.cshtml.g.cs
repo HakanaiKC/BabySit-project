@@ -26,15 +26,17 @@ using BabySit.Models;
 #line default
 #line hidden
 #nullable disable
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"570fa4be603179ffc1e637768a805c1b00993b01", @"/Views/Account/Login.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"b5d9aa2125da00a747aa3a361e4086a8febad6a4", @"/Views/Account/Login.cshtml")]
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"f7c4939155c2d59677d170f63afeb1878e37e604", @"/Views/_ViewImports.cshtml")]
     public class Views_Account_Login : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<BabySit.Models.User>
     {
-        private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("asp-controller", "Account", global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
-        private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_1 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("asp-action", "ForgotPass", global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
-        private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_2 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("class", new global::Microsoft.AspNetCore.Html.HtmlString("text-black-70"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
-        private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_3 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("style", new global::Microsoft.AspNetCore.Html.HtmlString("text-decoration: underline;"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
-        private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_4 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("asp-action", "Register", global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
+        private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("asp-action", "Login", global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
+        private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_1 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("method", "post", global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
+        private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_2 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("asp-controller", "Account", global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
+        private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_3 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("asp-action", "ForgotPass", global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
+        private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_4 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("class", new global::Microsoft.AspNetCore.Html.HtmlString("text-black-70"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
+        private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_5 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("style", new global::Microsoft.AspNetCore.Html.HtmlString("text-decoration: underline;"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
+        private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_6 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("asp-action", "Register", global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
         #line hidden
         #pragma warning disable 0649
         private global::Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperExecutionContext __tagHelperExecutionContext;
@@ -55,6 +57,8 @@ using BabySit.Models;
                 return __backed__tagHelperScopeManager;
             }
         }
+        private global::Microsoft.AspNetCore.Mvc.TagHelpers.FormTagHelper __Microsoft_AspNetCore_Mvc_TagHelpers_FormTagHelper;
+        private global::Microsoft.AspNetCore.Mvc.TagHelpers.RenderAtEndOfFormTagHelper __Microsoft_AspNetCore_Mvc_TagHelpers_RenderAtEndOfFormTagHelper;
         private global::Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper __Microsoft_AspNetCore_Mvc_TagHelpers_AnchorTagHelper;
         #pragma warning disable 1998
         public async override global::System.Threading.Tasks.Task ExecuteAsync()
@@ -67,7 +71,9 @@ using BabySit.Models;
 #line default
 #line hidden
 #nullable disable
-            WriteLiteral("<div class=\"d-flex align-items-center\" style=\"min-height: 100vh\">\r\n    <div class=\"col-sm-8 col-md-6 col-lg-4 mx-auto\" style=\"min-width: 300px;\">\r\n        <div class=\"card navbar-shadow\">\r\n            <div class=\"card-body\">\r\n");
+            WriteLiteral("<div class=\"d-flex align-items-center\" style=\"min-height: 100vh\">\r\n    <div class=\"col-sm-8 col-md-6 col-lg-4 mx-auto\" style=\"min-width: 300px;\">\r\n        <div class=\"card navbar-shadow\">\r\n            <div class=\"card-body\">\r\n                ");
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "b5d9aa2125da00a747aa3a361e4086a8febad6a46054", async() => {
+                WriteLiteral("\r\n                    <div class=\"form-group\">\r\n                        <h4 class=\"card-title text-center\">Đăng nhập</h4>\r\n                        ");
 #nullable restore
 #line 9 "C:\PRN_4\BabySit\BabySit\Views\Account\Login.cshtml"
                  using (Html.BeginForm("Login", "Account", FormMethod.Post))
@@ -84,7 +90,7 @@ using BabySit.Models;
 #line default
 #line hidden
 #nullable disable
-            WriteLiteral("\r\n                        <div class=\"input-group input-group-merge\">\r\n                            ");
+                WriteLiteral("\r\n                        <div class=\"input-group input-group-merge\">\r\n                            ");
 #nullable restore
 #line 15 "C:\PRN_4\BabySit\BabySit\Views\Account\Login.cshtml"
                        Write(Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control form-control-prepended" } }));
@@ -92,7 +98,7 @@ using BabySit.Models;
 #line default
 #line hidden
 #nullable disable
-            WriteLiteral("\r\n                        </div>\r\n                        ");
+                WriteLiteral("\r\n                        </div>\r\n                        ");
 #nullable restore
 #line 17 "C:\PRN_4\BabySit\BabySit\Views\Account\Login.cshtml"
                    Write(Html.ValidationMessageFor(mess => mess.Email, null, new { @class = "text-danger" }));
@@ -100,8 +106,7 @@ using BabySit.Models;
 #line default
 #line hidden
 #nullable disable
-            WriteLiteral("\r\n                    </div>\r\n");
-            WriteLiteral("                    <div class=\"form-group\">\r\n                        ");
+                WriteLiteral("\r\n                    </div>\r\n\r\n                    <div class=\"form-group\">\r\n                        ");
 #nullable restore
 #line 21 "C:\PRN_4\BabySit\BabySit\Views\Account\Login.cshtml"
                    Write(Html.LabelFor(model => model.Password));
@@ -109,7 +114,7 @@ using BabySit.Models;
 #line default
 #line hidden
 #nullable disable
-            WriteLiteral("\r\n                        <div class=\"input-group input-group-merge\">\r\n                            ");
+                WriteLiteral("\r\n                        <div class=\"input-group input-group-merge\">\r\n                            ");
 #nullable restore
 #line 23 "C:\PRN_4\BabySit\BabySit\Views\Account\Login.cshtml"
                        Write(Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } }));
@@ -117,7 +122,7 @@ using BabySit.Models;
 #line default
 #line hidden
 #nullable disable
-            WriteLiteral("\r\n                        </div>\r\n                        ");
+                WriteLiteral("\r\n                        </div>\r\n                        ");
 #nullable restore
 #line 25 "C:\PRN_4\BabySit\BabySit\Views\Account\Login.cshtml"
                    Write(Html.ValidationMessageFor(mess => mess.Password, null, new { @class = "text-danger" }));
@@ -125,8 +130,7 @@ using BabySit.Models;
 #line default
 #line hidden
 #nullable disable
-            WriteLiteral("\r\n                    </div>\r\n");
-            WriteLiteral("                    <div class=\"form-group\">\r\n                        ");
+                WriteLiteral("\r\n                    </div>\r\n\r\n                    <div class=\"form-group\">\r\n                        ");
 #nullable restore
 #line 29 "C:\PRN_4\BabySit\BabySit\Views\Account\Login.cshtml"
                    Write(Html.CheckBox("remember", false));
@@ -134,7 +138,7 @@ using BabySit.Models;
 #line default
 #line hidden
 #nullable disable
-            WriteLiteral(" Nhớ đăng nhập?\r\n                    </div>\r\n");
+                WriteLiteral(" Nhớ đăng nhập?\r\n                    </div>\r\n\r\n");
 #nullable restore
 #line 31 "C:\PRN_4\BabySit\BabySit\Views\Account\Login.cshtml"
 
@@ -144,7 +148,7 @@ using BabySit.Models;
 #line default
 #line hidden
 #nullable disable
-            WriteLiteral("                        <label class=\"text-danger\">");
+                WriteLiteral("                    <label class=\"text-danger\">");
 #nullable restore
 #line 34 "C:\PRN_4\BabySit\BabySit\Views\Account\Login.cshtml"
                                               Write(ViewBag.Message);
@@ -152,7 +156,7 @@ using BabySit.Models;
 #line default
 #line hidden
 #nullable disable
-            WriteLiteral("</label>\r\n");
+                WriteLiteral("</label>\r\n");
 #nullable restore
 #line 35 "C:\PRN_4\BabySit\BabySit\Views\Account\Login.cshtml"
 
@@ -161,7 +165,7 @@ using BabySit.Models;
 #line default
 #line hidden
 #nullable disable
-            WriteLiteral("                    <label style=\"color:green\">");
+                WriteLiteral("\r\n                    <label style=\"color:green\">");
 #nullable restore
 #line 37 "C:\PRN_4\BabySit\BabySit\Views\Account\Login.cshtml"
                                           Write(ViewBag.RegisterSuccessfully);
@@ -169,7 +173,7 @@ using BabySit.Models;
 #line default
 #line hidden
 #nullable disable
-            WriteLiteral("</label>\r\n                    <label style=\"color:green\">");
+                WriteLiteral("</label>\r\n                    <label style=\"color:green\">");
 #nullable restore
 #line 38 "C:\PRN_4\BabySit\BabySit\Views\Account\Login.cshtml"
                                           Write(ViewBag.MessageChangePasswordSuccess);
@@ -177,7 +181,22 @@ using BabySit.Models;
 #line default
 #line hidden
 #nullable disable
-            WriteLiteral("</label>\r\n                    <div class=\"form-group \">\r\n                    <input type=\"submit\" value=\"Đăng nhập\" class=\"btn btn-success btn-block\" />\r\n                </div>\r\n");
+                WriteLiteral("</label>\r\n                    <div class=\"form-group \">\r\n                        <input type=\"submit\" value=\"Đăng nhập\" class=\"btn btn-success btn-block\" />\r\n                    </div>\r\n                ");
+            }
+            );
+            __Microsoft_AspNetCore_Mvc_TagHelpers_FormTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.FormTagHelper>();
+            __tagHelperExecutionContext.Add(__Microsoft_AspNetCore_Mvc_TagHelpers_FormTagHelper);
+            __Microsoft_AspNetCore_Mvc_TagHelpers_RenderAtEndOfFormTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.RenderAtEndOfFormTagHelper>();
+            __tagHelperExecutionContext.Add(__Microsoft_AspNetCore_Mvc_TagHelpers_RenderAtEndOfFormTagHelper);
+            __Microsoft_AspNetCore_Mvc_TagHelpers_FormTagHelper.Action = (string)__tagHelperAttribute_0.Value;
+            __tagHelperExecutionContext.AddTagHelperAttribute(__tagHelperAttribute_0);
+            __Microsoft_AspNetCore_Mvc_TagHelpers_FormTagHelper.Method = (string)__tagHelperAttribute_1.Value;
+            __tagHelperExecutionContext.AddTagHelperAttribute(__tagHelperAttribute_1);
+            if (__Microsoft_AspNetCore_Mvc_TagHelpers_FormTagHelper.RouteValues == null)
+            {
+                throw new InvalidOperationException(InvalidTagHelperIndexerAssignment("asp-route-returnurl", "Microsoft.AspNetCore.Mvc.TagHelpers.FormTagHelper", "RouteValues"));
+            }
+            BeginWriteTagHelperAttribute();
 #nullable restore
 #line 42 "C:\PRN_4\BabySit\BabySit\Views\Account\Login.cshtml"
                 }
@@ -192,12 +211,12 @@ using BabySit.Models;
             );
             __Microsoft_AspNetCore_Mvc_TagHelpers_AnchorTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper>();
             __tagHelperExecutionContext.Add(__Microsoft_AspNetCore_Mvc_TagHelpers_AnchorTagHelper);
-            __Microsoft_AspNetCore_Mvc_TagHelpers_AnchorTagHelper.Controller = (string)__tagHelperAttribute_0.Value;
-            __tagHelperExecutionContext.AddTagHelperAttribute(__tagHelperAttribute_0);
-            __Microsoft_AspNetCore_Mvc_TagHelpers_AnchorTagHelper.Action = (string)__tagHelperAttribute_1.Value;
-            __tagHelperExecutionContext.AddTagHelperAttribute(__tagHelperAttribute_1);
-            __tagHelperExecutionContext.AddHtmlAttribute(__tagHelperAttribute_2);
-            __tagHelperExecutionContext.AddHtmlAttribute(__tagHelperAttribute_3);
+            __Microsoft_AspNetCore_Mvc_TagHelpers_AnchorTagHelper.Controller = (string)__tagHelperAttribute_2.Value;
+            __tagHelperExecutionContext.AddTagHelperAttribute(__tagHelperAttribute_2);
+            __Microsoft_AspNetCore_Mvc_TagHelpers_AnchorTagHelper.Action = (string)__tagHelperAttribute_3.Value;
+            __tagHelperExecutionContext.AddTagHelperAttribute(__tagHelperAttribute_3);
+            __tagHelperExecutionContext.AddHtmlAttribute(__tagHelperAttribute_4);
+            __tagHelperExecutionContext.AddHtmlAttribute(__tagHelperAttribute_5);
             await __tagHelperRunner.RunAsync(__tagHelperExecutionContext);
             if (!__tagHelperExecutionContext.Output.IsContentModified)
             {
@@ -212,10 +231,10 @@ using BabySit.Models;
             );
             __Microsoft_AspNetCore_Mvc_TagHelpers_AnchorTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper>();
             __tagHelperExecutionContext.Add(__Microsoft_AspNetCore_Mvc_TagHelpers_AnchorTagHelper);
-            __Microsoft_AspNetCore_Mvc_TagHelpers_AnchorTagHelper.Controller = (string)__tagHelperAttribute_0.Value;
-            __tagHelperExecutionContext.AddTagHelperAttribute(__tagHelperAttribute_0);
-            __Microsoft_AspNetCore_Mvc_TagHelpers_AnchorTagHelper.Action = (string)__tagHelperAttribute_4.Value;
-            __tagHelperExecutionContext.AddTagHelperAttribute(__tagHelperAttribute_4);
+            __Microsoft_AspNetCore_Mvc_TagHelpers_AnchorTagHelper.Controller = (string)__tagHelperAttribute_2.Value;
+            __tagHelperExecutionContext.AddTagHelperAttribute(__tagHelperAttribute_2);
+            __Microsoft_AspNetCore_Mvc_TagHelpers_AnchorTagHelper.Action = (string)__tagHelperAttribute_6.Value;
+            __tagHelperExecutionContext.AddTagHelperAttribute(__tagHelperAttribute_6);
             await __tagHelperRunner.RunAsync(__tagHelperExecutionContext);
             if (!__tagHelperExecutionContext.Output.IsContentModified)
             {

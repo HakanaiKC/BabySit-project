@@ -26,16 +26,13 @@ using BabySit.Models;
 #line default
 #line hidden
 #nullable disable
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"f14a6e3e94936bc80471549c003c708cd05d6841", @"/Views/Home/Babysitter.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"d4e0d1a04e820c7ec27f10ff8c23b2f2e1b2f546", @"/Views/Home/Babysitter.cshtml")]
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"f7c4939155c2d59677d170f63afeb1878e37e604", @"/Views/_ViewImports.cshtml")]
     public class Views_Home_Babysitter : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<BabySit.Database_Access.Babysitter>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("rel", new global::Microsoft.AspNetCore.Html.HtmlString("stylesheet"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_1 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("href", new global::Microsoft.AspNetCore.Html.HtmlString("~/css/star-rating-svg.css"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_2 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("src", new global::Microsoft.AspNetCore.Html.HtmlString("~/js/jquery.star-rating-svg.js"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
-        private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_3 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("class", new global::Microsoft.AspNetCore.Html.HtmlString("btn btn-outline-success"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
-        private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_4 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("asp-controller", "Home", global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
-        private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_5 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("asp-action", "CreateContract", global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
         #line hidden
         #pragma warning disable 0649
         private global::Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperExecutionContext __tagHelperExecutionContext;
@@ -57,7 +54,6 @@ using BabySit.Models;
             }
         }
         private global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper;
-        private global::Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper __Microsoft_AspNetCore_Mvc_TagHelpers_AnchorTagHelper;
         #pragma warning disable 1998
         public async override global::System.Threading.Tasks.Task ExecuteAsync()
         {
@@ -151,6 +147,23 @@ WriteAttributeValue("", 678, item.Avatar, 678, 12, false);
 #line hidden
 #nullable disable
             WriteLiteral(" tuổi</p>\r\n");
+#nullable restore
+#line 29 "C:\Users\bekim\OneDrive\Máy tính\baby\BabySit\BabySit\Views\Home\Babysitter.cshtml"
+                                  
+                                    var gender = item.Gender.Value ? "Nam" : "Nữ";
+
+#line default
+#line hidden
+#nullable disable
+            WriteLiteral("                                    <p class=\"col-md-6\">");
+#nullable restore
+#line 31 "C:\Users\bekim\OneDrive\Máy tính\baby\BabySit\BabySit\Views\Home\Babysitter.cshtml"
+                                                   Write(Html.DisplayFor(model => gender));
+
+#line default
+#line hidden
+#nullable disable
+            WriteLiteral("</p>\r\n");
             WriteLiteral("                            </div>\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n");
             WriteLiteral("            <br />\r\n");
             WriteLiteral("            <div class=\"introAndContact row\">\r\n");
@@ -226,7 +239,7 @@ WriteAttributeValue("", 678, item.Avatar, 678, 12, false);
 #line default
 #line hidden
 #nullable disable
-            WriteLiteral("\r\n            </div>\r\n");
+            WriteLiteral("            </div>\r\n");
 #nullable restore
 #line 67 "C:\PRN_4\BabySit\BabySit\Views\Home\Babysitter.cshtml"
         }
