@@ -17,7 +17,7 @@ namespace BabySit.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult ChangeInformation(string fullname, bool gender, DateTime txtDate, int address, string description)
+        public IActionResult ChangeInformation(string fullname, bool gender, DateTime txtDate, int address, string description, float salary, int experienceYear)
         {
             int id = (JsonConvert.DeserializeObject<User>(HttpContext.Session.GetString("SessionID"))).UserId;
             
@@ -27,16 +27,15 @@ namespace BabySit.Controllers
             userDetails.Name = fullname;
             userDetails.ProvinceId = address;
             userDetails.Description = description;
+            userDetails.SalaryPerHour = salary;
+            userDetails.YearsOfExperience = experienceYear;
             db.Update(userDetails);
             db.SaveChanges();
-            ViewBag.fullname = fullname;
-            ViewBag.gender = gender;
-            ViewBag.txtDate = userDetails.BirthOfDate;
-            ViewBag.address = address;
-            ViewBag.textarea = description;
-            ViewBag.userid = id;
-            //RedirectToAction("Index");
-            return View("Index");
+            return RedirectToAction("EditProfile", "Home");
+        }
+        public IActionResult ChangePassword(string newpassword, string renewpassword)
+        {
+            return RedirectToAction("EditProfile", "Home");
         }
     }
 }
