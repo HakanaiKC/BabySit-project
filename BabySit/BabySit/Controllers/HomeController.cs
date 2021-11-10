@@ -124,18 +124,22 @@ namespace BabySit.Controllers
 
         public IActionResult HomePage()
         {
-            var role = (JsonConvert.DeserializeObject<User>(HttpContext.Session.GetString("SessionID"))).Role;
+            if (HttpContext.Session.GetString("SessionID") != null)
+            {
+                var role = (JsonConvert.DeserializeObject<User>(HttpContext.Session.GetString("SessionID"))).Role;
+                if (role > 0)
+                {
+                    ViewBag.role = role;
+                }
+                else
+                {
+                    ViewBag.role = 0;
+                }
+            }
             var model = new LocationAndUser();
             model.users = db.Users.Where(x => x.Role == 2).ToList();
             model.locations = db.Locations.ToList();
-            if (role>0 && role != null)
-            {
-                ViewBag.role = role;
-            }
-            else
-            {
-                ViewBag.role = 0;
-            }
+
             return View(model);
         }
         
