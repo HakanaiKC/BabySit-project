@@ -72,8 +72,7 @@ namespace BabySit.Controllers
                     HttpContext.Session.SetString("SessionID", JsonConvert.SerializeObject(userDetails));
                     if (TempData["path"] != null)
                     {
-                        string url = (string)TempData["path"];
-                        //TempData.Remove("path");
+                        string url = (string)TempData["path"];                        
                         return Redirect(url);
                     }
                     else
@@ -87,6 +86,7 @@ namespace BabySit.Controllers
 
         public IActionResult Logout()
         {
+            TempData.Remove("path");
             HttpContext.Session.Remove("SessionID");
             HttpContext.Session.Remove("SessionAdmin");
             return RedirectToAction("Index", "Home");
