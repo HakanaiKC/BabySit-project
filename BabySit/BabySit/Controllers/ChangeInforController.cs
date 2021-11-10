@@ -33,9 +33,13 @@ namespace BabySit.Controllers
             db.SaveChanges();
             return RedirectToAction("EditProfile", "Home");
         }
-        public IActionResult ChangePassword(string newpassword, string renewpassword)
+        public IActionResult ChangePassword(string newpassword, string renewpassword, string oldpassword)
         {
-            return RedirectToAction("EditProfile", "Home");
+            ViewBag.oldpass = oldpassword;
+            ViewBag.newpass = newpassword;
+            ViewBag.renewpass = renewpassword;
+            return View("Index");
+            //return RedirectToAction("EditProfile", "Home");
         }
     }
 }

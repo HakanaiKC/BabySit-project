@@ -13,14 +13,14 @@ namespace AspNetCore
     using Microsoft.AspNetCore.Mvc.Rendering;
     using Microsoft.AspNetCore.Mvc.ViewFeatures;
 #nullable restore
-#line 1 "C:\Users\bekim\OneDrive\Máy tính\baby\BabySit\BabySit\Views\_ViewImports.cshtml"
+#line 1 "C:\PRN_4\BabySit\BabySit\Views\_ViewImports.cshtml"
 using BabySit;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "C:\Users\bekim\OneDrive\Máy tính\baby\BabySit\BabySit\Views\_ViewImports.cshtml"
+#line 2 "C:\PRN_4\BabySit\BabySit\Views\_ViewImports.cshtml"
 using BabySit.Models;
 
 #line default
@@ -83,7 +83,7 @@ using BabySit.Models;
         public async override global::System.Threading.Tasks.Task ExecuteAsync()
         {
 #nullable restore
-#line 2 "C:\Users\bekim\OneDrive\Máy tính\baby\BabySit\BabySit\Views\Home\EditProfile.cshtml"
+#line 2 "C:\PRN_4\BabySit\BabySit\Views\Home\EditProfile.cshtml"
   
     ViewData["Title"] = "Tài khoản";
 
