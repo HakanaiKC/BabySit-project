@@ -9,19 +9,16 @@ namespace BabySit.Controllers
 {
     public class AdminController : Controller
     {
-        [Authorize(Roles = "3")]
         public IActionResult AdminContract()
         {
             return View();
         }
 
-        [Authorize(Roles = "3")]
         public IActionResult AdminDashboard()
         {
             return View();
         }
 
-        [Authorize(Roles = "3")]
         public IActionResult AdminUserManagement()
         {
             return View();

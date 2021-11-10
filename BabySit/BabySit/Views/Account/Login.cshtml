@@ -6,8 +6,7 @@
     <div class="col-sm-8 col-md-6 col-lg-4 mx-auto" style="min-width: 300px;">
         <div class="card navbar-shadow">
             <div class="card-body">
-                @using (Html.BeginForm("Login", "Account", FormMethod.Post))
-                {
+                <form asp-action="Login" method="post" asp-route-returnurl="@ViewBag.ReturnUrl">
                     <div class="form-group">
                         <h4 class="card-title text-center">Đăng nhập</h4>
                         @Html.LabelFor(model => model.Email)
@@ -29,17 +28,17 @@
                         @Html.CheckBox("remember", false) Nhớ đăng nhập?
                     </div>
 
-                    if (@ViewBag.Message != null)
+                    @if (ViewBag.Message != null)
                     {
-                        <label class="text-danger">@ViewBag.Message</label>
-
+                    <label class="text-danger">@ViewBag.Message</label>
                     }
+
                     <label style="color:green">@ViewBag.RegisterSuccessfully</label>
                     <label style="color:green">@ViewBag.MessageChangePasswordSuccess</label>
                     <div class="form-group ">
-                    <input type="submit" value="Đăng nhập" class="btn btn-success btn-block" />
-                </div>
-                }
+                        <input type="submit" value="Đăng nhập" class="btn btn-success btn-block" />
+                    </div>
+                </form>
 
                 <div class="text-center">
                     <a asp-controller="Account" asp-action="ForgotPass" class="text-black-70" style="text-decoration: underline;">Quên mật khẩu?</a>

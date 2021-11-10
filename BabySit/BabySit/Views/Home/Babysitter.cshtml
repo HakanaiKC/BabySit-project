@@ -26,6 +26,10 @@
                                     var age = DateTime.UtcNow.Year - Int32.Parse(item.BirthOfDate.Value.ToString("yyyy"));
                                     <p class="col-md-6">@Html.DisplayFor(model => age) tuổi</p>
                                 }
+                                @{
+                                    var gender = item.Gender.Value ? "Nam" : "Nữ";
+                                    <p class="col-md-6">@Html.DisplayFor(model => gender)</p>
+                                }
                             </div>
                         </div>
                     </div>
@@ -45,9 +49,12 @@
                 <div class="contract col-md-4 card" style="margin:auto;">
                     <h3>Mức lương yêu cầu</h3>
                     <strong>@Html.DisplayFor(model => item.SalaryPerHour) VND/ giờ</strong>
-                    <div class="card-body">
-                        <a class="btn btn-outline-success" asp-controller="Home" asp-action="CreateContract">Tạo hợp đồng</a>
-                    </div>
+                    @using (Html.BeginForm("CreateContract", "Home", FormMethod.Get, new { ReturnUrl = ViewBag.ReturnUrl }))
+                    {
+                        <div class="card-body">
+                            <button class="btn btn-outline-success" type="submit">Tạo hợp đồng</button>
+                        </div>
+                    }
                 </div>
             </div>
 
@@ -62,7 +69,6 @@
                 {
                     <p>@Html.DisplayFor(model => item.YearsOfExperience) năm</p>
                 }
-
             </div>
         }
         <br />

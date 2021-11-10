@@ -147,8 +147,7 @@ namespace BabySit.Controllers
             }           
             var model = new LocationAndUser();
             model.users = db.Users.Where(x => x.Role == 2).ToList();
-            model.locations = db.Locations.ToList();
-            
+            model.locations = db.Locations.ToList();            
             return View(model);
         }
         
