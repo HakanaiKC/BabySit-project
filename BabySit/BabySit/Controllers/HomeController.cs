@@ -24,6 +24,18 @@ namespace BabySit.Controllers
 
         public IActionResult Index()
         {
+            if (HttpContext.Session.GetString("SessionID") != null)
+            {
+                var role = (JsonConvert.DeserializeObject<User>(HttpContext.Session.GetString("SessionID"))).Role;
+                if (role > 0)
+                {
+                    ViewBag.role = role;
+                }
+                else
+                {
+                    ViewBag.role = 0;
+                }
+            }
             var userDetails = db.Users.Where(x => x.Role == 2).ToList();
             ViewData.Model = userDetails;
             return View();
@@ -31,12 +43,36 @@ namespace BabySit.Controllers
 
         public IActionResult ContactUs()
         {
+            if (HttpContext.Session.GetString("SessionID") != null)
+            {
+                var role = (JsonConvert.DeserializeObject<User>(HttpContext.Session.GetString("SessionID"))).Role;
+                if (role > 0)
+                {
+                    ViewBag.role = role;
+                }
+                else
+                {
+                    ViewBag.role = 0;
+                }
+            }
             return View();
         }
 
         [HttpGet]
         public IActionResult Babysitter(int id)
         {
+            if (HttpContext.Session.GetString("SessionID") != null)
+            {
+                var role = (JsonConvert.DeserializeObject<User>(HttpContext.Session.GetString("SessionID"))).Role;
+                if (role > 0)
+                {
+                    ViewBag.role = role;
+                }
+                else
+                {
+                    ViewBag.role = 0;
+                }
+            }
             var model = new Babysitter();
             model.users = db.Users.Where(x => x.Role == 2 && x.Gender != null && x.SalaryPerHour != null && x.ProvinceId != null).ToList();
             model.skills = db.Skills.ToList();
@@ -80,6 +116,15 @@ namespace BabySit.Controllers
         {
             if (HttpContext.Session.GetString("SessionID") != null)
             {
+                var role = (JsonConvert.DeserializeObject<User>(HttpContext.Session.GetString("SessionID"))).Role;
+                if (role > 0)
+                {
+                    ViewBag.role = role;
+                }
+                else
+                {
+                    ViewBag.role = 0;
+                }
                 return View();
             }
             else
@@ -93,6 +138,18 @@ namespace BabySit.Controllers
 
         public IActionResult EditProfile()
         {
+            if (HttpContext.Session.GetString("SessionID") != null)
+            {
+                var role = (JsonConvert.DeserializeObject<User>(HttpContext.Session.GetString("SessionID"))).Role;
+                if (role > 0)
+                {
+                    ViewBag.role = role;
+                }
+                else
+                {
+                    ViewBag.role = 0;
+                }
+            }
             int id = (JsonConvert.DeserializeObject<User>(HttpContext.Session.GetString("SessionID"))).UserId;
             var model = new Babysitter();
             model.users = db.Users.ToList();
