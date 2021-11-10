@@ -20,7 +20,7 @@ namespace BabySit.Controllers
         public IActionResult ChangeInformation(string fullname, bool gender, DateTime txtDate, int address, string description, float salary, int experienceYear)
         {
             int id = (JsonConvert.DeserializeObject<User>(HttpContext.Session.GetString("SessionID"))).UserId;
-            
+
             var userDetails = db.Users.Where(x => x.UserId == id).FirstOrDefault();
             userDetails.BirthOfDate = txtDate;
             userDetails.Gender = gender;

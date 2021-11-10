@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -22,16 +23,16 @@ namespace BabySit.Controllers
         ProjectPRNContext db = new ProjectPRNContext();
 
         public IActionResult Index()
-        {            
+        {
             var userDetails = db.Users.Where(x => x.Role == 2).ToList();
             ViewData.Model = userDetails;
             return View();
         }
-       
+
         public IActionResult ContactUs()
         {
             return View();
-        }        
+        }
 
         [HttpGet]
         public IActionResult Babysitter(int id)
@@ -75,7 +76,7 @@ namespace BabySit.Controllers
         }
 
         [HttpGet]
-        public IActionResult CreateContract(string returnUrl)
+        public IActionResult CreateContract(int id)
         {
             if (HttpContext.Session.GetString("SessionID") != null)
             {
@@ -83,7 +84,9 @@ namespace BabySit.Controllers
             }
             else
             {
-                ViewBag.ReturnUrl = returnUrl;
+                Uri myUri = new Uri($"http://localhost:39977/Home/CreateContract/{id}");
+                string pathpart = myUri.PathAndQuery;
+                TempData["path"] = pathpart;
                 return RedirectToAction("Login", "Account");
             }
         }
@@ -144,13 +147,13 @@ namespace BabySit.Controllers
                 {
                     ViewBag.role = 0;
                 }
-            }           
+            }
             var model = new LocationAndUser();
             model.users = db.Users.Where(x => x.Role == 2).ToList();
-            model.locations = db.Locations.ToList();            
+            model.locations = db.Locations.ToList();
             return View(model);
         }
-        
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

@@ -49,12 +49,9 @@
                 <div class="contract col-md-4 card" style="margin:auto;">
                     <h3>Mức lương yêu cầu</h3>
                     <strong>@Html.DisplayFor(model => item.SalaryPerHour) VND/ giờ</strong>
-                    @using (Html.BeginForm("CreateContract", "Home", FormMethod.Get, new { ReturnUrl = ViewBag.ReturnUrl }))
-                    {
-                        <div class="card-body">
-                            <button class="btn btn-outline-success" type="submit">Tạo hợp đồng</button>
-                        </div>
-                    }
+                    <div class="card-body">
+                        @Html.ActionLink("Tạo hợp đồng", "CreateContract", new { id = item.UserId }, new { @class = "btn btn-success btn-block" })
+                    </div>
                 </div>
             </div>
 

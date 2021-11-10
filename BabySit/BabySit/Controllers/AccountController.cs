@@ -51,8 +51,9 @@ namespace BabySit.Controllers
 
         [HttpPost]
         [AllowAnonymous]
-        public IActionResult Login(User user, bool remember, string returnUrl)
+        public IActionResult Login(User user, bool remember)
         {
+
             var userDetails = db.Users.Where(x => x.Email == user.Email && x.Password == user.Password).FirstOrDefault();
 
             if (userDetails == null)
@@ -69,9 +70,10 @@ namespace BabySit.Controllers
                 else if (userDetails != null && (userDetails.Role == 1 || userDetails.Role == 2))
                 {
                     HttpContext.Session.SetString("SessionID", JsonConvert.SerializeObject(userDetails));
-                    if (returnUrl != null)
+                    if (TempData["path"] != null)
                     {
-                        return Redirect(returnUrl);
+                        string url = (string)TempData["path"];
+                        return Redirect(url);
                     }
                     else
                     {

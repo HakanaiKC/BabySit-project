@@ -30,9 +30,8 @@ namespace BabySit.Models
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            var builder = new ConfigurationBuilder()
-                                .SetBasePath(Directory.GetCurrentDirectory())
-                                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
+            var builder = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).
+AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
             IConfigurationRoot config = builder.Build();
             optionsBuilder.UseSqlServer(config.GetConnectionString("ProjectPRNDB"));
         }
@@ -77,8 +76,6 @@ namespace BabySit.Models
                 entity.Property(e => e.BabySitterId).HasColumnName("BabySitterID");
 
                 entity.Property(e => e.ContractId).HasColumnName("ContractID");
-
-                entity.Property(e => e.Date).HasColumnType("date");
 
                 entity.HasOne(d => d.BabySitter)
                     .WithMany()
@@ -140,8 +137,6 @@ namespace BabySit.Models
                 entity.ToTable("Shift");
 
                 entity.Property(e => e.BabySitterId).HasColumnName("BabySitterID");
-
-                entity.Property(e => e.Date).HasColumnType("date");
 
                 entity.HasOne(d => d.BabySitter)
                     .WithMany()
