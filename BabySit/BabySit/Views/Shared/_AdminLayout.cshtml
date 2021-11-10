@@ -32,7 +32,7 @@
             <li class="nav-item">
                 <a class="nav-link" asp-controller="Home" asp-action="ContactUs">Liên hệ</a>
             </li>
-            @if (User.Identity.IsAuthenticated)
+            @if (ViewBag.role > 0)
             {
                 <li class="nav-item dropdown ml-1 ml-md-3">
                     <a class="nav-link dropdown-toggle"
@@ -122,7 +122,7 @@
             </select>
         </div>
 
-        @if (User.IsInRole("3"))
+        @if (ViewBag.role == 3)
         {
             <a asp-controller="Admin" asp-action="AdminDashboard" class="item">Báo cáo</a>
             <a asp-controller="Admin" asp-action="AdminContract" class="item">Hợp đồng</a>

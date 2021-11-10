@@ -91,8 +91,8 @@
                                         <div class="field select-style">
                                             <select name="gender" id="gender" class="form-control" value="@Html.DisplayFor(model => gender)">
                                                 @*<option value="0">@Html.DisplayFor(model => gender)</option>*@
-                                                <option value="Nam">Nam</option>
-                                                <option value="Nữ">Nữ</option>
+                                                <option value="true">Nam</option>
+                                                <option value="false">Nữ</option>
                                             </select>
                                         </div>
                                     </fieldset>
@@ -106,18 +106,21 @@
                             </div>
                             <br />
                             <!--Address-->
-                            <fieldset>
-                                <label>Địa chỉ</label>
-                                <div class="field">
-                                    <input type="text" class="form-control" name="address" id="address" value="@Html.DisplayFor(model => item.Province.ProvinceName)" />
-                                </div>
-                            </fieldset>
+                            <label>Địa chỉ mới</label>
+                            <select name="address" title="Chọn khu vực" id="selectKhuVuc" class="selectpicker" data-style="btn-success" data-width="150px" data-size="10">
+                                <option selected="selected" value=" @item.Province.ProvinceId">@Html.DisplayFor(model => item.Province.ProvinceName)</option>
+                                @foreach (var itemm in ViewBag.locations)
+                                {
+                                    <option value="@itemm.ProvinceId" style="font-size:18px;">@itemm.ProvinceName</option>
+                                }
+
+                            </select>
                             <br />
                             <!--Description-->
                             <fieldset class="fieldset-job_description">
                                 <label>Mô tả bản thân</label>
                                 <div class="field">
-                                    <textarea name="textarea" cols="30" rows="8" class="form-control">@Html.DisplayFor(model => item.Description)</textarea>
+                                    <textarea name="description" cols="30" rows="8" class="form-control">@Html.DisplayFor(model => item.Description)</textarea>
                                 </div>
                             </fieldset>
                             <br />

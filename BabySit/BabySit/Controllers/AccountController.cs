@@ -51,7 +51,7 @@ namespace BabySit.Controllers
 
         [HttpPost]
         [AllowAnonymous]
-        public async Task<IActionResult> Login(User user, bool remember)
+        public IActionResult Login(User user, bool remember, string returnUrl)
         {
             var userDetails = db.Users.Where(x => x.Email == user.Email && x.Password == user.Password).FirstOrDefault();
 
@@ -63,65 +63,29 @@ namespace BabySit.Controllers
             {
                 if (userDetails != null && userDetails.Role == 3)
                 {
-                    HttpContext.Session.SetString("SessionID", JsonConvert.SerializeObject(userDetails));
-                    List<Claim> claims = new List<Claim>
-                    {
-                        new Claim(ClaimTypes.Email, user.Email),
-                        new Claim(ClaimTypes.Role, "3"),
-                    };
-
-                    var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-
-                    await HttpContext.SignInAsync(
-                          CookieAuthenticationDefaults.AuthenticationScheme,
-                          new ClaimsPrincipal(claimsIdentity),
-                          new AuthenticationProperties
-                          {
-                              IsPersistent = true
-                          });
+                    HttpContext.Session.SetString("SessionAdmin", JsonConvert.SerializeObject(userDetails));
                     return RedirectToAction("AdminDashboard", "Admin");
                 }
                 else if (userDetails != null && (userDetails.Role == 1 || userDetails.Role == 2))
                 {
                     HttpContext.Session.SetString("SessionID", JsonConvert.SerializeObject(userDetails));
-                    List<Claim> claims = new List<Claim>
+                    if (returnUrl != null)
                     {
-                        new Claim(ClaimTypes.Email, user.Email),
-                        new Claim(ClaimTypes.Role, "1"),
-                        new Claim(ClaimTypes.Role, "2"),
-                    };
-
-                    var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-                    if (remember == true)
-                    {
-                        await HttpContext.SignInAsync(
-                              CookieAuthenticationDefaults.AuthenticationScheme,
-                              new ClaimsPrincipal(claimsIdentity),
-                              new AuthenticationProperties
-                              {
-                                  IsPersistent = true
-                              });
+                        return Redirect(returnUrl);
                     }
                     else
                     {
-                        await HttpContext.SignInAsync(
-                              CookieAuthenticationDefaults.AuthenticationScheme,
-                              new ClaimsPrincipal(claimsIdentity),
-                              new AuthenticationProperties
-                              {
-                                  ExpiresUtc = DateTime.Now.AddHours(3)
-                              }); ;
+                        return RedirectToAction("HomePage", "Home");
                     }
-
-                    return RedirectToAction("HomePage", "Home");
                 }
             }
             return View();
         }
 
-        public async Task<IActionResult> Logout()
+        public IActionResult Logout()
         {
-            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            HttpContext.Session.Remove("SessionID");
+            HttpContext.Session.Remove("SessionAdmin");
             return RedirectToAction("Index", "Home");
         }
 

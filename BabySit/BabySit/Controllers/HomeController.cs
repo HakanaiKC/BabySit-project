@@ -74,13 +74,11 @@ namespace BabySit.Controllers
             return View(babysitter);
         }
 
-        [Authorize(Roles = "1,2")]
         public IActionResult CreateContract()
         {
             return View();
         }
 
-        [Authorize(Roles = "1,2")]
         public IActionResult EditProfile()
         {
             int id = (JsonConvert.DeserializeObject<User>(HttpContext.Session.GetString("SessionID"))).UserId;
@@ -120,16 +118,24 @@ namespace BabySit.Controllers
                 skills = babySkill
             };
             ViewBag.test = id;
+            ViewBag.locations = db.Locations.ToList();
             return View(babysitter);
         }
 
         public IActionResult HomePage()
-        {            
-            //int test = (JsonConvert.DeserializeObject<User>(HttpContext.Session.GetString("SessionID"))).UserId;
+        {
+            var role = (JsonConvert.DeserializeObject<User>(HttpContext.Session.GetString("SessionID"))).Role;
             var model = new LocationAndUser();
             model.users = db.Users.Where(x => x.Role == 2).ToList();
             model.locations = db.Locations.ToList();
-            //ViewBag.test = test;
+            if (role>0 && role != null)
+            {
+                ViewBag.role = role;
+            }
+            else
+            {
+                ViewBag.role = 0;
+            }
             return View(model);
         }
         
