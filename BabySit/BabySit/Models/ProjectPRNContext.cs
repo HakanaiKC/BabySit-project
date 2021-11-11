@@ -287,5 +287,33 @@ namespace BabySit.Models
 
             return result;
         }
+
+        public int UpdateShift(int id,int day,string morning,string afternoon,string night)
+        {
+            int result = 0;
+            connection = new SqlConnection(GetConnectionString());
+            string sql = "   update Shift set Morning = @morning, Afternoon = @afternoon,Night = @night where BabySitterID = @userid and Date = @date";
+            command = new SqlCommand(sql, connection);
+            command.Parameters.AddWithValue("@userid",id);
+            command.Parameters.AddWithValue("@date", day );
+            command.Parameters.AddWithValue("@morning",morning);
+            command.Parameters.AddWithValue("@afternoon", afternoon);
+            command.Parameters.AddWithValue("@night", night);
+            try
+            {
+                connection.Open();
+                result = command.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return result;
+        }
     }
 }

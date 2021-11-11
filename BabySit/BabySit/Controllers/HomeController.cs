@@ -194,6 +194,7 @@ namespace BabySit.Controllers
             ViewBag.Skill = CheckSkills.Where(x => x.SkillId < 6);
             ViewBag.CheckSkills = CheckSkills.Where(x => x.SkillId >= 6);
             ViewBag.locations = db.Locations.ToList();
+            ViewBag.Shift = db.Shifts.Where(c => c.BabySitterId == id).ToList();
             return View(babysitter);
         }
 

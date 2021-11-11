@@ -68,11 +68,10 @@ namespace BabySit.Controllers
         }
 
         [HttpPost]
-        public IActionResult ChangeSkill(string skillinlife)
+        public IActionResult ChangeSkill(string skillinlife, string shift)
         {
 
             int id = (JsonConvert.DeserializeObject<User>(HttpContext.Session.GetString("SessionID"))).UserId;
-            //var userSkill = db.UserSkills.Where(c=> c.UserId == id).ToList();
             string[] listSkill = skillinlife.Split(" ");
             int delete = db.RemoveUserSkills(id);
             int a = listSkill.Length;
@@ -80,7 +79,15 @@ namespace BabySit.Controllers
             {
                 int b = db.AddUserSkills(id, listSkill[i]);
             }
+            for (int i = 0; i < 7; i++)
+            {
+                db.UpdateShift(id, i+2, shift[i].ToString(), shift[i + 7].ToString(), shift[i + 14].ToString());
+            }
+            ViewBag.skillinlife = skillinlife;
+            string st = shift[0].ToString();
+            ViewBag.skillTr = st;
             return RedirectToAction("EditProfile", "Home");
+            //return View("Index");
         }
     }
 }
