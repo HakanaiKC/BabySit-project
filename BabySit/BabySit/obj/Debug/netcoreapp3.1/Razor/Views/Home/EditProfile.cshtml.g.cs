@@ -13,14 +13,14 @@ namespace AspNetCore
     using Microsoft.AspNetCore.Mvc.Rendering;
     using Microsoft.AspNetCore.Mvc.ViewFeatures;
 #nullable restore
-#line 1 "C:\Users\bekim\OneDrive\Máy tính\pr2\BabySit\BabySit\Views\_ViewImports.cshtml"
+#line 1 "C:\PRN_5\BabySit\BabySit\Views\_ViewImports.cshtml"
 using BabySit;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "C:\Users\bekim\OneDrive\Máy tính\pr2\BabySit\BabySit\Views\_ViewImports.cshtml"
+#line 2 "C:\PRN_5\BabySit\BabySit\Views\_ViewImports.cshtml"
 using BabySit.Models;
 
 #line default
@@ -95,7 +95,7 @@ using BabySit.Models;
         public async override global::System.Threading.Tasks.Task ExecuteAsync()
         {
 #nullable restore
-#line 2 "C:\Users\bekim\OneDrive\Máy tính\pr2\BabySit\BabySit\Views\Home\EditProfile.cshtml"
+#line 2 "C:\PRN_5\BabySit\BabySit\Views\Home\EditProfile.cshtml"
   
     ViewData["Title"] = "Tài khoản";
 
@@ -118,7 +118,7 @@ using BabySit.Models;
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n<section class=\"page-content\" style=\"padding-top: 5em;\">\r\n    <div class=\"container\">\r\n\r\n        <div class=\"row\">\r\n            <div class=\"col-md-8 col-md-offset-2\" style=\"margin:auto;\">\r\n\r\n");
 #nullable restore
-#line 12 "C:\Users\bekim\OneDrive\Máy tính\pr2\BabySit\BabySit\Views\Home\EditProfile.cshtml"
+#line 12 "C:\PRN_5\BabySit\BabySit\Views\Home\EditProfile.cshtml"
                  foreach (var item in Model.users)
                 {
 
@@ -155,6 +155,11 @@ AddHtmlAttributeValue("", 989, item.Avatar, 989, 12, false);
                 Write(__tagHelperExecutionContext.Output);
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral(@"
+                        <!--Avatar-->
+                        <div class=""row"">
+                            <div class=""col-md-4"">
+                                <div class=""card-img"">
+                                    <img style=""padding: 20px; height: 200px; width: 200px;"" id=""image"" data-holder-rendered=""true"" class=""card-img rounded-circle"" src=""https://mdbootstrap.com/img/Photos/Avatars/img%20(31).jpg"">
                                 </div>
                             </div>
                             <div class=""col-md-5 form-control"" style=""margin:auto;"">
@@ -281,8 +286,32 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_ValidationMessageTagHelper.For = ModelExpr
                                 <td><input type=""password"" name=""renewpassword"" /></td>
                             </tr>
                         </table>
-                        <input type=""submit"" name=""save_pass"" class=""btn btn-success"" value=""Lưu"" />
-                    ");
+");
+#nullable restore
+#line 65 "C:\PRN_5\BabySit\BabySit\Views\Home\EditProfile.cshtml"
+                         if (TempData["messPass"] != null)
+                        {
+
+#line default
+#line hidden
+#nullable disable
+                WriteLiteral("                            <p>");
+#nullable restore
+#line 67 "C:\PRN_5\BabySit\BabySit\Views\Home\EditProfile.cshtml"
+                          Write(TempData["messPass"]);
+
+#line default
+#line hidden
+#nullable disable
+                WriteLiteral(" </p>\r\n");
+#nullable restore
+#line 68 "C:\PRN_5\BabySit\BabySit\Views\Home\EditProfile.cshtml"
+                        }
+
+#line default
+#line hidden
+#nullable disable
+                WriteLiteral("                        <input type=\"submit\" name=\"save_pass\" class=\"btn btn-success\" value=\"Lưu\" />\r\n                    ");
             }
             );
             __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -828,234 +857,435 @@ WriteAttributeValue("", 7617, Html.DisplayFor(model => item.SalaryPerHour), 7617
             }
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
-            WriteLiteral("\r\n");
-            WriteLiteral("                    <!-- Person Availability -->\r\n");
-            WriteLiteral(@"                    <h2>Phần dành riêng cho bảo mẫu</h2>
-                    <label>Thời gian làm việc</label>
-                    <div class=""table-responsive"">
-                        <table class=""table table-striped table-bordered table-schedule"">
-                            <thead>
-                            <th class=""empty""></th>
-                            <th>Thứ Hai</th>
-                            <th>Thứ Ba</th>
-                            <th>Thứ Tư</th>
-                            <th>Thứ Năm</th>
-                            <th>Thứ Sáu</th>
-                            <th>Thứ Bảy</th>
-                            <th>Chủ Nhật</th>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td class=""time"">Sáng</td>
-                                    <td>
-                                        <div class=""check-container"">
-                                            <input type=""checkbox"" ");
-            WriteLiteral(@"id=""one"">
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class=""check-container"">
-                                            <input type=""checkbox"" id=""two"">
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class=""check-container"">
-                                            <input type=""checkbox"" id=""three"">
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class=""check-container"">
-                                            <input type=""checkbox"" id=""four"">
-                                        </div>
-                                    </td>
-                                    <td>
-                               ");
-            WriteLiteral(@"         <div class=""check-container"">
-                                            <input type=""checkbox"" id=""five"">
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class=""check-container"">
-                                            <input type=""checkbox"" id=""six"">
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class=""check-container"">
-                                            <input type=""checkbox"" id=""seven"">
-                                        </div>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td class=""time"">Chiều</td>
-                                    <td>
-                                        <div class=""check-cont");
-            WriteLiteral(@"ainer"">
-                                            <input type=""checkbox"" id=""eight"">
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class=""check-container"">
-                                            <input type=""checkbox"" id=""nine"">
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class=""check-container"">
-                                            <input type=""checkbox"" id=""ten"">
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class=""check-container"">
-                                            <input type=""checkbox"" id=""eleven"">
-                                        </div>
-                                    <");
-            WriteLiteral(@"/td>
-                                    <td>
-                                        <div class=""check-container"">
-                                            <input type=""checkbox"" id=""twelve"">
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class=""check-container"">
-                                            <input type=""checkbox"" id=""thirdteen"">
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class=""check-container"">
-                                            <input type=""checkbox"" id=""fourteen"">
-                                        </div>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td class=""time"">Tối</td>
-                ");
-            WriteLiteral(@"                    <td>
-                                        <div class=""check-container"">
-                                            <input type=""checkbox"" id=""fifteen"">
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class=""check-container"">
-                                            <input type=""checkbox"" id=""sixteen"">
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class=""check-container"">
-                                            <input type=""checkbox"" id=""seventeen"">
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class=""check-container"">
-                                            <input type=""checkbox"" ");
-            WriteLiteral(@"id=""eightteen"">
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class=""check-container"">
-                                            <input type=""checkbox"" id=""nineteen"">
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class=""check-container"">
-                                            <input type=""checkbox"" id=""twenty"">
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class=""check-container"">
-                                            <input type=""checkbox"" id=""twentyone"">
-                                        </div>
-                                    </td>
-                                </tr>
-                 ");
-            WriteLiteral("           </tbody>\r\n                        </table>\r\n                    </div>\r\n                    <!-- Person Availability / End -->\r\n                    <br />\r\n");
+            WriteLiteral("           \r\n");
 #nullable restore
-#line 304 "C:\Users\bekim\OneDrive\Máy tính\pr2\BabySit\BabySit\Views\Home\EditProfile.cshtml"
+#line 171 "C:\PRN_5\BabySit\BabySit\Views\Home\EditProfile.cshtml"
 
                 }
 
 #line default
 #line hidden
 #nullable disable
-            WriteLiteral(@"                <!--Co kha nang trong-->
-                <fieldset>
-                    <label>Có khả năng trông</label>
-                    <div class=""btn-group btn-group-toggle d-flex flex-column flex-md-row"" data-toggle=""buttons"">
-                        <div style=""padding-right:0.5em;"">
-                            <label class=""btn btn-outline-success"">
-                                <input type=""checkbox"" autocomplete=""off"" style=""display:none;""> Trẻ sơ sinh
-                            </label>
-                        </div>
-                        <div style=""padding-right: 0.5em;"">
-                            <label class=""btn btn-outline-success"">
-                                <input type=""checkbox"" autocomplete=""off"" style=""display:none;""> 1-2 tuổi
-                            </label>
-                        </div>
-                        <div style=""padding-right: 0.5em;"">
-                            <label class=""btn btn-outline-success"">
-                                <input ");
-            WriteLiteral(@"type=""checkbox"" autocomplete=""off"" style=""display:none;""> Trẻ mầm non
-                            </label>
-                        </div>
-                        <div style=""padding-right: 0.5em;"">
-                            <label class=""btn btn-outline-success"">
-                                <input type=""checkbox"" autocomplete=""off"" style=""display:none;""> Tiểu học
-                            </label>
-                        </div>
-                        <div style=""padding-right: 0.5em;"">
-                            <label class=""btn btn-outline-success"">
-                                <input type=""checkbox"" autocomplete=""off"" style=""display:none;""> Trung học
-                            </label>
-                        </div>
-                    </div>
+            WriteLiteral("                <!--Co kha nang trong-->\r\n\r\n            ");
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "5e7b5e712eef7870398b6e22e07741a185b7d55c55440", async() => {
+                WriteLiteral(@"
+                <!-- Person Availability -->
+
+                <h2>Phần dành riêng cho bảo mẫu</h2>
+                <label>Thời gian làm việc</label>
+                <div class=""table-responsive"">
+                    <table class=""table table-striped table-bordered table-schedule"">
+                        <thead>
+                        <th class=""empty""></th>
+                        <th>Thứ Hai</th>
+                        <th>Thứ Ba</th>
+                        <th>Thứ Tư</th>
+                        <th>Thứ Năm</th>
+                        <th>Thứ Sáu</th>
+                        <th>Thứ Bảy</th>
+                        <th>Chủ Nhật</th>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class=""time"">Sáng</td>
+");
+#nullable restore
+#line 195 "C:\PRN_5\BabySit\BabySit\Views\Home\EditProfile.cshtml"
+                                   int count = 20;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 196 "C:\PRN_5\BabySit\BabySit\Views\Home\EditProfile.cshtml"
+                                 foreach (var itemshift in ViewBag.Shift)
+                                {
+                                    count++;
+                                    if (itemshift.Morning)
+                                    {
+
+
+#line default
+#line hidden
+#nullable disable
+                WriteLiteral("                                        <td>\r\n                                            <div class=\"check-container\">\r\n                                                <input type=\"checkbox\" checked");
+                BeginWriteAttribute("id", " id=\"", 11042, "\"", 11053, 1);
+#nullable restore
+#line 204 "C:\PRN_5\BabySit\BabySit\Views\Home\EditProfile.cshtml"
+WriteAttributeValue("", 11047, count, 11047, 6, false);
+
+#line default
+#line hidden
+#nullable disable
+                EndWriteAttribute();
+                WriteLiteral(">\r\n                                            </div>\r\n                                        </td>\r\n");
+#nullable restore
+#line 207 "C:\PRN_5\BabySit\BabySit\Views\Home\EditProfile.cshtml"
+                                    }
+                                    else
+                                    {
+
+#line default
+#line hidden
+#nullable disable
+                WriteLiteral("                                        <td>\r\n                                            <div class=\"check-container\">\r\n                                                <input type=\"checkbox\"");
+                BeginWriteAttribute("id", " id=\"", 11467, "\"", 11478, 1);
+#nullable restore
+#line 212 "C:\PRN_5\BabySit\BabySit\Views\Home\EditProfile.cshtml"
+WriteAttributeValue("", 11472, count, 11472, 6, false);
+
+#line default
+#line hidden
+#nullable disable
+                EndWriteAttribute();
+                WriteLiteral(">\r\n                                            </div>\r\n                                        </td>\r\n");
+#nullable restore
+#line 215 "C:\PRN_5\BabySit\BabySit\Views\Home\EditProfile.cshtml"
+                                    }
+
+                                }
+
+#line default
+#line hidden
+#nullable disable
+                WriteLiteral("                            </tr>\r\n\r\n                            <tr>\r\n                                <td class=\"time\">Chiều</td>\r\n");
+#nullable restore
+#line 222 "C:\PRN_5\BabySit\BabySit\Views\Home\EditProfile.cshtml"
+                                 foreach (var itemshift in ViewBag.Shift)
+                                {
+                                    count++;
+                                    if (itemshift.Afternoon)
+                                    {
+
+#line default
+#line hidden
+#nullable disable
+                WriteLiteral("                                        <td>\r\n                                            <div class=\"check-container\">\r\n                                                <input type=\"checkbox\" checked");
+                BeginWriteAttribute("id", " id=\"", 12245, "\"", 12256, 1);
+#nullable restore
+#line 229 "C:\PRN_5\BabySit\BabySit\Views\Home\EditProfile.cshtml"
+WriteAttributeValue("", 12250, count, 12250, 6, false);
+
+#line default
+#line hidden
+#nullable disable
+                EndWriteAttribute();
+                WriteLiteral(">\r\n                                            </div>\r\n                                        </td>\r\n");
+#nullable restore
+#line 232 "C:\PRN_5\BabySit\BabySit\Views\Home\EditProfile.cshtml"
+                                    }
+                                    else
+                                    {
+
+#line default
+#line hidden
+#nullable disable
+                WriteLiteral("                                        <td>\r\n                                            <div class=\"check-container\">\r\n                                                <input type=\"checkbox\"");
+                BeginWriteAttribute("id", " id=\"", 12670, "\"", 12681, 1);
+#nullable restore
+#line 237 "C:\PRN_5\BabySit\BabySit\Views\Home\EditProfile.cshtml"
+WriteAttributeValue("", 12675, count, 12675, 6, false);
+
+#line default
+#line hidden
+#nullable disable
+                EndWriteAttribute();
+                WriteLiteral(">\r\n                                            </div>\r\n                                        </td>\r\n");
+#nullable restore
+#line 240 "C:\PRN_5\BabySit\BabySit\Views\Home\EditProfile.cshtml"
+                                    }
+
+                                }
+
+#line default
+#line hidden
+#nullable disable
+                WriteLiteral("                            </tr>\r\n\r\n                            <tr>\r\n                                <td class=\"time\">Tối</td>\r\n");
+#nullable restore
+#line 247 "C:\PRN_5\BabySit\BabySit\Views\Home\EditProfile.cshtml"
+                                 foreach (var itemshift in ViewBag.Shift)
+                                {
+                                    count++;
+                                    if (itemshift.Night)
+                                    {
+
+#line default
+#line hidden
+#nullable disable
+                WriteLiteral("                                        <td>\r\n                                            <div class=\"check-container\">\r\n                                                <input type=\"checkbox\" checked");
+                BeginWriteAttribute("id", " id=\"", 13442, "\"", 13453, 1);
+#nullable restore
+#line 254 "C:\PRN_5\BabySit\BabySit\Views\Home\EditProfile.cshtml"
+WriteAttributeValue("", 13447, count, 13447, 6, false);
+
+#line default
+#line hidden
+#nullable disable
+                EndWriteAttribute();
+                WriteLiteral(">\r\n                                            </div>\r\n                                        </td>\r\n");
+#nullable restore
+#line 257 "C:\PRN_5\BabySit\BabySit\Views\Home\EditProfile.cshtml"
+                                    }
+                                    else
+                                    {
+
+#line default
+#line hidden
+#nullable disable
+                WriteLiteral("                                        <td>\r\n                                            <div class=\"check-container\">\r\n                                                <input type=\"checkbox\"");
+                BeginWriteAttribute("id", " id=\"", 13867, "\"", 13878, 1);
+#nullable restore
+#line 262 "C:\PRN_5\BabySit\BabySit\Views\Home\EditProfile.cshtml"
+WriteAttributeValue("", 13872, count, 13872, 6, false);
+
+#line default
+#line hidden
+#nullable disable
+                EndWriteAttribute();
+                WriteLiteral(">\r\n                                            </div>\r\n                                        </td>\r\n");
+#nullable restore
+#line 265 "C:\PRN_5\BabySit\BabySit\Views\Home\EditProfile.cshtml"
+                                    }
+
+                                }
+
+#line default
+#line hidden
+#nullable disable
+                WriteLiteral(@"                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <!-- Person Availability / End -->
+                <br />                               <input type=""text"" name=""shift""");
+                BeginWriteAttribute("value", " value=\"", 14316, "\"", 14324, 0);
+                EndWriteAttribute();
+                WriteLiteral(" id=\"shift\" hidden />\r\n                <fieldset>\r\n                    <label>Có khả năng trông</label> <input type=\"text\" name=\"skillinlife\"");
+                BeginWriteAttribute("value", " value=\"", 14466, "\"", 14474, 0);
+                EndWriteAttribute();
+                WriteLiteral(" id=\"skillTrongTre\" hidden>\r\n                    <div class=\"btn-group btn-group-toggle d-flex flex-column flex-md-row\" data-toggle=\"buttons\">\r\n");
+#nullable restore
+#line 277 "C:\PRN_5\BabySit\BabySit\Views\Home\EditProfile.cshtml"
+                         foreach (var skill in ViewBag.Skill)
+                        {
+                            if (skill.CheckSkillId)
+                            {
+
+#line default
+#line hidden
+#nullable disable
+                WriteLiteral("                                <div style=\"padding-right:0.5em;\">\r\n                                    <label class=\"btn btn-outline-success active\">\r\n                                        <input type=\"checkbox\"");
+                BeginWriteAttribute("id", " id=\"", 15007, "\"", 15026, 1);
+#nullable restore
+#line 283 "C:\PRN_5\BabySit\BabySit\Views\Home\EditProfile.cshtml"
+WriteAttributeValue("", 15012, skill.SkillId, 15012, 14, false);
+
+#line default
+#line hidden
+#nullable disable
+                EndWriteAttribute();
+                WriteLiteral(" checked autocomplete=\"off\"");
+                BeginWriteAttribute("value", " value=\"", 15054, "\"", 15076, 1);
+#nullable restore
+#line 283 "C:\PRN_5\BabySit\BabySit\Views\Home\EditProfile.cshtml"
+WriteAttributeValue("", 15062, skill.SkillId, 15062, 14, false);
+
+#line default
+#line hidden
+#nullable disable
+                EndWriteAttribute();
+                WriteLiteral(" style=\"display:none;\"> ");
+#nullable restore
+#line 283 "C:\PRN_5\BabySit\BabySit\Views\Home\EditProfile.cshtml"
+                                                                                                                                                       Write(skill.SkillName);
+
+#line default
+#line hidden
+#nullable disable
+                WriteLiteral("\r\n                                    </label>\r\n                                </div>\r\n");
+#nullable restore
+#line 286 "C:\PRN_5\BabySit\BabySit\Views\Home\EditProfile.cshtml"
+                            }
+                            else
+                            {
+
+#line default
+#line hidden
+#nullable disable
+                WriteLiteral("                                <div style=\"padding-right:0.5em;\">\r\n                                    <label class=\"btn btn-outline-success\">\r\n                                        <input type=\"checkbox\"");
+                BeginWriteAttribute("id", " id=\"", 15508, "\"", 15527, 1);
+#nullable restore
+#line 291 "C:\PRN_5\BabySit\BabySit\Views\Home\EditProfile.cshtml"
+WriteAttributeValue("", 15513, skill.SkillId, 15513, 14, false);
+
+#line default
+#line hidden
+#nullable disable
+                EndWriteAttribute();
+                WriteLiteral(" autocomplete=\"off\"");
+                BeginWriteAttribute("value", " value=\"", 15547, "\"", 15569, 1);
+#nullable restore
+#line 291 "C:\PRN_5\BabySit\BabySit\Views\Home\EditProfile.cshtml"
+WriteAttributeValue("", 15555, skill.SkillId, 15555, 14, false);
+
+#line default
+#line hidden
+#nullable disable
+                EndWriteAttribute();
+                WriteLiteral(" style=\"display:none;\"> ");
+#nullable restore
+#line 304 "C:\Users\bekim\OneDrive\Máy tính\pr2\BabySit\BabySit\Views\Home\EditProfile.cshtml"
+
+#line default
+#line hidden
+#nullable disable
+                WriteLiteral("\r\n                                    </label>\r\n                                </div>\r\n");
+#nullable restore
+#line 294 "C:\PRN_5\BabySit\BabySit\Views\Home\EditProfile.cshtml"
+                            }
+                        }
+
+#line default
+#line hidden
+#nullable disable
+                WriteLiteral(@"                    </div>
                 </fieldset>
                 <br />
                 <!--Skills-->
                 <fieldset>
                     <label>Kỹ năng</label>
-                    <div class=""btn-group btn-group-toggle d-flex flex-column flex-m");
-            WriteLiteral(@"d-row"" data-toggle=""buttons"">
-                        <div style=""padding-right:0.5em;"">
-                            <label class=""btn btn-outline-success"">
-                                <input type=""checkbox"" autocomplete=""off"" style=""display:none;""> Kỹ năng 1
-                            </label>
-                        </div>
-                        <div style=""padding-right: 0.5em;"">
-                            <label class=""btn btn-outline-success"">
-                                <input type=""checkbox"" autocomplete=""off"" style=""display:none;""> Kỹ năng 2
-                            </label>
-                        </div>
-                        <div style=""padding-right: 0.5em;"">
-                            <label class=""btn btn-outline-success"">
-                                <input type=""checkbox"" autocomplete=""off"" style=""display:none;""> Kỹ năng 3
-                            </label>
-                        </div>
-                        <div style=""padding-right: 0.5em;"">
-         ");
-            WriteLiteral(@"                   <label class=""btn btn-outline-success"">
-                                <input type=""checkbox"" autocomplete=""off"" style=""display:none;""> Kỹ năng 4
-                            </label>
-                        </div>
-                        <div style=""padding-right: 0.5em;"">
-                            <label class=""btn btn-outline-success"">
-                                <input type=""checkbox"" autocomplete=""off"" style=""display:none;""> Kỹ năng 5
-                            </label>
-                        </div>
-                    </div>
-                </fieldset>
-                <br />
+                    <div class=""btn-group btn-group-toggle d-flex flex-column flex-md-row"" data-toggle=""buttons"">
+");
+#nullable restore
+#line 303 "C:\PRN_5\BabySit\BabySit\Views\Home\EditProfile.cshtml"
+                         foreach (var skill in ViewBag.CheckSkills)
+                        {
+                            if (skill.CheckSkillId)
+                            {
 
-                <input type=""submit"" name=""save_profile"" class=""btn btn-success"" value=""Lưu"" />
+#line default
+#line hidden
+#nullable disable
+                WriteLiteral("                                <div style=\"padding-right:0.5em;\">\r\n                                    <label class=\"btn btn-outline-success active\">\r\n                                        <input type=\"checkbox\"");
+                BeginWriteAttribute("id", " id=\"", 16449, "\"", 16468, 1);
+#nullable restore
+#line 309 "C:\PRN_5\BabySit\BabySit\Views\Home\EditProfile.cshtml"
+WriteAttributeValue("", 16454, skill.SkillId, 16454, 14, false);
 
+#line default
+#line hidden
+#nullable disable
+                EndWriteAttribute();
+                WriteLiteral(" checked autocomplete=\"off\"");
+                BeginWriteAttribute("value", " value=\"", 16496, "\"", 16518, 1);
+#nullable restore
+#line 309 "C:\PRN_5\BabySit\BabySit\Views\Home\EditProfile.cshtml"
+WriteAttributeValue("", 16504, skill.SkillId, 16504, 14, false);
 
+#line default
+#line hidden
+#nullable disable
+                EndWriteAttribute();
+                WriteLiteral(" style=\"display:none;\"> ");
+#nullable restore
+#line 309 "C:\PRN_5\BabySit\BabySit\Views\Home\EditProfile.cshtml"
+                                                                                                                                                       Write(skill.SkillName);
+
+#line default
+#line hidden
+#nullable disable
+                WriteLiteral("\r\n                                    </label>\r\n                                </div>\r\n");
+#nullable restore
+#line 312 "C:\PRN_5\BabySit\BabySit\Views\Home\EditProfile.cshtml"
+                            }
+                            else
+                            {
+
+#line default
+#line hidden
+#nullable disable
+                WriteLiteral("                                <div style=\"padding-right:0.5em;\">\r\n                                    <label class=\"btn btn-outline-success\">\r\n                                        <input type=\"checkbox\"");
+                BeginWriteAttribute("id", " id=\"", 16950, "\"", 16969, 1);
+#nullable restore
+#line 317 "C:\PRN_5\BabySit\BabySit\Views\Home\EditProfile.cshtml"
+WriteAttributeValue("", 16955, skill.SkillId, 16955, 14, false);
+
+#line default
+#line hidden
+#nullable disable
+                EndWriteAttribute();
+                WriteLiteral(" autocomplete=\"off\"");
+                BeginWriteAttribute("value", " value=\"", 16989, "\"", 17011, 1);
+#nullable restore
+#line 317 "C:\PRN_5\BabySit\BabySit\Views\Home\EditProfile.cshtml"
+WriteAttributeValue("", 16997, skill.SkillId, 16997, 14, false);
+
+#line default
+#line hidden
+#nullable disable
+                EndWriteAttribute();
+                WriteLiteral(" style=\"display:none;\"> ");
+#nullable restore
+#line 317 "C:\PRN_5\BabySit\BabySit\Views\Home\EditProfile.cshtml"
+                                                                                                                                               Write(skill.SkillName);
+
+#line default
+#line hidden
+#nullable disable
+                WriteLiteral("\r\n                                    </label>\r\n                                </div>\r\n");
+#nullable restore
+#line 320 "C:\PRN_5\BabySit\BabySit\Views\Home\EditProfile.cshtml"
+                            }
+                        }
+
+#line default
+#line hidden
+#nullable disable
+                WriteLiteral("                    </div>\r\n                </fieldset>\r\n                <br />\r\n\r\n                <input type=\"submit\" name=\"save_profile\" onclick=\"myFunc()\" class=\"btn btn-success\" value=\"Lưu\" />\r\n\r\n            ");
+            }
+            );
+            __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
+            __tagHelperExecutionContext.Add(__Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper);
+            __Microsoft_AspNetCore_Mvc_TagHelpers_FormTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.FormTagHelper>();
+            __tagHelperExecutionContext.Add(__Microsoft_AspNetCore_Mvc_TagHelpers_FormTagHelper);
+            __Microsoft_AspNetCore_Mvc_TagHelpers_RenderAtEndOfFormTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.RenderAtEndOfFormTagHelper>();
+            __tagHelperExecutionContext.Add(__Microsoft_AspNetCore_Mvc_TagHelpers_RenderAtEndOfFormTagHelper);
+            __tagHelperExecutionContext.AddHtmlAttribute(__tagHelperAttribute_25);
+            __Microsoft_AspNetCore_Mvc_TagHelpers_FormTagHelper.Method = (string)__tagHelperAttribute_3.Value;
+            __tagHelperExecutionContext.AddTagHelperAttribute(__tagHelperAttribute_3);
+            await __tagHelperRunner.RunAsync(__tagHelperExecutionContext);
+            if (!__tagHelperExecutionContext.Output.IsContentModified)
+            {
+                await __tagHelperExecutionContext.SetOutputContentAsync();
+            }
+            Write(__tagHelperExecutionContext.Output);
+            __tagHelperExecutionContext = __tagHelperScopeManager.End();
+            WriteLiteral(@"
 
                 <!-- Profile Form / End -->
             </div>
         </div>
 
     </div>
+    <script>
+        function myFunc() {
+            for (var i = 1; i <= 12; i++) {
+                if (document.getElementById(i).checked) {
+                    console.log(i);
+                    document.getElementById(""skillTrongTre"").value += i + "" "";
+                } 
+            }
+            for (var i = 21; i <42 ; i++) {
+                if (document.getElementById(i).checked) {
+                    console.log(i);
+                    document.getElementById(""shift"").value += 1;
+                } else {
+                    document.getElementById(""shift"").value += 0 ;
+                }
+            }
+        }
+    </script>
 </section>
-
 ");
         }
         #pragma warning restore 1998

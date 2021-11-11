@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\bekim\\OneDrive\\Máy tính\\pr2\\BabySit\\BabySit\\BabySit.csproj": {}
+    "C:\\PRN_5\\BabySit\\BabySit\\BabySit.csproj": {}
   },
   "projects": {
-    "C:\\Users\\bekim\\OneDrive\\Máy tính\\pr2\\BabySit\\BabySit\\BabySit.csproj": {
+    "C:\\PRN_5\\BabySit\\BabySit\\BabySit.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\bekim\\OneDrive\\Máy tính\\pr2\\BabySit\\BabySit\\BabySit.csproj",
+        "projectUniqueName": "C:\\PRN_5\\BabySit\\BabySit\\BabySit.csproj",
         "projectName": "BabySit",
-        "projectPath": "C:\\Users\\bekim\\OneDrive\\Máy tính\\pr2\\BabySit\\BabySit\\BabySit.csproj",
-        "packagesPath": "C:\\Users\\bekim\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\bekim\\OneDrive\\Máy tính\\pr2\\BabySit\\BabySit\\obj\\",
+        "projectPath": "C:\\PRN_5\\BabySit\\BabySit\\BabySit.csproj",
+        "packagesPath": "C:\\Users\\Dell\\.nuget\\packages\\",
+        "outputPath": "C:\\PRN_5\\BabySit\\BabySit\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\bekim\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Dell\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [

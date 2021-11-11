@@ -99,6 +99,7 @@
         @*Time table*@
         <div class="time-shift">
             <h3>Thời gian làm việc</h3>
+            <label>Thời gian làm việc</label>
             <div class="table-responsive">
                 <table class="table table-striped table-bordered table-schedule">
                     <thead>
@@ -114,35 +115,50 @@
                     <tbody>
                         <tr>
                             <td class="time">Sáng</td>
-                            <td><i class="fas fa-check"></i></td>
-                            <td><i class="fas fa-check"></i></td>
-                            <td><i class="fas fa-times"></i></td>
-                            <td><i class="fas fa-check"></i></td>
-                            <td><i class="fas fa-times"></i></td>
-                            <td><i class="fas fa-times"></i></td>
-                            <td><i class="fas fa-check"></i></td>
+                            @foreach (var itemshift in ViewBag.Shift)
+                            {
+                                if (itemshift.Morning)
+                                {
+                                    <td><i class="fas fa-check"></i></td>
+                                }
+                                else
+                                {
+                                    <td><i class="fas fa-times"></i></td>
+                                }
+
+                            }
                         </tr>
 
                         <tr>
                             <td class="time">Chiều</td>
-                            <td><i class="fas fa-check"></i></td>
-                            <td><i class="fas fa-check"></i></td>
-                            <td><i class="fas fa-times"></i></td>
-                            <td><i class="fas fa-times"></i></td>
-                            <td><i class="fas fa-times"></i></td>
-                            <td><i class="fas fa-check"></i></td>
-                            <td><i class="fas fa-check"></i></td>
+                            @foreach (var itemshift in ViewBag.Shift)
+                            {
+                                if (itemshift.Afternoon)
+                                {
+                                    <td><i class="fas fa-check"></i></td>
+                                }
+                                else
+                                {
+                                    <td><i class="fas fa-times"></i></td>
+                                }
+
+                            }
                         </tr>
 
                         <tr>
                             <td class="time">Tối</td>
-                            <td><i class="fas fa-check"></i></td>
-                            <td><i class="fas fa-check"></i></td>
-                            <td><i class="fas fa-times"></i></td>
-                            <td><i class="fas fa-check"></i></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            @foreach (var itemshift in ViewBag.Shift)
+                            {
+                                if (itemshift.Night)
+                                {
+                                    <td><i class="fas fa-check"></i></td>
+                                }
+                                else
+                                {
+                                    <td><i class="fas fa-times"></i></td>
+                                }
+
+                            }
                         </tr>
                     </tbody>
                 </table>
