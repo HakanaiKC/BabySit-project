@@ -13,14 +13,14 @@ namespace AspNetCore
     using Microsoft.AspNetCore.Mvc.Rendering;
     using Microsoft.AspNetCore.Mvc.ViewFeatures;
 #nullable restore
-#line 1 "C:\PRN_5\BabySit\BabySit\Views\_ViewImports.cshtml"
+#line 1 "C:\Users\bekim\OneDrive\Máy tính\pr2\BabySit\BabySit\Views\_ViewImports.cshtml"
 using BabySit;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "C:\PRN_5\BabySit\BabySit\Views\_ViewImports.cshtml"
+#line 2 "C:\Users\bekim\OneDrive\Máy tính\pr2\BabySit\BabySit\Views\_ViewImports.cshtml"
 using BabySit.Models;
 
 #line default
@@ -68,7 +68,7 @@ using BabySit.Models;
         public async override global::System.Threading.Tasks.Task ExecuteAsync()
         {
 #nullable restore
-#line 1 "C:\PRN_5\BabySit\BabySit\Views\Home\Index.cshtml"
+#line 1 "C:\Users\bekim\OneDrive\Máy tính\pr2\BabySit\BabySit\Views\Home\Index.cshtml"
   
     ViewData["Title"] = "Trang chủ";
 
@@ -213,7 +213,7 @@ using BabySit.Models;
                 <");
             WriteLiteral("!-- Icon Box / End -->\r\n            </div>\r\n        </div>\r\n\r\n");
 #nullable restore
-#line 87 "C:\PRN_5\BabySit\BabySit\Views\Home\Index.cshtml"
+#line 87 "C:\Users\bekim\OneDrive\Máy tính\pr2\BabySit\BabySit\Views\Home\Index.cshtml"
          using (Html.BeginForm("Babysitter", "Home", FormMethod.Get))
         {
 
@@ -223,7 +223,7 @@ using BabySit.Models;
             WriteLiteral("            <div class=\"owl-carousel owl-theme\" style=\"padding-top:3em;\">\r\n");
             WriteLiteral("\r\n");
 #nullable restore
-#line 92 "C:\PRN_5\BabySit\BabySit\Views\Home\Index.cshtml"
+#line 92 "C:\Users\bekim\OneDrive\Máy tính\pr2\BabySit\BabySit\Views\Home\Index.cshtml"
                  foreach (var item in Model)
                 {
 
@@ -233,7 +233,7 @@ using BabySit.Models;
             WriteLiteral("                    <div class=\"item\">\r\n                        <div class=\"card mb-2\">\r\n                            <input hidden");
             BeginWriteAttribute("value", " value=\"", 3798, "\"", 3818, 1);
 #nullable restore
-#line 96 "C:\PRN_5\BabySit\BabySit\Views\Home\Index.cshtml"
+#line 96 "C:\Users\bekim\OneDrive\Máy tính\pr2\BabySit\BabySit\Views\Home\Index.cshtml"
 WriteAttributeValue("", 3806, item.UserId, 3806, 12, false);
 
 #line default
@@ -252,7 +252,7 @@ WriteAttributeValue("", 3806, item.UserId, 3806, 12, false);
             BeginAddHtmlAttributeValues(__tagHelperExecutionContext, "src", 2, global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
             AddHtmlAttributeValue("", 3986, "~/images/", 3986, 9, true);
 #nullable restore
-#line 97 "C:\PRN_5\BabySit\BabySit\Views\Home\Index.cshtml"
+#line 97 "C:\Users\bekim\OneDrive\Máy tính\pr2\BabySit\BabySit\Views\Home\Index.cshtml"
 AddHtmlAttributeValue("", 3995, item.Avatar, 3995, 12, false);
 
 #line default
@@ -268,7 +268,7 @@ AddHtmlAttributeValue("", 3995, item.Avatar, 3995, 12, false);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n                            <div class=\"card-footer\">\r\n                                <h4 class=\"card-title\">");
 #nullable restore
-#line 99 "C:\PRN_5\BabySit\BabySit\Views\Home\Index.cshtml"
+#line 99 "C:\Users\bekim\OneDrive\Máy tính\pr2\BabySit\BabySit\Views\Home\Index.cshtml"
                                                   Write(item.Name);
 
 #line default
@@ -286,7 +286,7 @@ AddHtmlAttributeValue("", 3995, item.Avatar, 3995, 12, false);
             BeginAddHtmlAttributeValues(__tagHelperExecutionContext, "href", 2, global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
             AddHtmlAttributeValue("", 4417, "~/Home/Babysitter/", 4417, 18, true);
 #nullable restore
-#line 103 "C:\PRN_5\BabySit\BabySit\Views\Home\Index.cshtml"
+#line 103 "C:\Users\bekim\OneDrive\Máy tính\pr2\BabySit\BabySit\Views\Home\Index.cshtml"
 AddHtmlAttributeValue("", 4435, item.UserId, 4435, 12, false);
 
 #line default
@@ -302,7 +302,7 @@ AddHtmlAttributeValue("", 4435, item.UserId, 4435, 12, false);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n                    </div>\r\n");
 #nullable restore
-#line 105 "C:\PRN_5\BabySit\BabySit\Views\Home\Index.cshtml"
+#line 105 "C:\Users\bekim\OneDrive\Máy tính\pr2\BabySit\BabySit\Views\Home\Index.cshtml"
                 }
 
 #line default
@@ -310,7 +310,7 @@ AddHtmlAttributeValue("", 4435, item.UserId, 4435, 12, false);
 #nullable disable
             WriteLiteral("            </div>\r\n");
 #nullable restore
-#line 107 "C:\PRN_5\BabySit\BabySit\Views\Home\Index.cshtml"
+#line 107 "C:\Users\bekim\OneDrive\Máy tính\pr2\BabySit\BabySit\Views\Home\Index.cshtml"
         }
 
 #line default

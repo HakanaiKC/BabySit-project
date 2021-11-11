@@ -13,14 +13,14 @@ namespace AspNetCore
     using Microsoft.AspNetCore.Mvc.Rendering;
     using Microsoft.AspNetCore.Mvc.ViewFeatures;
 #nullable restore
-#line 1 "C:\PRN_5\BabySit\BabySit\Views\_ViewImports.cshtml"
+#line 1 "C:\Users\bekim\OneDrive\Máy tính\pr2\BabySit\BabySit\Views\_ViewImports.cshtml"
 using BabySit;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "C:\PRN_5\BabySit\BabySit\Views\_ViewImports.cshtml"
+#line 2 "C:\Users\bekim\OneDrive\Máy tính\pr2\BabySit\BabySit\Views\_ViewImports.cshtml"
 using BabySit.Models;
 
 #line default
@@ -133,7 +133,7 @@ using BabySit.Models;
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n    <title>");
 #nullable restore
-#line 14 "C:\PRN_5\BabySit\BabySit\Views\Shared\_Layout.cshtml"
+#line 14 "C:\Users\bekim\OneDrive\Máy tính\pr2\BabySit\BabySit\Views\Shared\_Layout.cshtml"
       Write(ViewBag.Title);
 
 #line default
@@ -155,7 +155,7 @@ using BabySit.Models;
             __tagHelperExecutionContext = __tagHelperScopeManager.Begin("body", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "dfa75f035d9600eddc5e4c137938befa9128921215732", async() => {
                 WriteLiteral("\r\n    <nav class=\"navbar navbar-expand-sm bg-light fixed-top\">\r\n");
 #nullable restore
-#line 18 "C:\PRN_5\BabySit\BabySit\Views\Shared\_Layout.cshtml"
+#line 18 "C:\Users\bekim\OneDrive\Máy tính\pr2\BabySit\BabySit\Views\Shared\_Layout.cshtml"
          if (ViewBag.role > 0)
         {
 
@@ -198,7 +198,7 @@ using BabySit.Models;
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n");
 #nullable restore
-#line 23 "C:\PRN_5\BabySit\BabySit\Views\Shared\_Layout.cshtml"
+#line 23 "C:\Users\bekim\OneDrive\Máy tính\pr2\BabySit\BabySit\Views\Shared\_Layout.cshtml"
         }
         else
         {
@@ -242,7 +242,7 @@ using BabySit.Models;
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n");
 #nullable restore
-#line 29 "C:\PRN_5\BabySit\BabySit\Views\Shared\_Layout.cshtml"
+#line 29 "C:\Users\bekim\OneDrive\Máy tính\pr2\BabySit\BabySit\Views\Shared\_Layout.cshtml"
         }
 
 #line default
@@ -269,7 +269,7 @@ using BabySit.Models;
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n            </li>\r\n");
 #nullable restore
-#line 34 "C:\PRN_5\BabySit\BabySit\Views\Shared\_Layout.cshtml"
+#line 34 "C:\Users\bekim\OneDrive\Máy tính\pr2\BabySit\BabySit\Views\Shared\_Layout.cshtml"
              if (ViewBag.role > 0)
             {
 
@@ -356,7 +356,7 @@ WriteAttributeValue("", 3161, Url.Action("Logout","Account"), 3161, 31, false);
                 EndWriteAttribute();
                 WriteLiteral(">\r\n                            Đăng xuất\r\n                        </a>\r\n                    </div>\r\n                </li>\r\n");
 #nullable restore
-#line 61 "C:\PRN_5\BabySit\BabySit\Views\Shared\_Layout.cshtml"
+#line 61 "C:\Users\bekim\OneDrive\Máy tính\pr2\BabySit\BabySit\Views\Shared\_Layout.cshtml"
             }
             else
             {
@@ -404,7 +404,7 @@ WriteAttributeValue("", 3161, Url.Action("Logout","Account"), 3161, 31, false);
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n                </li>\r\n");
 #nullable restore
-#line 70 "C:\PRN_5\BabySit\BabySit\Views\Shared\_Layout.cshtml"
+#line 70 "C:\Users\bekim\OneDrive\Máy tính\pr2\BabySit\BabySit\Views\Shared\_Layout.cshtml"
             }
 
 #line default
@@ -412,7 +412,7 @@ WriteAttributeValue("", 3161, Url.Action("Logout","Account"), 3161, 31, false);
 #nullable disable
                 WriteLiteral("        </ul>\r\n    </nav>\r\n\r\n\r\n    <div class=\"container-fluid\">\r\n        ");
 #nullable restore
-#line 76 "C:\PRN_5\BabySit\BabySit\Views\Shared\_Layout.cshtml"
+#line 76 "C:\Users\bekim\OneDrive\Máy tính\pr2\BabySit\BabySit\Views\Shared\_Layout.cshtml"
    Write(RenderBody());
 
 #line default
@@ -420,7 +420,7 @@ WriteAttributeValue("", 3161, Url.Action("Logout","Account"), 3161, 31, false);
 #nullable disable
                 WriteLiteral("\r\n    </div>\r\n    ");
 #nullable restore
-#line 78 "C:\PRN_5\BabySit\BabySit\Views\Shared\_Layout.cshtml"
+#line 78 "C:\Users\bekim\OneDrive\Máy tính\pr2\BabySit\BabySit\Views\Shared\_Layout.cshtml"
 Write(RenderSection("Scripts", required: false));
 
 #line default

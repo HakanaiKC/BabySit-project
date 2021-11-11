@@ -139,6 +139,18 @@ namespace BabySit.Controllers
 
         public IActionResult EditProfile()
         {
+            if (HttpContext.Session.GetString("SessionID") != null)
+            {
+                var role = (JsonConvert.DeserializeObject<User>(HttpContext.Session.GetString("SessionID"))).Role;
+                if (role > 0)
+                {
+                    ViewBag.role = role;
+                }
+                else
+                {
+                    ViewBag.role = 0;
+                }
+            }
             int id = (JsonConvert.DeserializeObject<User>(HttpContext.Session.GetString("SessionID"))).UserId;
             var model = new Babysitter();
             model.users = db.Users.ToList();
