@@ -1,4 +1,5 @@
 ﻿using BabySit.Models;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,5 +13,6 @@ namespace BabySit.Database_Access
         public IEnumerable<User> users { get; set; }
         public IEnumerable<Location> locations { get; set; }
         public IEnumerable<UserSkill> userskills { get; set; }
+        public IFormFile Avatar { get; set; }
     }
 }

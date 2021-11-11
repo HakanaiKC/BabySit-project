@@ -196,7 +196,6 @@ namespace BabySit.Controllers
             model.users = db.Users.Where(x => x.Role == 2 && x.Gender != null && x.SalaryPerHour != null && x.ProvinceId != null).ToList();
             model.skills = db.Skills.ToList();
             model.locations = db.Locations.ToList();
-            model.userskills = db.UserSkills.ToList();
 
             if (HttpContext.Session.GetString("SessionID") != null)
             {

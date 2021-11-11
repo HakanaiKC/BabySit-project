@@ -12,7 +12,7 @@
                 @foreach (var item in Model.users)
                 {
                     <!-- Profile Form -->
-                    <form action="#" method="post" id="submit-edit" class="profile-manager-form" enctype="multipart/form-data">
+                    <form asp-action="ImportImage" asp-controller="ChangeInfor" method="post" id="submit-edit" class="profile-manager-form" enctype="multipart/form-data">
                         <!--Avatar-->
                         <div class="row">
                             <div class="col-md-4">
@@ -20,13 +20,11 @@
                                     <img style="padding: 20px; height: 200px; width: 200px;" id="image" data-holder-rendered="true" class="card-img rounded-circle" src="~/images/@item.Avatar">
                                 </div>
                             </div>
-                            <div class="col-md-5" style="margin:auto;">
+                            <div class="col-md-5 form-control" style="margin:auto;">
                                 <fieldset class="fieldset-company_logo">
-                                    <label for="company_logo">Hình ảnh</label>
-                                    <div class="field">
-                                        <input type="file" class="form-control" name="company_logo" id="avatar" />
-                                    </div>
-                                    <br />
+                                    <label asp-for="Avatar" class="control-label"></label>
+                                    <input id="avatar" asp-for="Avatar" class="form-label">
+                                    <span asp-validation-for="Avatar" class="text-danger"></span>
                                     <input type="submit" name="save_avatar" class="btn btn-success" value="Lưu" />
                                 </fieldset>
                             </div>
