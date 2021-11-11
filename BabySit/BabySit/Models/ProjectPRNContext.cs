@@ -1,9 +1,8 @@
 ﻿using System;
+using System.IO;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
-using System.IO;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Data.SqlClient;
 
 #nullable disable
 
@@ -20,88 +19,26 @@ namespace BabySit.Models
         {
         }
 
-        public virtual DbSet<Contract> Contracts { get; set; }
-        public virtual DbSet<ContractShiftWork> ContractShiftWorks { get; set; }
         public virtual DbSet<FeedBack> FeedBacks { get; set; }
         public virtual DbSet<Location> Locations { get; set; }
+        public virtual DbSet<Message> Messages { get; set; }
+        public virtual DbSet<Payment> Payments { get; set; }
         public virtual DbSet<Shift> Shifts { get; set; }
         public virtual DbSet<Skill> Skills { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<UserSkill> UserSkills { get; set; }
-        // Khai báo đối tượng kết nối
-        SqlConnection connection;
-        // Khai báo đối tượng thực thi các truy vấn
-        SqlCommand command;
-        string GetConnectionString()
-        {
-            IConfiguration config = new ConfigurationBuilder()
-                .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("appsettings.json", true, true)
-                .Build();
-            return config["ConnectionStrings:ProjectPRNDB"];
-        }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            var builder = new ConfigurationBuilder()
-                .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
-            IConfiguration config = builder.Build();
+            var builder = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).
+AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
+            IConfigurationRoot config = builder.Build();
             optionsBuilder.UseSqlServer(config.GetConnectionString("ProjectPRNDB"));
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.HasAnnotation("Relational:Collation", "SQL_Latin1_General_CP1_CI_AS");
-
-            modelBuilder.Entity<Contract>(entity =>
-            {
-                entity.ToTable("Contract");
-
-                entity.Property(e => e.ContractId).HasColumnName("ContractID");
-
-                entity.Property(e => e.BabySitterId).HasColumnName("BabySitterID");
-
-                entity.Property(e => e.EndDate).HasColumnType("date");
-
-                entity.Property(e => e.ParentId).HasColumnName("ParentID");
-
-                entity.Property(e => e.StartDate).HasColumnType("date");
-
-                entity.HasOne(d => d.BabySitter)
-                    .WithMany(p => p.ContractBabySitters)
-                    .HasForeignKey(d => d.BabySitterId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Contract_User1");
-
-                entity.HasOne(d => d.Parent)
-                    .WithMany(p => p.ContractParents)
-                    .HasForeignKey(d => d.ParentId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Contract_User");
-            });
-
-            modelBuilder.Entity<ContractShiftWork>(entity =>
-            {
-                entity.HasNoKey();
-
-                entity.ToTable("ContractShiftWork");
-
-                entity.Property(e => e.BabySitterId).HasColumnName("BabySitterID");
-
-                entity.Property(e => e.ContractId).HasColumnName("ContractID");
-
-                entity.HasOne(d => d.BabySitter)
-                    .WithMany()
-                    .HasForeignKey(d => d.BabySitterId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_ContractShiftWork_User");
-
-                entity.HasOne(d => d.Contract)
-                    .WithMany()
-                    .HasForeignKey(d => d.ContractId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_ContractShiftWork_Contract");
-            });
 
             modelBuilder.Entity<FeedBack>(entity =>
             {
@@ -143,19 +80,56 @@ namespace BabySit.Models
                     .HasMaxLength(50);
             });
 
-            modelBuilder.Entity<Shift>(entity =>
+            modelBuilder.Entity<Message>(entity =>
             {
                 entity.HasNoKey();
+
+                entity.ToTable("Message");
+
+                entity.Property(e => e.Message1)
+                    .HasMaxLength(1000)
+                    .HasColumnName("Message");
+
+                entity.Property(e => e.ReceiverId).HasColumnName("ReceiverID");
+
+                entity.Property(e => e.SenderId).HasColumnName("SenderID");
+
+                entity.HasOne(d => d.Sender)
+                    .WithMany()
+                    .HasForeignKey(d => d.SenderId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Message_User");
+            });
+
+            modelBuilder.Entity<Payment>(entity =>
+            {
+                entity.ToTable("Payment");
+
+                entity.Property(e => e.PaymentId).HasColumnName("paymentID");
+
+                entity.Property(e => e.DateOfPayment).HasColumnType("date");
+
+                entity.Property(e => e.UserId).HasColumnName("UserID");
+
+                entity.HasOne(d => d.User)
+                    .WithMany(p => p.Payments)
+                    .HasForeignKey(d => d.UserId)
+                    .HasConstraintName("FK_Payment_User");
+            });
+
+            modelBuilder.Entity<Shift>(entity =>
+            {
+                entity.HasKey(e => new { e.BabySitterId, e.Date });
 
                 entity.ToTable("Shift");
 
                 entity.Property(e => e.BabySitterId).HasColumnName("BabySitterID");
 
                 entity.HasOne(d => d.BabySitter)
-                    .WithMany()
+                    .WithMany(p => p.Shifts)
                     .HasForeignKey(d => d.BabySitterId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Shift_User");
+                    .HasConstraintName("FK_Shift_User1");
             });
 
             modelBuilder.Entity<Skill>(entity =>
@@ -238,82 +212,7 @@ namespace BabySit.Models
 
             OnModelCreatingPartial(modelBuilder);
         }
+
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
-        public int RemoveUserSkills(int userId)
-        {
-            int result = 0;
-            connection = new SqlConnection(GetConnectionString());
-            string sql = " delete  from UserSkills where UserID = @userid";
-            command = new SqlCommand(sql, connection);
-            command.Parameters.AddWithValue("@userid", userId);
-            try
-            {
-                connection.Open();
-                result = command.ExecuteNonQuery();
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
-            finally
-            {
-                connection.Close();
-            }
-
-            return result;
-
-        }
-        public int AddUserSkills(int userId, string skillId)
-        {
-            int result = 0;
-            connection = new SqlConnection(GetConnectionString());
-            string sql = "  insert into UserSkills (UserID, SkillID) values (@userid,@skillid)";
-            command = new SqlCommand(sql, connection);
-            command.Parameters.AddWithValue("@userid", userId);
-            command.Parameters.AddWithValue("@skillid", skillId);
-            try
-            {
-                connection.Open();
-                result = command.ExecuteNonQuery();
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
-            finally
-            {
-                connection.Close();
-            }
-
-            return result;
-        }
-
-        public int UpdateShift(int id,int day,string morning,string afternoon,string night)
-        {
-            int result = 0;
-            connection = new SqlConnection(GetConnectionString());
-            string sql = "   update Shift set Morning = @morning, Afternoon = @afternoon,Night = @night where BabySitterID = @userid and Date = @date";
-            command = new SqlCommand(sql, connection);
-            command.Parameters.AddWithValue("@userid",id);
-            command.Parameters.AddWithValue("@date", day );
-            command.Parameters.AddWithValue("@morning",morning);
-            command.Parameters.AddWithValue("@afternoon", afternoon);
-            command.Parameters.AddWithValue("@night", night);
-            try
-            {
-                connection.Open();
-                result = command.ExecuteNonQuery();
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
-            finally
-            {
-                connection.Close();
-            }
-
-            return result;
-        }
     }
 }

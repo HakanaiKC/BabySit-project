@@ -113,7 +113,7 @@ namespace BabySit.Controllers
         }
 
         [HttpGet]
-        public IActionResult CreateContract(int id)
+        public IActionResult Chat(int id)
         {
             if (HttpContext.Session.GetString("SessionID") != null)
             {
@@ -126,6 +126,8 @@ namespace BabySit.Controllers
                 {
                     ViewBag.role = 0;
                 }
+                int userid = (JsonConvert.DeserializeObject<User>(HttpContext.Session.GetString("SessionID"))).UserId;
+                ViewBag.id = userid;
                 return View();
             }
             else
@@ -232,7 +234,6 @@ namespace BabySit.Controllers
             }
             return View(model);
         }
-
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

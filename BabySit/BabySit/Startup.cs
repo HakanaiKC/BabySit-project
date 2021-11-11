@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authentication.Cookies;
+﻿using BabySit.Hubs;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -38,7 +39,7 @@ namespace BabySit
             {
                 options.IdleTimeout = TimeSpan.FromMinutes(1440);
             });
-
+            services.AddSignalR();
             services.AddControllersWithViews();
         }
 
@@ -72,7 +73,7 @@ namespace BabySit
                 endpoints.MapControllerRoute(
                     name: "babysit",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
-
+                endpoints.MapHub<ChatHub>("/chathub");
             });
 
         }

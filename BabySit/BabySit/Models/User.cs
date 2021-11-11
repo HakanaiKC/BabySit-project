@@ -7,15 +7,16 @@ using System.ComponentModel.DataAnnotations;
 
 namespace BabySit.Models
 {
-    public class User
+    public partial class User
     {
         public User()
         {
-            ContractBabySitters = new HashSet<Contract>();
-            ContractParents = new HashSet<Contract>();
             FeedBackBabySitters = new HashSet<FeedBack>();
             FeedBackParents = new HashSet<FeedBack>();
+            Payments = new HashSet<Payment>();
+            Shifts = new HashSet<Shift>();
         }
+
         [Key]
         public int UserId { get; set; }
 
@@ -48,10 +49,11 @@ namespace BabySit.Models
         public int? Status { get; set; }
         public string AccountNumber { get; set; }
         public string Bank { get; set; }
+
         public virtual Location Province { get; set; }
-        public virtual ICollection<Contract> ContractBabySitters { get; set; }
-        public virtual ICollection<Contract> ContractParents { get; set; }
         public virtual ICollection<FeedBack> FeedBackBabySitters { get; set; }
         public virtual ICollection<FeedBack> FeedBackParents { get; set; }
+        public virtual ICollection<Payment> Payments { get; set; }
+        public virtual ICollection<Shift> Shifts { get; set; }
     }
 }
