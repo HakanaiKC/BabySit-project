@@ -17,7 +17,7 @@
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="card-img">
-                                    <img style="padding: 20px; height: 200px; width: 200px;" id="image" data-holder-rendered="true" class="card-img rounded-circle" src="~/images/@item.Avatar">
+                                    <img style="padding: 20px; height: 200px; width: 200px;" id="image" data-holder-rendered="true" class="card-img rounded-circle" src="https://mdbootstrap.com/img/Photos/Avatars/img%20(31).jpg">
                                 </div>
                             </div>
                             <div class="col-md-5" style="margin:auto;">
@@ -62,6 +62,10 @@
                                 <td><input type="password" name="renewpassword" /></td>
                             </tr>
                         </table>
+                        @if (TempData["messPass"] != null)
+                        {
+                            <p>@TempData["messPass"] </p>
+                        }
                         <input type="submit" name="save_pass" class="btn btn-success" value="Lưu" />
                     </form>
                     <br />
@@ -306,78 +310,77 @@
 
                 }
                 <!--Co kha nang trong-->
-                <fieldset>
-                    <label>Có khả năng trông</label>
-                    <div class="btn-group btn-group-toggle d-flex flex-column flex-md-row" data-toggle="buttons">
-                        <div style="padding-right:0.5em;">
-                            <label class="btn btn-outline-success">
-                                <input type="checkbox" autocomplete="off" style="display:none;"> Trẻ sơ sinh
-                            </label>
-                        </div>
-                        <div style="padding-right: 0.5em;">
-                            <label class="btn btn-outline-success">
-                                <input type="checkbox" autocomplete="off" style="display:none;"> 1-2 tuổi
-                            </label>
-                        </div>
-                        <div style="padding-right: 0.5em;">
-                            <label class="btn btn-outline-success">
-                                <input type="checkbox" autocomplete="off" style="display:none;"> Trẻ mầm non
-                            </label>
-                        </div>
-                        <div style="padding-right: 0.5em;">
-                            <label class="btn btn-outline-success">
-                                <input type="checkbox" autocomplete="off" style="display:none;"> Tiểu học
-                            </label>
-                        </div>
-                        <div style="padding-right: 0.5em;">
-                            <label class="btn btn-outline-success">
-                                <input type="checkbox" autocomplete="off" style="display:none;"> Trung học
-                            </label>
-                        </div>
-                    </div>
-                </fieldset>
-                <br />
-                <!--Skills-->
-                <fieldset>
-                    <label>Kỹ năng</label>
-                    <div class="btn-group btn-group-toggle d-flex flex-column flex-md-row" data-toggle="buttons">
-                        <div style="padding-right:0.5em;">
-                            <label class="btn btn-outline-success">
-                                <input type="checkbox" autocomplete="off" style="display:none;"> Kỹ năng 1
-                            </label>
-                        </div>
-                        <div style="padding-right: 0.5em;">
-                            <label class="btn btn-outline-success">
-                                <input type="checkbox" autocomplete="off" style="display:none;"> Kỹ năng 2
-                            </label>
-                        </div>
-                        <div style="padding-right: 0.5em;">
-                            <label class="btn btn-outline-success">
-                                <input type="checkbox" autocomplete="off" style="display:none;"> Kỹ năng 3
-                            </label>
-                        </div>
-                        <div style="padding-right: 0.5em;">
-                            <label class="btn btn-outline-success">
-                                <input type="checkbox" autocomplete="off" style="display:none;"> Kỹ năng 4
-                            </label>
-                        </div>
-                        <div style="padding-right: 0.5em;">
-                            <label class="btn btn-outline-success">
-                                <input type="checkbox" autocomplete="off" style="display:none;"> Kỹ năng 5
-                            </label>
-                        </div>
-                    </div>
-                </fieldset>
-                <br />
 
-                <input type="submit" name="save_profile" class="btn btn-success" value="Lưu" />
+                <form action="~/ChangeInfor/ChangeSkill" method="post">
+                    <fieldset>
+                        <label>Có khả năng trông</label> <input type="text" name="skillinlife" value="" id="skillTrongTre" hidden>
+                        <div class="btn-group btn-group-toggle d-flex flex-column flex-md-row" data-toggle="buttons">
+                            @foreach (var skill in ViewBag.Skill)
+                            {
+                                if (skill.CheckSkillId)
+                                {
+                                    <div style="padding-right:0.5em;">
+                                        <label class="btn btn-outline-success active">
+                                            <input type="checkbox" id="@skill.SkillId" checked autocomplete="off" value="@skill.SkillId" style="display:none;"> @skill.SkillName
+                                        </label>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div style="padding-right:0.5em;">
+                                        <label class="btn btn-outline-success">
+                                            <input type="checkbox" id="@skill.SkillId" autocomplete="off" value="@skill.SkillId" style="display:none;"> @skill.SkillName
+                                        </label>
+                                    </div>
+                                }
+                            }
+                        </div>
+                    </fieldset>
+                    <br />
+                    <!--Skills-->
+                    <fieldset>
+                        <label>Kỹ năng</label>
+                        <div class="btn-group btn-group-toggle d-flex flex-column flex-md-row" data-toggle="buttons">
+                            @foreach (var skill in ViewBag.CheckSkills)
+                            {
+                                if (skill.CheckSkillId)
+                                {
+                                    <div style="padding-right:0.5em;">
+                                        <label class="btn btn-outline-success active">
+                                            <input type="checkbox" id="@skill.SkillId" checked autocomplete="off" value="@skill.SkillId" style="display:none;"> @skill.SkillName
+                                        </label>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div style="padding-right:0.5em;">
+                                        <label class="btn btn-outline-success">
+                                            <input type="checkbox" id="@skill.SkillId" autocomplete="off" value="@skill.SkillId" style="display:none;"> @skill.SkillName
+                                        </label>
+                                    </div>
+                                }
+                            }
+                        </div>
+                    </fieldset>
+                    <br />
 
+                    <input type="submit" name="save_profile" onclick="myFunc()" class="btn btn-success" value="Lưu" />
 
+                </form>
 
                 <!-- Profile Form / End -->
             </div>
         </div>
 
     </div>
+    <script>
+        function myFunc() {
+            for (var i = 1; i <= 12; i++) {
+                if (document.getElementById(i).checked) {
+                    console.log(i);
+                    document.getElementById("skillTrongTre").value += i + " ";
+                }
+            }
+        }
+    </script>
 </section>
-

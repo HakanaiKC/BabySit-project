@@ -1,8 +1,9 @@
 ﻿using System;
-using System.IO;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using System.IO;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Data.SqlClient;
 
 #nullable disable
 
@@ -27,12 +28,24 @@ namespace BabySit.Models
         public virtual DbSet<Skill> Skills { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<UserSkill> UserSkills { get; set; }
-
+        // Khai báo đối tượng kết nối
+        SqlConnection connection;
+        // Khai báo đối tượng thực thi các truy vấn
+        SqlCommand command;
+        string GetConnectionString()
+        {
+            IConfiguration config = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json", true, true)
+                .Build();
+            return config["ConnectionStrings:ProjectPRNDB"];
+        }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            var builder = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).
-AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
-            IConfigurationRoot config = builder.Build();
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
+            IConfiguration config = builder.Build();
             optionsBuilder.UseSqlServer(config.GetConnectionString("ProjectPRNDB"));
         }
 
@@ -225,7 +238,54 @@ AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
 
             OnModelCreatingPartial(modelBuilder);
         }
-
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
+        public int RemoveUserSkills(int userId)
+        {
+            int result = 0;
+            connection = new SqlConnection(GetConnectionString());
+            string sql = " delete  from UserSkills where UserID = @userid";
+            command = new SqlCommand(sql, connection);
+            command.Parameters.AddWithValue("@userid", userId);
+            try
+            {
+                connection.Open();
+                result = command.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return result;
+
+        }
+        public int AddUserSkills(int userId, string skillId)
+        {
+            int result = 0;
+            connection = new SqlConnection(GetConnectionString());
+            string sql = "  insert into UserSkills (UserID, SkillID) values (@userid,@skillid)";
+            command = new SqlCommand(sql, connection);
+            command.Parameters.AddWithValue("@userid", userId);
+            command.Parameters.AddWithValue("@skillid", skillId);
+            try
+            {
+                connection.Open();
+                result = command.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return result;
+        }
     }
 }

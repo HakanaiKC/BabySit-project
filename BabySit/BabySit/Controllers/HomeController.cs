@@ -138,18 +138,6 @@ namespace BabySit.Controllers
 
         public IActionResult EditProfile()
         {
-            if (HttpContext.Session.GetString("SessionID") != null)
-            {
-                var role = (JsonConvert.DeserializeObject<User>(HttpContext.Session.GetString("SessionID"))).Role;
-                if (role > 0)
-                {
-                    ViewBag.role = role;
-                }
-                else
-                {
-                    ViewBag.role = 0;
-                }
-            }
             int id = (JsonConvert.DeserializeObject<User>(HttpContext.Session.GetString("SessionID"))).UserId;
             var model = new Babysitter();
             model.users = db.Users.ToList();
@@ -186,6 +174,25 @@ namespace BabySit.Controllers
                 users = babyDetails,
                 skills = babySkill
             };
+
+            var CheckSkills = new List<CheckSkill>();
+            foreach (var item in model.skills)
+            {
+                bool check = false;
+                foreach (var item2 in babySkill)
+                {
+                    if (item.SkillId == item2.SkillId)
+                    {
+                        check = true;
+                        break;
+                    }
+                }
+                CheckSkills.Add(new CheckSkill(item.SkillId, item.SkillName, check));
+            }
+
+            ViewBag.test = id;
+            ViewBag.Skill = CheckSkills.Where(x => x.SkillId < 6);
+            ViewBag.CheckSkills = CheckSkills.Where(x => x.SkillId >= 6);
             ViewBag.locations = db.Locations.ToList();
             return View(babysitter);
         }
