@@ -72,66 +72,6 @@
 
     </nav>
 
-    <div class="sidenav dropdown" style="padding-top: 5em;">
-        <div class="khuvuc" style="padding: 1em; margin: auto;">
-            <label>Khu vực</label>
-            <select name="selectKhuVuc" title="Chọn khu vực" id="selectKhuVuc" class="selectpicker" data-style="btn-success" data-width="150px" data-size="10">
-                @foreach (var itemm in Model.locations)
-                {
-                    <option value="@itemm.ProvinceId" style="font-size:18px;">@itemm.ProvinceName</option>
-                }
-
-            </select>
-        </div>
-
-        <div class="kinhnghiem" style="padding: 1em; margin: auto;">
-            <label>Kinh nghiệm</label>
-            <select name="selectKinhNghiem" title="Yêu cầu kinh nghiệm" id="selectKinhNghiem" class="selectpicker" data-style="btn-success" data-width="150px">
-                <option value="1" style="font-size:18px;">&#60; 1 năm </option>
-                <option value="2" style="font-size:18px;">&#62; 1 năm</option>
-                <option value="3" style="font-size:18px;">&#62; 2 năm</option>
-                <option value="4" style="font-size:18px;">&#62; 3 năm</option>
-                <option value="5" style="font-size:18px;">&#62; 5 năm</option>
-                <option value="6" style="font-size:18px;">&#62; 10 năm</option>
-            </select>
-        </div>
-
-        <div class="thoigian" style="padding: 1em; margin: auto;">
-            <label>Thời gian làm việc</label>
-            <select name="selectThoiGian" title="Chọn thời gian" id="selectThoiGian" class="selectpicker" data-style="btn-success" data-width="150px" multiple>
-                <option value="1" style="font-size:18px;">Sáng </option>
-                <option value="2" style="font-size:18px;">Chiều</option>
-                <option value="3" style="font-size:18px;">Tối</option>
-            </select>
-        </div>
-
-        <div class="mucluong" style="padding: 1em; margin: auto;">
-            <label>Mức lương yêu cầu</label>
-            <select name="selectMucLuong" title="Chọn mức lương" id="selectMucLuong" class="selectpicker" data-style="btn-success" data-width="150px" data-size="6">
-                <option value="1" style="font-size:18px;">Tất cả </option>
-                <option value="2" style="font-size:18px;">&#60; 20000 vnd/h</option>
-                <option value="3" style="font-size:18px;">&#60; 30000 vnd/h</option>
-                <option value="4" style="font-size:18px;">&#60; 40000 vnd/h</option>
-                <option value="5" style="font-size:18px;">&#60; 50000 vnd/h</option>
-                <option value="6" style="font-size:18px;">&#60; 60000 vnd/h</option>
-                <option value="7" style="font-size:18px;">&#60; 70000 vnd/h</option>
-                <option value="8" style="font-size:18px;">&#60; 80000 vnd/h</option>
-                <option value="9" style="font-size:18px;">&#60; 90000 vnd/h</option>
-                <option value="10" style="font-size:18px;">&#60; 100000 vnd/h</option>
-            </select>
-        </div>
-
-        @if (ViewBag.role == 3)
-        {
-            <a asp-controller="Admin" asp-action="AdminDashboard" class="item">Báo cáo</a>
-            <a asp-controller="Admin" asp-action="AdminContract" class="item">Hợp đồng</a>
-            <a asp-controller="Admin" asp-action="AdminUserManagement" class="item">Người dùng</a>
-        }
-        <div style="padding: 2em; margin: auto;">
-            <button type="submit" class="btn btn-success">Tìm kiếm</button>
-        </div>
-
-    </div>
     <div style="padding-top:8em;">
         @RenderBody()
     </div>
