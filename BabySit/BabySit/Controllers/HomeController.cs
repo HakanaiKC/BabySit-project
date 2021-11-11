@@ -108,6 +108,7 @@ namespace BabySit.Controllers
                 users = babyDetails,
                 skills = babySkill
             };
+            ViewBag.Shift = db.Shifts.Where(c => c.BabySitterId == id).ToList();
             return View(babysitter);
         }
 
