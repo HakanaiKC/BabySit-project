@@ -32,6 +32,7 @@ namespace BabySit.Models
             return config["ConnectionStrings:ProjectPRNDB"];
         }
 
+        public virtual DbSet<Favorite> Favorites { get; set; }
         public virtual DbSet<FeedBack> FeedBacks { get; set; }
         public virtual DbSet<Location> Locations { get; set; }
         public virtual DbSet<Message> Messages { get; set; }
@@ -43,15 +44,31 @@ namespace BabySit.Models
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            var builder = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).
-AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
-            IConfigurationRoot config = builder.Build();
-            optionsBuilder.UseSqlServer(config.GetConnectionString("ProjectPRNDB"));
+            if (!optionsBuilder.IsConfigured)
+            {
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
+                optionsBuilder.UseSqlServer("server =(local); database = ProjectPRN;uid=sa;pwd=123456;");
+            }
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.HasAnnotation("Relational:Collation", "SQL_Latin1_General_CP1_CI_AS");
+
+            modelBuilder.Entity<Favorite>(entity =>
+            {
+                entity.HasOne(d => d.Babysitter)
+                    .WithMany(p => p.FavoriteBabysitters)
+                    .HasForeignKey(d => d.BabysitterId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Favorites_User4");
+
+                entity.HasOne(d => d.Parents)
+                    .WithMany(p => p.FavoriteParents)
+                    .HasForeignKey(d => d.ParentsId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Favorites_User3");
+            });
 
             modelBuilder.Entity<FeedBack>(entity =>
             {
@@ -121,6 +138,12 @@ AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
                 entity.Property(e => e.PaymentId).HasColumnName("paymentID");
 
                 entity.Property(e => e.DateOfPayment).HasColumnType("date");
+
+                entity.Property(e => e.Money).HasColumnType("money");
+
+                entity.Property(e => e.Phone).HasMaxLength(11);
+
+                entity.Property(e => e.TradingCode).HasMaxLength(50);
 
                 entity.Property(e => e.UserId).HasColumnName("UserID");
 
@@ -225,6 +248,7 @@ AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
 
             OnModelCreatingPartial(modelBuilder);
         }
+
 
         public int RemoveUserSkills(int userId)
         {

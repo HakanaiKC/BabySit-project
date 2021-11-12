@@ -1,0 +1,64 @@
+@{ ViewData["Title"] = "Trang chủ"; }
+
+<link rel="stylesheet" href="~/css/owl.carousel.min.css">
+<link rel="stylesheet" href="~/css/owl.theme.default.min.css">
+<link rel="stylesheet" href="~/css/Index.css">
+<script src="~/js/owl.carousel.min.js"></script>
+
+<div class="mdk-header-layout__content d-flex flex-column" style="min-height: 700px; padding-top: 200px; padding-bottom:200px;">
+    <div class="page ">
+
+        <div class="container page__container">
+
+            <h1 class="h2">Mua tài khoản premium</h1>
+            <div class="row">
+                <div class="col-lg">
+                    <div class="card row" style="display: flex; flex-direction: row;">
+                        <div class="col-md-7">
+                            @using (Html.BeginForm("Payment", "Home", FormMethod.Post))
+                            {
+                                <div class="card-body">
+                                    <p style="color: #27376B; text-decoration: underline; font-size: 24px;">Bước 1: Chuyển 100,000 VNĐ vào tài khoản MOMO sau đây để nhận premium</p>
+                                    <div class="form-group">
+                                        <label class="form-label">Tài khoản MOMO:</label>
+                                        <input type="text"
+                                               class="form-control"
+                                               value="VU TIEN DAT - 0377743162" readonly>
+                                    </div>
+
+                                    <p style="color: #27376B; text-decoration: underline; font-size: 24px;">Bước 2: Điền thông tin giao dịch bạn vừa thức hiện để xác nhận</p>
+                                    <div class="form-group">
+                                        <label class="form-label">Số điện thoại thanh toán:</label>
+                                        <input type="text"
+                                               name="PhoneNumber"
+                                               class="form-control"
+                                               placeholder="Số điện thoại thanh toán" maxlength="11" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">Mã giao dịch:</label>
+                                        <input type="text"
+                                               name="TradingCode"
+                                               class="form-control"
+                                               placeholder="Mã giao dịch" required maxlength="50">
+                                    </div>
+                                    <p style="color: #27376B; font-size: 16px;">(thông tin tài khoản của bạn sẽ được cập nhật chậm nhất 8 tiếng sau khi giao dịch)</p>
+                                </div>
+                                <div class="card-footer text-center">
+                                    <button type="submit"
+                                            class="btn btn-success">
+                                        Yêu cầu
+                                    </button>
+                                </div>
+                                <p style="color:green"> @ViewBag.SendRequestSuccessfully</p>
+                            }
+                            </div>
+                        <div class="col-md-5">
+                            <p style="color: #27376B; font-size: 24px; margin-top: 20px;">QR CODE:</p>
+                            <img src="~/images/momo.png" height="512" width="400">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

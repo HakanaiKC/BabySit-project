@@ -29,7 +29,7 @@ namespace BabySit.Controllers
                 if (HttpContext.Session.GetInt32("SessionCode") == verify.CodeInput)
                 {
                     sessionUser.ProvinceId = 65;
-
+                    sessionUser.Status = 0;
                     if (sessionUser.Role == 2)
                     {
                         for (int i = 2; i < 9; i++) 

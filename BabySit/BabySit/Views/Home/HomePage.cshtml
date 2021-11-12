@@ -1,6 +1,5 @@
 @{
     ViewData["Title"] = "Trang chủ";
-    Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 @model BabySit.Database_Access.Babysitter
 <link rel="stylesheet" href="~/css/HomePage.css">
@@ -40,7 +39,7 @@
             }
 </style>
 
-<div>
+<div style="margin-top: 200px;">
     <div class="sidenav dropdown" style="padding-top: 5em;">
         @{
             ProjectPRNContext db = new ProjectPRNContext();

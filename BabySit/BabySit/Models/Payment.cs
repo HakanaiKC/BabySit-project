@@ -9,10 +9,11 @@ namespace BabySit.Models
     {
         public int PaymentId { get; set; }
         public int? UserId { get; set; }
-        public int? TradingCode { get; set; }
-        public int? Phone { get; set; }
+        public string TradingCode { get; set; }
+        public string Phone { get; set; }
         public DateTime? DateOfPayment { get; set; }
         public bool? Status { get; set; }
+        public decimal? Money { get; set; }
 
         public virtual User User { get; set; }
     }

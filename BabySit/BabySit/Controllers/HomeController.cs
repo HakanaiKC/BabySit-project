@@ -24,6 +24,28 @@ namespace BabySit.Controllers
 
         ProjectPRNContext db = new ProjectPRNContext();
 
+
+        [HttpGet]
+        public ActionResult History()
+        {
+            if (HttpContext.Session.GetString("SessionID") != null)
+            {
+                var role = (JsonConvert.DeserializeObject<User>(HttpContext.Session.GetString("SessionID"))).Role;
+                if (role > 0)
+                {
+                    ViewBag.role = role;
+                }
+                else
+                {
+                    ViewBag.role = 0;
+                }
+            }
+            var userID = (JsonConvert.DeserializeObject<User>(HttpContext.Session.GetString("SessionID"))).UserId;
+            var history = db.Payments.Where(h => h.UserId == userID).OrderBy(h => h.Status).ToList();
+            return View("History", history);
+
+
+        }
         public IActionResult Index()
         {
             if (HttpContext.Session.GetString("SessionID") != null)
@@ -389,6 +411,97 @@ namespace BabySit.Controllers
             return View("HomePage", model);
 
         }
+
+        [HttpPost]
+        public IActionResult Payment(Babysitter babysitter)
+        {
+            if (HttpContext.Session.GetString("SessionID") != null)
+            {
+                var role = (JsonConvert.DeserializeObject<User>(HttpContext.Session.GetString("SessionID"))).Role;
+                if (role > 0)
+                {
+                    ViewBag.role = role;
+                }
+                else
+                {
+                    ViewBag.role = 0;
+                }
+            }
+            int userId = (JsonConvert.DeserializeObject<User>(HttpContext.Session.GetString("SessionID"))).UserId;
+            String PhoneNumber = Request.Form["PhoneNumber"];
+            String TradingCode = Request.Form["TradingCode"];
+
+            using (ProjectPRNContext db = new ProjectPRNContext())
+            {
+                Payment payment = new Payment();
+                payment.Phone = PhoneNumber;
+                payment.TradingCode = TradingCode;
+                payment.Status = false;
+                payment.DateOfPayment = DateTime.Now;
+                payment.UserId = userId;
+                db.Payments.Add(payment);
+                db.SaveChanges();
+
+            }
+            ViewBag.SendRequestSuccessfully = "Đã gửi yêu cầu đến admin thành công!";
+            return View();
+        }
+
+        [HttpGet]
+        public IActionResult Payment()
+        {
+            if (HttpContext.Session.GetString("SessionID") != null)
+            {
+                var role = (JsonConvert.DeserializeObject<User>(HttpContext.Session.GetString("SessionID"))).Role;
+                if (role > 0)
+                {
+                    ViewBag.role = role;
+                }
+                else
+                {
+                    ViewBag.role = 0;
+                }
+            }
+            return View();
+        }
+
+        [HttpGet]
+        public IActionResult Feedback(int babysitterId, string feedback, int myField)
+        {
+            int parentId = (JsonConvert.DeserializeObject<User>(HttpContext.Session.GetString("SessionID"))).UserId;
+            var feedbacks = db.FeedBacks.ToList();
+            var feedbackindb = (from c in feedbacks
+                                where (c.BabySitterId == babysitterId && c.ParentId == parentId)
+                                select c).FirstOrDefault();
+            FeedBack feedBack = new FeedBack();
+            feedBack.BabySitterId = babysitterId;
+            feedBack.ParentId = parentId;
+            feedBack.Rate = myField;
+            feedBack.Comment = feedback;
+            feedBack.DateComment = DateTime.Now;
+            if (feedbackindb == null)
+            {
+                // khong ton tai thi insert;
+                db.FeedBacks.Add(feedBack);
+            }
+            else
+            {
+                feedbackindb.Rate = myField;
+                feedbackindb.Comment = feedback;
+                feedbackindb.DateComment = DateTime.Now;
+                db.FeedBacks.Update(feedbackindb);
+                //ton tai thi update
+            }
+            db.SaveChanges();
+            //ViewBag.Feedbackid = feedbackindb.FeedBackId;
+            //ViewBag.baby = babysitterId;
+            //ViewBag.feedback = feedback;
+            //ViewBag.rate = myField;
+            //ViewBag.date = DateTime.Now;
+            //return View("Nhap");
+            return Redirect("Babysitter/" + babysitterId);
+        }
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

@@ -11,6 +11,8 @@ namespace BabySit.Models
     {
         public User()
         {
+            FavoriteBabysitters = new HashSet<Favorite>();
+            FavoriteParents = new HashSet<Favorite>();
             FeedBackBabySitters = new HashSet<FeedBack>();
             FeedBackParents = new HashSet<FeedBack>();
             Payments = new HashSet<Payment>();
@@ -51,6 +53,8 @@ namespace BabySit.Models
         public string Bank { get; set; }
 
         public virtual Location Province { get; set; }
+        public virtual ICollection<Favorite> FavoriteBabysitters { get; set; }
+        public virtual ICollection<Favorite> FavoriteParents { get; set; }
         public virtual ICollection<FeedBack> FeedBackBabySitters { get; set; }
         public virtual ICollection<FeedBack> FeedBackParents { get; set; }
         public virtual ICollection<Payment> Payments { get; set; }

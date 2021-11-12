@@ -1,0 +1,47 @@
+﻿@{
+    ViewData["Title"] = "Trang chủ";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+@*@model IEnumerable<BabySit.Models.Favorite>;*@
+<link rel="stylesheet" href="~/css/HomePage.css">
+
+<div>
+    <div class="row" style="margin-left: 320px; padding-top:20px;">
+        
+        @foreach (var item in Model.users)
+        {
+
+            <div class="card babysitter row col-md-9" style="margin-top:20px;">
+                <a href="~/Home/Babysitter/@item.UserId" style="text-decoration:none;">
+                    <div class="no-gutters row">
+                        <div class="col-lg-3">
+                            <img style="padding: 20px; height:150px; width:150px;" data-holder-rendered="true" class="card-img rounded-circle" src="~/images/@item.Avatar">
+                        </div>
+                        <div class="col-lg-8">
+                            <div class="card-body">
+                                <div class="info-1 row">
+                                    <h3 class="card-title col-md-12">@item.Name</h3>
+                                    <p class="col-md-6">Nơi làm việc: @item.Province.ProvinceName</p>
+                                    @{
+                                        var age = DateTime.UtcNow.Year - Int32.Parse(item.BirthOfDate.Value.ToString("yyyy"));
+                                        <p class="col-md-6">@Html.DisplayFor(model => age) tuổi</p>
+                                    }
+                                    <p class="col-md-6">Đánh giá</p>
+
+                                    @if (item.YearsOfExperience < 1)
+                                    {
+                                        <p class="col-md-6">Dưới một năm</p>
+                                    }
+                                    else
+                                    {
+                                        <p class="col-md-6">Kinh nghiệm: @item.YearsOfExperience năm</p>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        }
+    </div>
+</div>

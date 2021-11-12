@@ -1,0 +1,133 @@
+﻿@{
+    ViewData["Title"] = "Trang chủ";
+}
+@model IEnumerable<BabySit.Models.Payment>;
+<link rel="stylesheet" href="~/css/HomePage.css">
+
+<style>
+    body {
+        height: 100%;
+        background-color: #f5f7fb;
+        font-weight: bold;
+        font-size: 18px;
+        min-height: 900px;
+    }
+
+    .container_home {
+        width: 100%;
+        display: block;
+        /*  margin: 40px;*/
+        align-content: center;
+        display: flex;
+        justify-content: center;
+        padding: 20px;
+        /*padding: 0;*/
+        /* border: 1px dashed black; */
+        /* height: 26rem; */
+    }
+
+    .card1 {
+        display: inline-block;
+        /* margin-right: 20px; */
+        background-color: white;
+        border-radius: 10px;
+        /*    margin-top: 5px;*/
+        height: 5rem;
+        /*    display: flex;*/
+        margin-bottom: 10px;
+        -moz-box-shadow: 3px 3px rgb(153, 153, 153);
+        -webkit-box-shadow: 3px 3px rgb(153, 153, 153);
+        box-shadow: 3px 3px rgb(211, 211, 211);
+        padding: 0;
+        /*background-color: #f5f7fb !important;*/
+        border: none !important;
+    }
+
+    .card-title {
+        margin-top: 5px;
+        margin-left: 10px;
+        font-size: 1.3rem;
+        line-height: 1.2rem;
+        font-weight: bold;
+        /*     border: 1px dotted gray; */
+    }
+
+    .n-question {
+        /*    float: left;*/
+        margin-top: 5px;
+        font-weight: normal;
+        margin-left: 10px;
+    }
+
+    .card-creator {
+        margin-left: 10px;
+        margin-top: 5px;
+        border-left: 1px solid rgb(211, 211, 211);
+        font-size: 1rem;
+        font-weight: bold;
+        /*     border: 1px dotted gray; */
+    }
+
+    .itemname {
+        font-weight: bold;
+        padding: 0;
+        float: left;
+        margin-bottom: 15px;
+        font-size: 24px;
+        /* border: 1px dashed goldenrod; */
+    }
+</style>
+<div class="preloader" style="margin-top: 200px;">
+    <div class="sk-chase">
+        <div class="sk-chase-dot"></div>
+        <div class="sk-chase-dot"></div>
+        <div class="sk-chase-dot"></div>
+        <div class="sk-chase-dot"></div>
+        <div class="sk-chase-dot"></div>
+        <div class="sk-chase-dot"></div>
+    </div>
+</div>
+
+<div class="card" style="width: 70%; margin: auto; margin-top: 50px">
+    <div class="card-header border-0">
+        <h1 class="card-title" style="font-size: 36px; font-weight: 400;">Purchase History</h1>
+        <div class="card-tools"></div>
+    </div>
+    <div class="card-body table-responsive p-0">
+        <table class="table table-striped table-valign-middle">
+            <thead>
+                <tr>
+                    <th>Trading code</th>
+                    <th>Phone</th>
+                    <th>Day purchase</th>
+                    <th>Money</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach (var item in Model)
+                {
+                <tr style="height: 80px;">
+                    <td style="max-width: 120px">@item.TradingCode</td>
+                    <td>@item.Phone</td>
+                    <td>@item.DateOfPayment</td>
+                    <td>@item.Money</td>
+                    @if (item.Status == true)
+                    {
+
+                        <td style="color: green">Confirmed</td>
+                    }
+                    else
+                    {
+                        <td style="color: red">Pending</td>
+                    }
+
+                </tr>
+                }
+
+            </tbody>
+        </table>
+    </div>
+</div>
+

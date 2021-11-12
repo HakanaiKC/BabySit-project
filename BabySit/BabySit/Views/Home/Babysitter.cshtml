@@ -3,7 +3,10 @@
     ViewData["Title"] = "Bảo mẫu";
 }
 <link rel="stylesheet" href="~/css/star-rating-svg.css" />
+<script src="~/js/jquery.min.js"></script>
+<script src="~/js/jquery.star-rating-svg.min.js"></script>
 <script src="~/js/jquery.star-rating-svg.js"></script>
+<script src="~/js/jquery.star-rating-svg_1.js"></script>
 
 <section class="page-content" style="padding-top: 6em;">
 
@@ -45,15 +48,63 @@
                     <p>@Html.DisplayFor(model => item.Description)</p>
                 </div>
 
+
                 @*Contract*@
-                <div class="contract col-md-4 card" style="margin:auto;">
-                    <h3>Mức lương yêu cầu</h3>
-                    <strong>@Html.DisplayFor(model => item.SalaryPerHour) VND/ giờ</strong>
-                    <div class="card-body">
-                        @Html.ActionLink("Tạo hợp đồng", "CreateContract", new { id = item.UserId }, new { @class = "btn btn-success btn-block" })
-                    </div>
+            <div class="contract col-md-4 card" style="margin:auto;">
+                <h3>Mức lương yêu cầu</h3>
+                <strong>@Html.DisplayFor(model => item.SalaryPerHour) VND/ giờ</strong>
+                <div class="card-body">
+                    @Html.ActionLink("Tạo hợp đồng", "CreateContract", new { id = item.UserId }, new { @class = "btn btn-success btn-block" })
+                </div>
+                @if (ViewBag.role == 1)
+                {
+                    <button type="button" class="btn btn-link" data-toggle="modal" data-target="#exampleModal">
+                        feedback
+                    </button>
+                }
+                <div class="col-md-4">
+                    <form asp-controller="Home" asp-action="Favorite" method="get">
+                        <button type="button" class="btn btn-default btn-sm">
+                            <i class="fas fa-heart"></i>
+                        </button>
+                    </form>
                 </div>
             </div>
+            </div>
+
+
+
+            <form action="~/Home/Feedback" method="get">
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Rate</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <input type="hidden" name="myField" id="myField" value="">
+                                <span class="my-rating-2"></span>
+                                <span name="rate" id="live-rating" class="live-rating"></span>
+                                <hr>
+                                <h4>Feedback</h4>
+                                <textarea id="feedback" name="feedback"
+                                          type="text"
+                                          class="form-control"
+                                          placeholder="Your message"
+                                          rows="3"></textarea>
+                            </div>
+                            <input name="babysitterId" value="@item.UserId">
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
 
             @*Kinh nghiem*@
             <div class="kinhnghiem">
@@ -198,4 +249,16 @@
             readOnly: true
         });
     });
+    $(".my-rating-2").starRating({
+        disableAfterRate: false,
+        totalStars: 5,
+        useFullStars: true,
+        activeColor: 'rgb(242, 208, 73)',
+        useGradient: false,
+        callback: function (currentRating, $el) {
+            document.getElementById("myField").value = currentRating;
+        }
+    });
 </script>
+
+

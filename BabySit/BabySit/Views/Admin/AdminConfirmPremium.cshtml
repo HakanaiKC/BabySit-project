@@ -1,0 +1,57 @@
+﻿@{
+    ViewData["Title"] = "Trang chủ";
+}
+@model BabySit.Database_Access.Babysitter
+
+
+<div class="card" style="width: 70%; margin: auto; margin-top: 200px">
+    <div class="card-header border-0">
+        <h1 class="card-title" style="font-size: 36px; font-weight: 400;">Purchase Management</h1>
+        <div class="card-tools"></div>
+    </div>
+    <div class="card-body table-responsive p-0">
+        <table class="table table-striped table-valign-middle">
+            <thead>
+                <tr>
+                    <th>User Name</th>
+                    <th>Trading code</th>
+                    <th>Phone</th>
+                    <th>Money</th>
+                    <th>Day purchase</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (var item in Model.payment)
+                {
+                <tr style="height: 80px;">
+                    <td style="max-width: 120px">@item.User.Name</td>
+                    <td>@item.TradingCode</td>
+                    <td>@item.Phone</td>
+                    <td>@item.Money</td>
+                    <td>@item.DateOfPayment</td>
+                    <td>@item.Status</td>
+                    @if (item.Status == false)
+                    {
+                        @using (Html.BeginForm("AdminConfirmPremium", "Admin", FormMethod.Post))
+                        {
+                            <td>
+                                <input type="text" name="paymentId" value="@item.PaymentId" hidden />
+                                <input type="text" name="userId" value="@item.UserId" hidden />
+                                <button type="submit" class="btn btn-success">Confirm</button>
+
+                            </td>
+                        }
+                    }
+                    @if (item.Status == true)
+                    {
+                        <td style="color: green"><button type="button" class="btn btn-success" disabled>Confirmed</button></td>
+                    }
+                </tr>
+                }
+            </tbody>
+        </table>
+
+    </div>
+</div>
