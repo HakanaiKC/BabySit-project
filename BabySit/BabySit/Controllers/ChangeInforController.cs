@@ -30,7 +30,7 @@ namespace BabySit.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult ChangeInformation(string fullname, bool gender, DateTime txtDate, int address, string description, float salary, int experienceYear)
+        public IActionResult ChangeInformation(string fullname, bool gender, DateTime txtDate, int address, string description, float salary, int experienceYear, string skillinlife, string shift)
         {
             int id = (JsonConvert.DeserializeObject<User>(HttpContext.Session.GetString("SessionID"))).UserId;
 
@@ -44,6 +44,23 @@ namespace BabySit.Controllers
             userDetails.YearsOfExperience = experienceYear;
             db.Update(userDetails);
             db.SaveChanges();
+            if (userDetails.Role==2)
+            {
+                string[] listSkill = skillinlife.Split(" ");
+                int delete = db.RemoveUserSkills(id);
+                int a = listSkill.Length;
+                for (int i = 0; i < a - 1; i++)
+                {
+                    int b = db.AddUserSkills(id, listSkill[i]);
+                }
+                for (int i = 0; i < 7; i++)
+                {
+                    db.UpdateShift(id, i + 2, shift[i].ToString(), shift[i + 7].ToString(), shift[i + 14].ToString());
+                }
+                ViewBag.skillinlife = skillinlife;
+                string st = shift[0].ToString();
+                ViewBag.skillTr = st;
+            }
             return RedirectToAction("EditProfile", "Home");
         }
         [HttpPost]
@@ -77,29 +94,6 @@ namespace BabySit.Controllers
 
             //return View("Index");
             return RedirectToAction("EditProfile", "Home");
-        }
-
-        [HttpPost]
-        public IActionResult ChangeSkill(string skillinlife, string shift)
-        {
-
-            int id = (JsonConvert.DeserializeObject<User>(HttpContext.Session.GetString("SessionID"))).UserId;
-            string[] listSkill = skillinlife.Split(" ");
-            int delete = db.RemoveUserSkills(id);
-            int a = listSkill.Length;
-            for (int i = 0; i < a - 1; i++)
-            {
-                int b = db.AddUserSkills(id, listSkill[i]);
-            }
-            for (int i = 0; i < 7; i++)
-            {
-                db.UpdateShift(id, i+2, shift[i].ToString(), shift[i + 7].ToString(), shift[i + 14].ToString());
-            }
-            ViewBag.skillinlife = skillinlife;
-            string st = shift[0].ToString();
-            ViewBag.skillTr = st;
-            return RedirectToAction("EditProfile", "Home");
-            //return View("Index");
         }
 
         [HttpPost]

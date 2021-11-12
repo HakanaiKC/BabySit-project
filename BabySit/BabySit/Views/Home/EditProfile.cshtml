@@ -67,7 +67,7 @@
                         <input type="submit" name="save_pass" class="btn btn-success" value="Lưu" />
                     </form>
                     <br />
-                    <h2>Chi tiết về bản thân</h2>
+                    <h3>Chi tiết về bản thân</h3>
 
                     <form action="~/ChangeInfor/ChangeInformation" method="post">
                         <!--Name and Gender-->
@@ -115,9 +115,9 @@
                         </div>
                         <br />
                         <!--Address-->
-                        <label>Địa chỉ mới</label>
+                        <label>Địa chỉ </label>
                         <select name="address" title="Chọn khu vực" id="selectKhuVuc" class="selectpicker" data-style="btn-success" data-width="150px" data-size="10">
-                            
+
                             <option selected="selected" value=" @item.Province.ProvinceId">@Html.DisplayFor(model => item.Province.ProvinceName)</option>
                             @foreach (var itemm in ViewBag.locations)
                             {
@@ -135,196 +135,195 @@
                         </fieldset>
                         <br />
 
-                        <!--Lương-->
-                        <fieldset>
-                            <label>Lương(Theo giờ)</label>
-                            <div class="field">
-                                <input type="number" min="10000" placeholder="VND/Giờ" class="form-control" name="salary" id="salary" value="@Html.DisplayFor(model => item.SalaryPerHour)" />
+
+                        @if (ViewBag.role == 2)
+                        {
+                            <h3>Phần dành riêng cho bảo mẫu</h3>
+                            <!--Lương-->
+                            <fieldset>
+                                <label>Lương(Theo giờ)</label>
+                                <div class="field">
+                                    <input type="number" min="10000" placeholder="VND/Giờ" class="form-control" name="salary" id="salary" value="@Html.DisplayFor(model => item.SalaryPerHour)" />
+                                </div>
+                            </fieldset>
+                            <br />
+                            <!-- experience -->
+                            <fieldset class="fieldset-experience">
+                                <label for="salary">Kinh nghiệm</label>
+                                <div class="field select-style">
+                                    <select name="experienceYear" id="experience" class="form-control" value="">
+                                        <option value="@item.YearsOfExperience">@Html.DisplayFor(model => item.YearsOfExperience) năm</option>
+                                        <option value="0"> dưới 1 năm</option>
+                                        <option value="1">1 năm</option>
+                                        <option value="2">2 năm</option>
+                                        <option value="3">3 năm</option>
+                                        <option value="4">4 năm</option>
+                                        <option value="5">5 năm</option>
+                                        <option value="6">6 năm</option>
+                                        <option value="7">7 năm</option>
+                                        <option value="8">8 năm</option>
+                                        <option value="9">9 năm</option>
+                                        <option value="10">10 năm</option>
+                                        <option value="11">11 năm</option>
+                                    </select>
+                                </div>
+                            </fieldset>
+                            <br />
+                            <label>Thời gian làm việc</label>
+                            <div class="table-responsive">
+                                <table class="table table-striped table-bordered table-schedule">
+                                    <thead>
+                                    <th class="empty"></th>
+                                    <th>Thứ Hai</th>
+                                    <th>Thứ Ba</th>
+                                    <th>Thứ Tư</th>
+                                    <th>Thứ Năm</th>
+                                    <th>Thứ Sáu</th>
+                                    <th>Thứ Bảy</th>
+                                    <th>Chủ Nhật</th>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="time">Sáng</td>
+                                            @{ int count = 20;}
+                                            @foreach (var itemshift in ViewBag.Shift)
+                                            {
+                                                count++;
+                                                if (itemshift.Morning)
+                                                {
+
+                                                    <td>
+                                                        <div class="check-container">
+                                                            <input type="checkbox" checked id="@count">
+                                                        </div>
+                                                    </td>
+                                                }
+                                                else
+                                                {
+                                                    <td>
+                                                        <div class="check-container">
+                                                            <input type="checkbox" id="@count">
+                                                        </div>
+                                                    </td>
+                                                }
+
+                                            }
+                                        </tr>
+
+                                        <tr>
+                                            <td class="time">Chiều</td>
+                                            @foreach (var itemshift in ViewBag.Shift)
+                                            {
+                                                count++;
+                                                if (itemshift.Afternoon)
+                                                {
+                                                    <td>
+                                                        <div class="check-container">
+                                                            <input type="checkbox" checked id="@count">
+                                                        </div>
+                                                    </td>
+                                                }
+                                                else
+                                                {
+                                                    <td>
+                                                        <div class="check-container">
+                                                            <input type="checkbox" id="@count">
+                                                        </div>
+                                                    </td>
+                                                }
+
+                                            }
+                                        </tr>
+
+                                        <tr>
+                                            <td class="time">Tối</td>
+                                            @foreach (var itemshift in ViewBag.Shift)
+                                            {
+                                                count++;
+                                                if (itemshift.Night)
+                                                {
+                                                    <td>
+                                                        <div class="check-container">
+                                                            <input type="checkbox" checked id="@count">
+                                                        </div>
+                                                    </td>
+                                                }
+                                                else
+                                                {
+                                                    <td>
+                                                        <div class="check-container">
+                                                            <input type="checkbox" id="@count">
+                                                        </div>
+                                                    </td>
+                                                }
+
+                                            }
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
-                        </fieldset>
-                        <br />
-                        <!-- experience -->
-                        <fieldset class="fieldset-experience">
-                            <label for="salary">Kinh nghiệm</label>
-                            <div class="field select-style">
-                                <select name="experienceYear" id="experience" class="form-control" value="">
-                                    <option value="@item.YearsOfExperience">@Html.DisplayFor(model => item.YearsOfExperience) năm</option>
-                                    <option value="0"> dưới 1 năm</option>
-                                    <option value="1">1 năm</option>
-                                    <option value="2">2 năm</option>
-                                    <option value="3">3 năm</option>
-                                    <option value="4">4 năm</option>
-                                    <option value="5">5 năm</option>
-                                    <option value="6">6 năm</option>
-                                    <option value="7">7 năm</option>
-                                    <option value="8">8 năm</option>
-                                    <option value="9">9 năm</option>
-                                    <option value="10">10 năm</option>
-                                    <option value="11">11 năm</option>
-                                </select>
-                            </div>
-                        </fieldset>
-                        <br />
-                        <input type="submit" value="Submit" />
+                            <!-- Person Availability / End -->
+                            <br /> <input type="text" name="shift" value="" id="shift" hidden />
+                            <fieldset>
+                                <label>Có khả năng trông</label> <input type="text" name="skillinlife" value="" id="skillTrongTre" hidden>
+                                <div class="btn-group btn-group-toggle d-flex flex-column flex-md-row" data-toggle="buttons">
+                                    @foreach (var skill in ViewBag.Skill)
+                                    {
+                                        if (skill.CheckSkillId)
+                                        {
+                                            <div style="padding-right:0.5em;">
+                                                <label class="btn btn-outline-success active">
+                                                    <input type="checkbox" id="@skill.SkillId" checked autocomplete="off" value="@skill.SkillId" style="display:none;"> @skill.SkillName
+                                                </label>
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            <div style="padding-right:0.5em;">
+                                                <label class="btn btn-outline-success">
+                                                    <input type="checkbox" id="@skill.SkillId" autocomplete="off" value="@skill.SkillId" style="display:none;"> @skill.SkillName
+                                                </label>
+                                            </div>
+                                        }
+                                    }
+                                </div>
+                            </fieldset>
+                            <br />
+                            <!--Skills-->
+                            <fieldset>
+                                <label>Kỹ năng</label>
+                                <div class="btn-group btn-group-toggle d-flex flex-column flex-md-row" data-toggle="buttons">
+                                    @foreach (var skill in ViewBag.CheckSkills)
+                                    {
+                                        if (skill.CheckSkillId)
+                                        {
+                                            <div style="padding-right:0.5em;">
+                                                <label class="btn btn-outline-success active">
+                                                    <input type="checkbox" id="@skill.SkillId" checked autocomplete="off" value="@skill.SkillId" style="display:none;"> @skill.SkillName
+                                                </label>
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            <div style="padding-right:0.5em;">
+                                                <label class="btn btn-outline-success">
+                                                    <input type="checkbox" id="@skill.SkillId" autocomplete="off" value="@skill.SkillId" style="display:none;"> @skill.SkillName
+                                                </label>
+                                            </div>
+                                        }
+                                    }
+                                </div>
+                            </fieldset>
+                            <br />
+                        }
+
+                        <input type="submit" name="save_profile" onclick="myFunc()" class="btn btn-success" value="Lưu" />
+
+
                     </form>
 
                 }
                 <!--Co kha nang trong-->
-
-                <form action="~/ChangeInfor/ChangeSkill" method="post">
-                    <!-- Person Availability -->
-
-                    <h2>Phần dành riêng cho bảo mẫu</h2>
-                    <label>Thời gian làm việc</label>
-                    <div class="table-responsive">
-                        <table class="table table-striped table-bordered table-schedule">
-                            <thead>
-                            <th class="empty"></th>
-                            <th>Thứ Hai</th>
-                            <th>Thứ Ba</th>
-                            <th>Thứ Tư</th>
-                            <th>Thứ Năm</th>
-                            <th>Thứ Sáu</th>
-                            <th>Thứ Bảy</th>
-                            <th>Chủ Nhật</th>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td class="time">Sáng</td>
-                                    @{ int count = 20;}
-                                    @foreach (var itemshift in ViewBag.Shift)
-                                    {
-                                        count++;
-                                        if (itemshift.Morning)
-                                        {
-
-                                            <td>
-                                                <div class="check-container">
-                                                    <input type="checkbox" checked id="@count">
-                                                </div>
-                                            </td>
-                                        }
-                                        else
-                                        {
-                                            <td>
-                                                <div class="check-container">
-                                                    <input type="checkbox" id="@count">
-                                                </div>
-                                            </td>
-                                        }
-
-                                    }
-                                </tr>
-
-                                <tr>
-                                    <td class="time">Chiều</td>
-                                    @foreach (var itemshift in ViewBag.Shift)
-                                    {
-                                        count++;
-                                        if (itemshift.Afternoon)
-                                        {
-                                            <td>
-                                                <div class="check-container">
-                                                    <input type="checkbox" checked id="@count">
-                                                </div>
-                                            </td>
-                                        }
-                                        else
-                                        {
-                                            <td>
-                                                <div class="check-container">
-                                                    <input type="checkbox" id="@count">
-                                                </div>
-                                            </td>
-                                        }
-
-                                    }
-                                </tr>
-
-                                <tr>
-                                    <td class="time">Tối</td>
-                                    @foreach (var itemshift in ViewBag.Shift)
-                                    {
-                                        count++;
-                                        if (itemshift.Night)
-                                        {
-                                            <td>
-                                                <div class="check-container">
-                                                    <input type="checkbox" checked id="@count">
-                                                </div>
-                                            </td>
-                                        }
-                                        else
-                                        {
-                                            <td>
-                                                <div class="check-container">
-                                                    <input type="checkbox" id="@count">
-                                                </div>
-                                            </td>
-                                        }
-
-                                    }
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <!-- Person Availability / End -->
-                    <br />                               <input type="text" name="shift" value="" id="shift" hidden />
-                    <fieldset>
-                        <label>Có khả năng trông</label> <input type="text" name="skillinlife" value="" id="skillTrongTre" hidden>
-                        <div class="btn-group btn-group-toggle d-flex flex-column flex-md-row" data-toggle="buttons">
-                            @foreach (var skill in ViewBag.Skill)
-                            {
-                                if (skill.CheckSkillId)
-                                {
-                                    <div style="padding-right:0.5em;">
-                                        <label class="btn btn-outline-success active">
-                                            <input type="checkbox" id="@skill.SkillId" checked autocomplete="off" value="@skill.SkillId" style="display:none;"> @skill.SkillName
-                                        </label>
-                                    </div>
-                                }
-                                else
-                                {
-                                    <div style="padding-right:0.5em;">
-                                        <label class="btn btn-outline-success">
-                                            <input type="checkbox" id="@skill.SkillId" autocomplete="off" value="@skill.SkillId" style="display:none;"> @skill.SkillName
-                                        </label>
-                                    </div>
-                                }
-                            }
-                        </div>
-                    </fieldset>
-                    <br />
-                    <!--Skills-->
-                    <fieldset>
-                        <label>Kỹ năng</label>
-                        <div class="btn-group btn-group-toggle d-flex flex-column flex-md-row" data-toggle="buttons">
-                            @foreach (var skill in ViewBag.CheckSkills)
-                            {
-                                if (skill.CheckSkillId)
-                                {
-                                    <div style="padding-right:0.5em;">
-                                        <label class="btn btn-outline-success active">
-                                            <input type="checkbox" id="@skill.SkillId" checked autocomplete="off" value="@skill.SkillId" style="display:none;"> @skill.SkillName
-                                        </label>
-                                    </div>
-                                }
-                                else
-                                {
-                                    <div style="padding-right:0.5em;">
-                                        <label class="btn btn-outline-success">
-                                            <input type="checkbox" id="@skill.SkillId" autocomplete="off" value="@skill.SkillId" style="display:none;"> @skill.SkillName
-                                        </label>
-                                    </div>
-                                }
-                            }
-                        </div>
-                    </fieldset>
-                    <br />
-
-                    <input type="submit" name="save_profile" onclick="myFunc()" class="btn btn-success" value="Lưu" />
-
-                </form>
 
                 <!-- Profile Form / End -->
             </div>

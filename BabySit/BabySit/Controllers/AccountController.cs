@@ -74,6 +74,15 @@ namespace BabySit.Controllers
                 {
                     ViewBag.role = 0;
                 }
+                var avatar = (JsonConvert.DeserializeObject<User>(HttpContext.Session.GetString("SessionID"))).Avatar;
+                if (avatar!=null)
+                {
+                    ViewBag.avatar = "~/images/" + avatar;
+                }
+                else
+                {
+                    ViewBag.avatar = "~/images/" + "sample-avatar.jpg";
+                }
             }
             return View();
         }
