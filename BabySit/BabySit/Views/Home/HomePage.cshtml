@@ -42,81 +42,92 @@
 
 <div>
     <div class="sidenav dropdown" style="padding-top: 5em;">
-        <div class="khuvuc" style="padding: 1em; margin: auto;">
-            <label>Khu vực</label>
-            <select name="selectKhuVuc" title="Chọn khu vực" id="selectKhuVuc" class="selectpicker" data-style="btn-success" data-width="150px" data-size="10">
-                @foreach (var itemm in Model.locations)
-                {
-                    <option value="@itemm.ProvinceId" style="font-size:18px;">@itemm.ProvinceName</option>
-                }
+        @{
+            ProjectPRNContext db = new ProjectPRNContext();
+            var province = db.Locations.ToList();
+        }
+        @using (Html.BeginForm("HomePage", "Home", FormMethod.Post))
+        {
+            <div class="khuvuc" style="padding: 1em; margin: auto;">
+                <label>Khu vực</label>
+                <select required name="selectKhuVuc" title="Chọn khu vực" id="selectKhuVuc" class="selectpicker" data-style="btn-success" data-width="150px" data-size="10">
 
-            </select>
-        </div>
+                    @foreach (var itemm in province)
+                    {
+                        <option value="@itemm.ProvinceId" style="font-size:18px;">@itemm.ProvinceName</option>
+                    }
+                </select>
+            </div>
 
-        <div class="kinhnghiem" style="padding: 1em; margin: auto;">
-            <label>Kinh nghiệm</label>
-            <select name="selectKinhNghiem" title="Yêu cầu kinh nghiệm" id="selectKinhNghiem" class="selectpicker" data-style="btn-success" data-width="150px">
-                <option value="1" style="font-size:18px;">&#60; 1 năm </option>
-                <option value="2" style="font-size:18px;">&#62; 1 năm</option>
-                <option value="3" style="font-size:18px;">&#62; 2 năm</option>
-                <option value="4" style="font-size:18px;">&#62; 3 năm</option>
-                <option value="5" style="font-size:18px;">&#62; 5 năm</option>
-                <option value="6" style="font-size:18px;">&#62; 10 năm</option>
-            </select>
-        </div>
+            <div class="kinhnghiem" style="padding: 1em; margin: auto;">
+                <label>Kinh nghiệm</label>
+                <select required name="selectKinhNghiem" title="Yêu cầu kinh nghiệm" id="selectKinhNghiem" class="selectpicker" data-style="btn-success" data-width="150px">
+                    <option value="1" style="font-size:18px;">&#60; 1 năm </option>
+                    <option value="2" style="font-size:18px;">&#62; 1 năm</option>
+                    <option value="3" style="font-size:18px;">&#62; 2 năm</option>
+                    <option value="4" style="font-size:18px;">&#62; 3 năm</option>
+                    <option value="5" style="font-size:18px;">&#62; 5 năm</option>
+                    <option value="10" style="font-size:18px;">&#62; 10 năm</option>
+                </select>
+            </div>
 
-        <div class="thoigian" style="padding: 1em; margin: auto;">
-            <label>Thời gian làm việc</label>
-            <div class="multiselect">
-                <div class="selectBox" onclick="showCheckboxes()">
-                    <select name="selectThoiGian" title="Chọn thời gian" id="selectThoiGian" class="selectpicker" data-style="btn-success" data-width="150px">
-                        <option>Select an option</option>
-                    </select>
-                    <div class="overSelect"></div>
-                </div>
-                <div id="checkboxes">
-                    <label for="one">
-                        <input type="checkbox" id="one" />Sáng
-                    </label>
-                    <label for="two">
-                        <input type="checkbox" id="two" />Chiều
-                    </label>
-                    <label for="three">
-                        <input type="checkbox" id="three" />Tối
-                    </label>
+
+            <div class="thoigian" style="padding: 1em; margin: auto;">
+                <label>Thời gian làm việc</label>
+                <div class="multiselect">
+                    <div class="selectBox" onclick="showCheckboxes()">
+                        <select name="selectThoiGian" title="Chọn thời gian" id="selectThoiGian" class="selectpicker" data-style="btn-success" data-width="150px">
+                            <option>Select an option</option>
+                        </select>
+                        <div class="overSelect"></div>
+                    </div>
+                    <div id="checkboxes">
+                        <label for="one">
+                            <input name="selectTime" value="1" type="checkbox" id="one" />Sáng
+                        </label>
+                        <label for="two">
+                            <input name="selectTime" value="2" type="checkbox" id="two" />Chiều
+                        </label>
+                        <label for="three">
+                            <input name="selectTime" value="3" type="checkbox" id="three" />Tối
+
+                        </label>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <div class="mucluong" style="padding: 1em; margin: auto;">
-            <label>Mức lương yêu cầu</label>
-            <select name="selectMucLuong" title="Chọn mức lương" id="selectMucLuong" class="selectpicker" data-style="btn-success" data-width="150px" data-size="6">
-                <option value="1" style="font-size:18px;">Tất cả </option>
-                <option value="2" style="font-size:18px;">&#60; 20000 vnd/h</option>
-                <option value="3" style="font-size:18px;">&#60; 30000 vnd/h</option>
-                <option value="4" style="font-size:18px;">&#60; 40000 vnd/h</option>
-                <option value="5" style="font-size:18px;">&#60; 50000 vnd/h</option>
-                <option value="6" style="font-size:18px;">&#60; 60000 vnd/h</option>
-                <option value="7" style="font-size:18px;">&#60; 70000 vnd/h</option>
-                <option value="8" style="font-size:18px;">&#60; 80000 vnd/h</option>
-                <option value="9" style="font-size:18px;">&#60; 90000 vnd/h</option>
-                <option value="10" style="font-size:18px;">&#60; 100000 vnd/h</option>
-            </select>
-        </div>
+            <div class="mucluong" style="padding: 1em; margin: auto;">
+                <label>Mức lương yêu cầu</label>
+                <select required name="selectMucLuong" title="Chọn mức lương" id="selectMucLuong" class="selectpicker" data-style="btn-success" data-width="150px" data-size="6">
+                    <option value="1" style="font-size:18px;" selected>Tất cả </option>
+                    <option value="20000" style="font-size:18px;">&#60; 20000 vnd/h</option>
+                    <option value="30000" style="font-size:18px;">&#60; 30000 vnd/h</option>
+                    <option value="40000" style="font-size:18px;">&#60; 40000 vnd/h</option>
+                    <option value="50000" style="font-size:18px;">&#60; 50000 vnd/h</option>
+                    <option value="60000" style="font-size:18px;">&#60; 60000 vnd/h</option>
+                    <option value="70000" style="font-size:18px;">&#60; 70000 vnd/h</option>
+                    <option value="80000" style="font-size:18px;">&#60; 80000 vnd/h</option>
+                    <option value="90000" style="font-size:18px;">&#60; 90000 vnd/h</option>
+                    <option value="100000" style="font-size:18px;">&#60; 100000 vnd/h</option>
+                </select>
+            </div>
 
-        <div style="padding: 2em; margin: auto;">
-            <button type="submit" class="btn btn-success">Tìm kiếm</button>
-        </div>
+            <div style="padding: 2em; margin: auto;">
+                <button type="submit" class="btn btn-success">Tìm kiếm</button>
+            </div>
+        }
 
     </div>
 
     <div class="row" style="margin-left: 300px;">
         <div class="card search col-md-9" style=" padding: 0;">
             <div class="box">
-                <div class="container-1">
-                    <input type="search" id="search" placeholder="Tìm kiếm..." />
-                    <a class="icon" href="#"><i class="fa fa-search"></i></a>
-                </div>
+                <form asp-controller="Home" asp-action="Search" method="get">
+                    <div class="container-1">
+                        <input type="search" id="search" name="searching" value="@ViewBag.search" placeholder="Tìm kiếm..." />
+                        <button class="icon" type="submit"><i class="fa fa-search"></i></button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

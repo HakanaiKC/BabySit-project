@@ -14,5 +14,6 @@ namespace BabySit.Database_Access
         public IEnumerable<Location> locations { get; set; }
         public IEnumerable<UserSkill> userskills { get; set; }
         public IFormFile Avatar { get; set; }
+        public IEnumerable<Shift> shift { get; set; }
     }
 }

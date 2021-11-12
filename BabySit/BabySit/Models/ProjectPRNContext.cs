@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.Extensions.Configuration;
@@ -17,6 +18,18 @@ namespace BabySit.Models
         public ProjectPRNContext(DbContextOptions<ProjectPRNContext> options)
             : base(options)
         {
+        }
+
+        SqlConnection connection;
+        // Khai báo đối tượng thực thi các truy vấn
+        SqlCommand command;
+        string GetConnectionString()
+        {
+            IConfiguration config = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json", true, true)
+                .Build();
+            return config["ConnectionStrings:ProjectPRNDB"];
         }
 
         public virtual DbSet<FeedBack> FeedBacks { get; set; }
@@ -211,6 +224,83 @@ AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
             });
 
             OnModelCreatingPartial(modelBuilder);
+        }
+
+        public int RemoveUserSkills(int userId)
+        {
+            int result = 0;
+            connection = new SqlConnection(GetConnectionString());
+            string sql = " delete  from UserSkills where UserID = @userid";
+            command = new SqlCommand(sql, connection);
+            command.Parameters.AddWithValue("@userid", userId);
+            try
+            {
+                connection.Open();
+                result = command.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return result;
+
+        }
+        public int AddUserSkills(int userId, string skillId)
+        {
+            int result = 0;
+            connection = new SqlConnection(GetConnectionString());
+            string sql = "  insert into UserSkills (UserID, SkillID) values (@userid,@skillid)";
+            command = new SqlCommand(sql, connection);
+            command.Parameters.AddWithValue("@userid", userId);
+            command.Parameters.AddWithValue("@skillid", skillId);
+            try
+            {
+                connection.Open();
+                result = command.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return result;
+        }
+
+        public int UpdateShift(int id, int day, string morning, string afternoon, string night)
+        {
+            int result = 0;
+            connection = new SqlConnection(GetConnectionString());
+            string sql = "   update Shift set Morning = @morning, Afternoon = @afternoon,Night = @night where BabySitterID = @userid and Date = @date";
+            command = new SqlCommand(sql, connection);
+            command.Parameters.AddWithValue("@userid", id);
+            command.Parameters.AddWithValue("@date", day);
+            command.Parameters.AddWithValue("@morning", morning);
+            command.Parameters.AddWithValue("@afternoon", afternoon);
+            command.Parameters.AddWithValue("@night", night);
+            try
+            {
+                connection.Open();
+                result = command.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return result;
         }
 
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);

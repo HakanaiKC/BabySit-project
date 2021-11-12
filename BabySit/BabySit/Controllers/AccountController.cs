@@ -28,6 +28,23 @@ namespace BabySit.Controllers
             {
                 if (HttpContext.Session.GetInt32("SessionCode") == verify.CodeInput)
                 {
+                    sessionUser.ProvinceId = 65;
+
+                    if (sessionUser.Role == 2)
+                    {
+                        for (int i = 2; i < 9; i++) 
+                        {
+                            Shift shift = new Shift();
+                            shift.BabySitterId = sessionUser.UserId;
+                            shift.Date = i;
+                            shift.Morning = false;
+                            shift.Afternoon = false;
+                            shift.Night = false;
+                            sessionUser.Shifts.Add(shift);
+                            db.SaveChanges();
+                        }
+                    }
+
                     db.Users.Add(sessionUser);
                     db.SaveChanges();
 
@@ -84,7 +101,7 @@ namespace BabySit.Controllers
                     HttpContext.Session.SetString("SessionID", JsonConvert.SerializeObject(userDetails));
                     if (TempData["path"] != null)
                     {
-                        string url = (string)TempData["path"];                        
+                        string url = (string)TempData["path"];
                         return Redirect(url);
                     }
                     else

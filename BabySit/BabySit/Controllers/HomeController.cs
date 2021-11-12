@@ -115,7 +115,7 @@ namespace BabySit.Controllers
         }
 
         [HttpGet]
-        public IActionResult Chat(int id)
+        public IActionResult CreateContract(int id)
         {
             if (HttpContext.Session.GetString("SessionID") != null)
             {
@@ -128,8 +128,6 @@ namespace BabySit.Controllers
                 {
                     ViewBag.role = 0;
                 }
-                int userid = (JsonConvert.DeserializeObject<User>(HttpContext.Session.GetString("SessionID"))).UserId;
-                ViewBag.id = userid;
                 return View();
             }
             else
@@ -215,13 +213,9 @@ namespace BabySit.Controllers
             return View(babysitter);
         }
 
+        [HttpGet]
         public IActionResult HomePage()
         {
-            var model = new Babysitter();
-            model.users = db.Users.Where(x => x.Role == 2 && x.Gender != null && x.SalaryPerHour != null && x.ProvinceId != null).ToList();
-            model.skills = db.Skills.ToList();
-            model.locations = db.Locations.ToList();
-
             if (HttpContext.Session.GetString("SessionID") != null)
             {
                 var role = (JsonConvert.DeserializeObject<User>(HttpContext.Session.GetString("SessionID"))).Role;
@@ -234,7 +228,98 @@ namespace BabySit.Controllers
                     ViewBag.role = 0;
                 }
             }
+            var model = new Babysitter();
+            model.users = db.Users.Where(x => x.Role == 2 && x.Gender != null && x.SalaryPerHour != null
+            && x.ProvinceId != null).ToList();
+            model.skills = db.Skills.ToList();
+            model.locations = db.Locations.ToList();
+            model.userskills = db.UserSkills.ToList();
+
             return View(model);
+        }
+
+        [HttpPost]
+        public IActionResult HomePage(Babysitter babysitter)
+        {
+            if (HttpContext.Session.GetString("SessionID") != null)
+            {
+                var role = (JsonConvert.DeserializeObject<User>(HttpContext.Session.GetString("SessionID"))).Role;
+                if (role > 0)
+                {
+                    ViewBag.role = role;
+                }
+                else
+                {
+                    ViewBag.role = 0;
+                }
+            }
+            try
+            {
+                var model = new Babysitter();
+                model.users = db.Users.Where(x => x.Role == 2 && x.Gender != null && x.SalaryPerHour != null
+               && x.ProvinceId != null).ToList();
+                model.locations = db.Locations.ToList();
+                model.shift = db.Shifts.ToList();
+
+                int Location = Int32.Parse(Request.Form["selectKhuVuc"]);
+                int Year = Int32.Parse(Request.Form["selectKinhNghiem"]);
+                String Time = Request.Form["selectTime"];
+                int Salary = Int32.Parse(Request.Form["selectMucLuong"]);
+
+                bool night = true, morning = true, afternoon = true;
+
+                if (!Time.Contains("1"))
+                {
+                    morning = false;
+                }
+                if (!Time.Contains("2"))
+                {
+                    afternoon = false;
+                }
+                if (!Time.Contains("3"))
+                {
+                    night = false;
+                }
+
+                var babyDetails = (from baby in model.users
+                                   join localtion in model.locations
+                                   on baby.ProvinceId equals localtion.ProvinceId
+                                   join shift in model.shift on baby.UserId equals shift.BabySitterId
+                                   where baby.ProvinceId == Location
+                                   && Year == baby.YearsOfExperience && baby.SalaryPerHour <= Salary
+                                   && shift.Morning == morning && shift.Afternoon == afternoon && shift.Night == night
+                                   select new User()
+                                   {
+                                       Name = baby.Name,
+                                       UserId = baby.UserId,
+                                       Avatar = baby.Avatar,
+                                       Gender = baby.Gender,
+                                       BirthOfDate = baby.BirthOfDate,
+                                       Phone = baby.Phone,
+                                       Province = baby.Province,
+                                       Description = baby.Description,
+                                       YearsOfExperience = baby.YearsOfExperience,
+                                       SalaryPerHour = baby.SalaryPerHour
+                                   });
+
+                babysitter = new Babysitter()
+                {
+                    users = babyDetails
+                };
+                ViewBag.test = Time;
+
+                return View(babysitter);
+            }
+            catch
+            {
+                var model = new Babysitter();
+                model.users = db.Users.Where(x => x.Role == 2 && x.Gender != null && x.SalaryPerHour != null
+                && x.ProvinceId != null).ToList();
+                model.skills = db.Skills.ToList();
+                model.locations = db.Locations.ToList();
+                model.userskills = db.UserSkills.ToList();
+                return View(model);
+            }
         }
 
         public static string convertToUnSign3(string s)
@@ -247,7 +332,7 @@ namespace BabySit.Controllers
         [HttpGet]
         public ActionResult Search(string searching)
         {
-            var model = new Search();
+            var model = new Babysitter();
             model.users = db.Users.Where(x => x.Role == 2 && x.Gender != null && x.SalaryPerHour != null && x.ProvinceId != null).ToList();
             model.skills = db.Skills.ToList();
             model.locations = db.Locations.ToList();
@@ -292,17 +377,16 @@ namespace BabySit.Controllers
                                  where (convertToUnSign3(baby.Name.ToLower()).Contains(convertToUnSign3(searching.ToLower())))
                                  select new Skill { SkillName = skills.SkillName, SkillId = skills.SkillId });
 
-                Search babysitter = new Search()
+                Babysitter babysitter = new Babysitter()
                 {
                     users = babyDetails,
                     skills = babySkill
                 };
                 ViewBag.search = searching;
-                return View(babysitter);
-
+                return View("HomePage", babysitter);
             }
 
-            return View(model);
+            return View("HomePage", model);
 
         }
 

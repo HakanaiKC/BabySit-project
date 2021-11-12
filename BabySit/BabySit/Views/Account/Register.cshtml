@@ -71,6 +71,21 @@
                         </div>
                     </div>
 
+                    <div class="form-group">
+                        <label class="form-label"
+                               for="password2">Bạn là:</label>
+                        <div class="radio-register row">
+                            <div class="radio-parent col-md-6">
+                                @Html.RadioButton("User.Gender", "true", true)
+                                <label>Phụ huynh</label>
+                            </div>
+                            <div class="radio-babysitter col-md-6">
+                                @Html.RadioButton("User.Gender", "false")
+                                <label>Bảo mẫu</label>
+                            </div>
+                        </div>
+                    </div>
+
                     <br />
                     <!--Submit-->
                     <div class="form-group text-center mb-0">
