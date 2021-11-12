@@ -28,37 +28,26 @@ namespace BabySit.Controllers
         [HttpGet]
         public ActionResult History()
         {
+            
             if (HttpContext.Session.GetString("SessionID") != null)
-            {
-                var role = (JsonConvert.DeserializeObject<User>(HttpContext.Session.GetString("SessionID"))).Role;
-                if (role > 0)
-                {
-                    ViewBag.role = role;
-                }
-                else
-                {
-                    ViewBag.role = 0;
-                }
+            { 
+                TempData["role"] = (JsonConvert.DeserializeObject<User>(HttpContext.Session.GetString("SessionID"))).Role;
+                TempData["ava"] = (JsonConvert.DeserializeObject<User>(HttpContext.Session.GetString("SessionID"))).Avatar;
+                var userID = (JsonConvert.DeserializeObject<User>(HttpContext.Session.GetString("SessionID"))).UserId;
+                var history = db.Payments.Where(h => h.UserId == userID).OrderBy(h => h.Status).ToList();
+                return View("History", history);
             }
-            var userID = (JsonConvert.DeserializeObject<User>(HttpContext.Session.GetString("SessionID"))).UserId;
-            var history = db.Payments.Where(h => h.UserId == userID).OrderBy(h => h.Status).ToList();
-            return View("History", history);
 
+            return RedirectToAction("Login", "Account");
 
         }
+
         public IActionResult Index()
         {
             if (HttpContext.Session.GetString("SessionID") != null)
             {
-                var role = (JsonConvert.DeserializeObject<User>(HttpContext.Session.GetString("SessionID"))).Role;
-                if (role > 0)
-                {
-                    ViewBag.role = role;
-                }
-                else
-                {
-                    ViewBag.role = 0;
-                }
+                TempData["ava"] = (JsonConvert.DeserializeObject<User>(HttpContext.Session.GetString("SessionID"))).Avatar;
+                TempData["role"] = (JsonConvert.DeserializeObject<User>(HttpContext.Session.GetString("SessionID"))).Role;
             }
             var userDetails = db.Users.Where(x => x.Role == 2).ToList();
             ViewData.Model = userDetails;
@@ -69,15 +58,7 @@ namespace BabySit.Controllers
         {
             if (HttpContext.Session.GetString("SessionID") != null)
             {
-                var role = (JsonConvert.DeserializeObject<User>(HttpContext.Session.GetString("SessionID"))).Role;
-                if (role > 0)
-                {
-                    ViewBag.role = role;
-                }
-                else
-                {
-                    ViewBag.role = 0;
-                }
+                TempData["role"] = (JsonConvert.DeserializeObject<User>(HttpContext.Session.GetString("SessionID"))).Role;
             }
             return View();
         }
@@ -87,15 +68,8 @@ namespace BabySit.Controllers
         {
             if (HttpContext.Session.GetString("SessionID") != null)
             {
-                var role = (JsonConvert.DeserializeObject<User>(HttpContext.Session.GetString("SessionID"))).Role;
-                if (role > 0)
-                {
-                    ViewBag.role = role;
-                }
-                else
-                {
-                    ViewBag.role = 0;
-                }
+                TempData["ava"] = (JsonConvert.DeserializeObject<User>(HttpContext.Session.GetString("SessionID"))).Avatar;
+                TempData["role"] = (JsonConvert.DeserializeObject<User>(HttpContext.Session.GetString("SessionID"))).Role;
             }
             var model = new Babysitter();
             model.users = db.Users.Where(x => x.Role == 2 && x.Gender != null && x.SalaryPerHour != null && x.ProvinceId != null).ToList();
@@ -137,102 +111,105 @@ namespace BabySit.Controllers
         }
 
         [HttpGet]
-        public IActionResult CreateContract(int id)
-        {
+        public IActionResult Chat(int id)
+        {           
             if (HttpContext.Session.GetString("SessionID") != null)
             {
-                var role = (JsonConvert.DeserializeObject<User>(HttpContext.Session.GetString("SessionID"))).Role;
-                if (role > 0)
+                TempData["ava"] = (JsonConvert.DeserializeObject<User>(HttpContext.Session.GetString("SessionID"))).Avatar;
+                TempData["role"] = (JsonConvert.DeserializeObject<User>(HttpContext.Session.GetString("SessionID"))).Role;
+                var userID = (JsonConvert.DeserializeObject<User>(HttpContext.Session.GetString("SessionID"))).UserId;
+                var money = (from pay in db.Payments.Where(x => x.UserId == userID) select pay.Money).FirstOrDefault();
+                if (money >= 100000)
                 {
-                    ViewBag.role = role;
+                    var model = new Babysitter();
+                    model.users = db.Users.Where(x => x.Role == 2).ToList();
+                    var babyDetails = (from baby in model.users
+                                       where baby.UserId == id
+                                       select new User()
+                                       {
+                                           Email = baby.Email,
+                                           Phone = baby.Phone,
+                                       });
+                    Babysitter babysitter = new Babysitter()
+                    {
+                        users = babyDetails
+                    };
+                    return View(babysitter);
                 }
                 else
                 {
-                    ViewBag.role = 0;
+                    return View("Payment");
                 }
-                return View();
             }
-            else
-            {
-                Uri myUri = new Uri($"http://localhost:39977/Home/CreateContract/{id}");
-                string pathpart = myUri.PathAndQuery;
-                TempData["path"] = pathpart;
-                return RedirectToAction("Login", "Account");
-            }
+            return RedirectToAction("Login", "Account");
         }
 
         public IActionResult EditProfile()
-        {
+        {            
             if (HttpContext.Session.GetString("SessionID") != null)
             {
-                var role = (JsonConvert.DeserializeObject<User>(HttpContext.Session.GetString("SessionID"))).Role;
-                if (role > 0)
+                TempData["ava"] = (JsonConvert.DeserializeObject<User>(HttpContext.Session.GetString("SessionID"))).Avatar;
+                TempData["role"] = (JsonConvert.DeserializeObject<User>(HttpContext.Session.GetString("SessionID"))).Role;
+                int id = (JsonConvert.DeserializeObject<User>(HttpContext.Session.GetString("SessionID"))).UserId;
+                var model = new Babysitter();
+                model.users = db.Users.ToList();
+                model.skills = db.Skills.ToList();
+                model.locations = db.Locations.ToList();
+                model.userskills = db.UserSkills.ToList();
+
+                var babyDetails = (from baby in model.users
+                                   join localtion in model.locations
+                                   on baby.ProvinceId equals localtion.ProvinceId
+                                   where baby.UserId == id
+                                   select new User()
+                                   {
+                                       Name = baby.Name,
+                                       UserId = baby.UserId,
+                                       Avatar = baby.Avatar,
+                                       Gender = baby.Gender,
+                                       BirthOfDate = baby.BirthOfDate,
+                                       Phone = baby.Phone,
+                                       Province = baby.Province,
+                                       Description = baby.Description,
+                                       YearsOfExperience = baby.YearsOfExperience,
+                                       SalaryPerHour = baby.SalaryPerHour
+                                   });
+
+                var babySkill = (from baby in model.users
+                                 join userskill in model.userskills on baby.UserId equals userskill.UserId
+                                 join skills in model.skills on userskill.SkillId equals skills.SkillId
+                                 where baby.UserId == id
+                                 select new Skill { SkillName = skills.SkillName, SkillId = skills.SkillId });
+
+                Babysitter babysitter = new Babysitter()
                 {
-                    ViewBag.role = role;
-                }
-                else
+                    users = babyDetails,
+                    skills = babySkill
+                };
+
+                var CheckSkills = new List<CheckSkill>();
+                foreach (var item in model.skills)
                 {
-                    ViewBag.role = 0;
-                }
-            }
-            int id = (JsonConvert.DeserializeObject<User>(HttpContext.Session.GetString("SessionID"))).UserId;
-            var model = new Babysitter();
-            model.users = db.Users.ToList();
-            model.skills = db.Skills.ToList();
-            model.locations = db.Locations.ToList();
-            model.userskills = db.UserSkills.ToList();
-
-            var babyDetails = (from baby in model.users
-                               join localtion in model.locations
-                               on baby.ProvinceId equals localtion.ProvinceId
-                               where baby.UserId == id
-                               select new User()
-                               {
-                                   Name = baby.Name,
-                                   UserId = baby.UserId,
-                                   Avatar = baby.Avatar,
-                                   Gender = baby.Gender,
-                                   BirthOfDate = baby.BirthOfDate,
-                                   Phone = baby.Phone,
-                                   Province = baby.Province,
-                                   Description = baby.Description,
-                                   YearsOfExperience = baby.YearsOfExperience,
-                                   SalaryPerHour = baby.SalaryPerHour
-                               });
-
-            var babySkill = (from baby in model.users
-                             join userskill in model.userskills on baby.UserId equals userskill.UserId
-                             join skills in model.skills on userskill.SkillId equals skills.SkillId
-                             where baby.UserId == id
-                             select new Skill { SkillName = skills.SkillName, SkillId = skills.SkillId });
-
-            Babysitter babysitter = new Babysitter()
-            {
-                users = babyDetails,
-                skills = babySkill
-            };
-
-            var CheckSkills = new List<CheckSkill>();
-            foreach (var item in model.skills)
-            {
-                bool check = false;
-                foreach (var item2 in babySkill)
-                {
-                    if (item.SkillId == item2.SkillId)
+                    bool check = false;
+                    foreach (var item2 in babySkill)
                     {
-                        check = true;
-                        break;
+                        if (item.SkillId == item2.SkillId)
+                        {
+                            check = true;
+                            break;
+                        }
                     }
+                    CheckSkills.Add(new CheckSkill(item.SkillId, item.SkillName, check));
                 }
-                CheckSkills.Add(new CheckSkill(item.SkillId, item.SkillName, check));
-            }
 
-            ViewBag.test = id;
-            ViewBag.Skill = CheckSkills.Where(x => x.SkillId < 6);
-            ViewBag.CheckSkills = CheckSkills.Where(x => x.SkillId >= 6);
-            ViewBag.locations = db.Locations.ToList();
-            ViewBag.Shift = db.Shifts.Where(c => c.BabySitterId == id).ToList();
-            return View(babysitter);
+                ViewBag.test = id;
+                ViewBag.Skill = CheckSkills.Where(x => x.SkillId < 6);
+                ViewBag.CheckSkills = CheckSkills.Where(x => x.SkillId >= 6);
+                ViewBag.locations = db.Locations.ToList();
+                ViewBag.Shift = db.Shifts.Where(c => c.BabySitterId == id).ToList();
+                return View(babysitter);
+            }
+            return RedirectToAction("Login", "Account");
         }
 
         [HttpGet]
@@ -240,15 +217,8 @@ namespace BabySit.Controllers
         {
             if (HttpContext.Session.GetString("SessionID") != null)
             {
-                var role = (JsonConvert.DeserializeObject<User>(HttpContext.Session.GetString("SessionID"))).Role;
-                if (role > 0)
-                {
-                    ViewBag.role = role;
-                }
-                else
-                {
-                    ViewBag.role = 0;
-                }
+                TempData["ava"] = (JsonConvert.DeserializeObject<User>(HttpContext.Session.GetString("SessionID"))).Avatar;
+                TempData["role"] = (JsonConvert.DeserializeObject<User>(HttpContext.Session.GetString("SessionID"))).Role;
             }
             var model = new Babysitter();
             model.users = db.Users.Where(x => x.Role == 2 && x.Gender != null && x.SalaryPerHour != null
@@ -265,15 +235,8 @@ namespace BabySit.Controllers
         {
             if (HttpContext.Session.GetString("SessionID") != null)
             {
-                var role = (JsonConvert.DeserializeObject<User>(HttpContext.Session.GetString("SessionID"))).Role;
-                if (role > 0)
-                {
-                    ViewBag.role = role;
-                }
-                else
-                {
-                    ViewBag.role = 0;
-                }
+                TempData["ava"] = (JsonConvert.DeserializeObject<User>(HttpContext.Session.GetString("SessionID"))).Avatar;
+                TempData["role"] = (JsonConvert.DeserializeObject<User>(HttpContext.Session.GetString("SessionID"))).Role;
             }
             try
             {
@@ -354,24 +317,16 @@ namespace BabySit.Controllers
         [HttpGet]
         public ActionResult Search(string searching)
         {
+            if (HttpContext.Session.GetString("SessionID") != null)
+            {
+                TempData["ava"] = (JsonConvert.DeserializeObject<User>(HttpContext.Session.GetString("SessionID"))).Avatar;
+                TempData["role"] = (JsonConvert.DeserializeObject<User>(HttpContext.Session.GetString("SessionID"))).Role;
+            }
             var model = new Babysitter();
             model.users = db.Users.Where(x => x.Role == 2 && x.Gender != null && x.SalaryPerHour != null && x.ProvinceId != null).ToList();
             model.skills = db.Skills.ToList();
             model.locations = db.Locations.ToList();
             model.userskills = db.UserSkills.ToList();
-
-            if (HttpContext.Session.GetString("SessionID") != null)
-            {
-                var role = (JsonConvert.DeserializeObject<User>(HttpContext.Session.GetString("SessionID"))).Role;
-                if (role > 0)
-                {
-                    ViewBag.role = role;
-                }
-                else
-                {
-                    ViewBag.role = 0;
-                }
-            }
 
             if (!string.IsNullOrEmpty(searching))
             {
@@ -417,15 +372,8 @@ namespace BabySit.Controllers
         {
             if (HttpContext.Session.GetString("SessionID") != null)
             {
-                var role = (JsonConvert.DeserializeObject<User>(HttpContext.Session.GetString("SessionID"))).Role;
-                if (role > 0)
-                {
-                    ViewBag.role = role;
-                }
-                else
-                {
-                    ViewBag.role = 0;
-                }
+                TempData["ava"] = (JsonConvert.DeserializeObject<User>(HttpContext.Session.GetString("SessionID"))).Avatar;
+                TempData["role"] = (JsonConvert.DeserializeObject<User>(HttpContext.Session.GetString("SessionID"))).Role;
             }
             int userId = (JsonConvert.DeserializeObject<User>(HttpContext.Session.GetString("SessionID"))).UserId;
             String PhoneNumber = Request.Form["PhoneNumber"];
@@ -450,24 +398,25 @@ namespace BabySit.Controllers
         [HttpGet]
         public IActionResult Payment()
         {
+            
             if (HttpContext.Session.GetString("SessionID") != null)
             {
-                var role = (JsonConvert.DeserializeObject<User>(HttpContext.Session.GetString("SessionID"))).Role;
-                if (role > 0)
-                {
-                    ViewBag.role = role;
-                }
-                else
-                {
-                    ViewBag.role = 0;
-                }
+                TempData["ava"] = (JsonConvert.DeserializeObject<User>(HttpContext.Session.GetString("SessionID"))).Avatar;
+                TempData["role"] = (JsonConvert.DeserializeObject<User>(HttpContext.Session.GetString("SessionID"))).Role;
+                return View();
             }
-            return View();
+            return RedirectToAction("Login", "Account");
+
         }
 
         [HttpGet]
         public IActionResult Feedback(int babysitterId, string feedback, int myField)
         {
+            if (HttpContext.Session.GetString("SessionID") != null)
+            {
+                TempData["ava"] = (JsonConvert.DeserializeObject<User>(HttpContext.Session.GetString("SessionID"))).Avatar;
+                TempData["role"] = (JsonConvert.DeserializeObject<User>(HttpContext.Session.GetString("SessionID"))).Role;
+            }
             int parentId = (JsonConvert.DeserializeObject<User>(HttpContext.Session.GetString("SessionID"))).UserId;
             var feedbacks = db.FeedBacks.ToList();
             var feedbackindb = (from c in feedbacks

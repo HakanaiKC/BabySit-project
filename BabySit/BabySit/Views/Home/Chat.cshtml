@@ -1,47 +1,17 @@
-﻿@page
-@{
-    Layout = null;
-}
+﻿
 @model BabySit.Database_Access.Babysitter
 
-
-<div class="container">
-    <div class="row">
-        <div class="col-3">Connection Id</div>
-        <div class="col-6"><span id="connectionId" /></div>
-    </div>
-    <div class="row">&nbsp;</div>
-    <div class="row">
-        <div class="col-2"></div>
-        <div class="col-4"><input type="text" id="userInput" /></div>
-
-    </div>
-    <div class="row">
-        <div class="col-2">Message</div>
-        <div class="col-4"><input type="text" id="messageInput" /></div>
-    </div>
-    <div class="row">
-        <div class="col-2">Receiver Id</div>
-        <div class="col-4"><input type="text" id="receiverId" /></div>
-    </div>
-
-    <div class="row">&nbsp;</div>
-    <div class="row">
-        <div class="col-6">
-            <input type="button" id="sendToUser" value="Send Message" />&nbsp;&nbsp;
+<div class="container" style="padding-top:103px;">
+    @foreach (var item in Model.users)
+    {
+        <div class="row">
+            <div class="col-2">Gmail</div>
+            <div class="col-4"><h3>@Html.DisplayFor(model => item.Email)</h3></div>
         </div>
-    </div>
+        <div class="row">
+            <div class="col-2">Phone</div>
+            <div class="col-4"><h3>@Html.DisplayFor(model => item.Phone)</h3></div>
+        </div>
+    }
 </div>
-<div class="row">
-    <div class="col-12">
-        <hr />
-    </div>
-</div>
-<div class="row">
-    <div class="col-6">
-        <ul id="messagesList"></ul>
-    </div>
-</div>
-<script src="~/microsoft/signalr/dist/browser/signalr.js"></script>
-<script src="~/js/Chat.js"></script>
 

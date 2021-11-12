@@ -22,7 +22,7 @@
 </head>
 <body>
     <nav class="navbar navbar-expand-sm bg-light fixed-top">
-        @if (ViewBag.role > 0)
+        @if (TempData["role"] != null)
         {
             <a class="navbar-brand" asp-controller="Home" asp-action="HomePage">
                 <img src="~/images/logo.png" alt="BabySit">
@@ -38,14 +38,14 @@
             <li class="nav-item">
                 <a class="nav-link" asp-controller="Home" asp-action="ContactUs">Liên hệ</a>
             </li>
-            @if (ViewBag.role > 0)
+            @if (TempData["role"] != null)
             {
                 <li class="nav-item dropdown ml-1 ml-md-3">
                     <a class="nav-link dropdown-toggle"
                        data-toggle="dropdown"
                        href="#"
                        role="button">
-                        <img src="@ViewBag.avatar "
+                        <img src="~/images/@TempData["ava"]"
                              alt="Avatar"
                              class="rounded-circle"
                              width="40">

@@ -136,7 +136,7 @@
                         <br />
 
 
-                        @if (ViewBag.role == 2)
+                        @if (TempData["role"] != null && (int)TempData["role"] == 2)
                         {
                             <h3>Phần dành riêng cho bảo mẫu</h3>
                             <!--Lương-->

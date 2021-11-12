@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\nxhai\\OneDrive\\Desktop\\Babysitter\\BabySit\\BabySit\\BabySit.csproj": {}
+    "C:\\Users\\bekim\\OneDrive\\Máy tính\\pr3\\BabySit\\BabySit\\BabySit.csproj": {}
   },
   "projects": {
-    "C:\\Users\\nxhai\\OneDrive\\Desktop\\Babysitter\\BabySit\\BabySit\\BabySit.csproj": {
+    "C:\\Users\\bekim\\OneDrive\\Máy tính\\pr3\\BabySit\\BabySit\\BabySit.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\nxhai\\OneDrive\\Desktop\\Babysitter\\BabySit\\BabySit\\BabySit.csproj",
+        "projectUniqueName": "C:\\Users\\bekim\\OneDrive\\Máy tính\\pr3\\BabySit\\BabySit\\BabySit.csproj",
         "projectName": "BabySit",
-        "projectPath": "C:\\Users\\nxhai\\OneDrive\\Desktop\\Babysitter\\BabySit\\BabySit\\BabySit.csproj",
-        "packagesPath": "C:\\Users\\nxhai\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\nxhai\\OneDrive\\Desktop\\Babysitter\\BabySit\\BabySit\\obj\\",
+        "projectPath": "C:\\Users\\bekim\\OneDrive\\Máy tính\\pr3\\BabySit\\BabySit\\BabySit.csproj",
+        "packagesPath": "C:\\Users\\bekim\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\bekim\\OneDrive\\Máy tính\\pr3\\BabySit\\BabySit\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\nxhai\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\bekim\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -81,7 +81,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.403\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.400\\RuntimeIdentifierGraph.json"
         }
       }
     }

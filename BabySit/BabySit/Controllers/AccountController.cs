@@ -22,6 +22,11 @@ namespace BabySit.Controllers
         [HttpPost]
         public IActionResult Verify(VerifyCode verify, User user)
         {
+            if (HttpContext.Session.GetString("SessionID") != null)
+            {
+                TempData["role"] = (JsonConvert.DeserializeObject<User>(HttpContext.Session.GetString("SessionID"))).Role;
+                TempData["ava"] = (JsonConvert.DeserializeObject<User>(HttpContext.Session.GetString("SessionID"))).Avatar;
+            }
             var sessionUser = JsonConvert.DeserializeObject<User>(HttpContext.Session.GetString("SessionUser"));
 
             using (ProjectPRNContext db = new ProjectPRNContext())
@@ -65,15 +70,9 @@ namespace BabySit.Controllers
         {
             if (HttpContext.Session.GetString("SessionID") != null)
             {
-                var role = (JsonConvert.DeserializeObject<User>(HttpContext.Session.GetString("SessionID"))).Role;
-                if (role > 0)
-                {
-                    ViewBag.role = role;
-                }
-                else
-                {
-                    ViewBag.role = 0;
-                }
+                TempData["role"] = (JsonConvert.DeserializeObject<User>(HttpContext.Session.GetString("SessionID"))).Role;
+                TempData["ava"] = (JsonConvert.DeserializeObject<User>(HttpContext.Session.GetString("SessionID"))).Avatar;
+
                 var avatar = (JsonConvert.DeserializeObject<User>(HttpContext.Session.GetString("SessionID"))).Avatar;
                 if (avatar!=null)
                 {
@@ -135,15 +134,8 @@ namespace BabySit.Controllers
         {
             if (HttpContext.Session.GetString("SessionID") != null)
             {
-                var role = (JsonConvert.DeserializeObject<User>(HttpContext.Session.GetString("SessionID"))).Role;
-                if (role > 0)
-                {
-                    ViewBag.role = role;
-                }
-                else
-                {
-                    ViewBag.role = 0;
-                }
+                TempData["role"] = (JsonConvert.DeserializeObject<User>(HttpContext.Session.GetString("SessionID"))).Role;
+                TempData["ava"] = (JsonConvert.DeserializeObject<User>(HttpContext.Session.GetString("SessionID"))).Avatar;
             }
             UserRegister userRegister = new UserRegister();
             return View();
@@ -152,6 +144,11 @@ namespace BabySit.Controllers
         [HttpPost]
         public IActionResult Register(User user, UserRegister userRegister)
         {
+            if (HttpContext.Session.GetString("SessionID") != null)
+            {
+                TempData["role"] = (JsonConvert.DeserializeObject<User>(HttpContext.Session.GetString("SessionID"))).Role;
+                TempData["ava"] = (JsonConvert.DeserializeObject<User>(HttpContext.Session.GetString("SessionID"))).Avatar;
+            }
             user.RegisterDate = DateTime.Now;
             Random random = new Random();
             VerifyCode verifyCode = new VerifyCode();
@@ -210,15 +207,8 @@ namespace BabySit.Controllers
         {
             if (HttpContext.Session.GetString("SessionID") != null)
             {
-                var role = (JsonConvert.DeserializeObject<User>(HttpContext.Session.GetString("SessionID"))).Role;
-                if (role > 0)
-                {
-                    ViewBag.role = role;
-                }
-                else
-                {
-                    ViewBag.role = 0;
-                }
+                TempData["role"] = (JsonConvert.DeserializeObject<User>(HttpContext.Session.GetString("SessionID"))).Role;
+                TempData["ava"] = (JsonConvert.DeserializeObject<User>(HttpContext.Session.GetString("SessionID"))).Avatar;
             }
             return View("ForgotPass");
         }
@@ -226,6 +216,11 @@ namespace BabySit.Controllers
         [HttpPost]
         public IActionResult ForgotPass(User user)
         {
+            if (HttpContext.Session.GetString("SessionID") != null)
+            {
+                TempData["role"] = (JsonConvert.DeserializeObject<User>(HttpContext.Session.GetString("SessionID"))).Role;
+                TempData["ava"] = (JsonConvert.DeserializeObject<User>(HttpContext.Session.GetString("SessionID"))).Avatar;
+            }
             Random random = new Random();
             VerifyCode verifyCode = new VerifyCode();
             verifyCode.CodeSend = random.Next(10000000, 99999999);

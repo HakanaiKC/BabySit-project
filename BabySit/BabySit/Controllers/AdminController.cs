@@ -22,53 +22,43 @@ namespace BabySit.Controllers
         [HttpGet]
         public IActionResult AdminConfirmPremium()
         {
-            if (HttpContext.Session.GetString("SessionID") != null)
+            if (HttpContext.Session.GetString("SessionAdmin") != null)
             {
-                var role = (JsonConvert.DeserializeObject<User>(HttpContext.Session.GetString("SessionID"))).Role;
-                if (role > 0)
-                {
-                    ViewBag.role = role;
-                }
-                else
-                {
-                    ViewBag.role = 0;
-                }
-            }
-            var model = new Babysitter();
-            model.payment = db.Payments.ToList();
-            model.users = db.Users.ToList();
+                TempData["ava"] = (JsonConvert.DeserializeObject<User>(HttpContext.Session.GetString("SessionAdmin"))).Avatar;
+                var model = new Babysitter();
+                model.payment = db.Payments.ToList();
+                model.users = db.Users.ToList();
 
-            return View(model);
+                return View(model);
+            }
+            return RedirectToAction("Login", "Account");
         }
         [HttpPost]
         public IActionResult AdminConfirmPremium(Babysitter baby)
         {
-            if (HttpContext.Session.GetString("SessionID") != null)
+            if (HttpContext.Session.GetString("SessionAdmin") != null)
             {
-                var role = (JsonConvert.DeserializeObject<User>(HttpContext.Session.GetString("SessionID"))).Role;
-                if (role > 0)
+                TempData["ava"] = (JsonConvert.DeserializeObject<User>(HttpContext.Session.GetString("SessionAdmin"))).Avatar;
+                var model = new Babysitter();
+                model.payment = db.Payments.ToList();
+                model.users = db.Users.ToList();
+                int paymentId = Int32.Parse(Request.Form["paymentId"]);
+                int userId = Int32.Parse(Request.Form["userId"]);
+                var dataPayment = db.Payments.FirstOrDefault(x => x.PaymentId == paymentId);
+                if (dataPayment != null)
                 {
-                    ViewBag.role = role;
+                    dataPayment.Status = true;
                 }
-            }
-            var model = new Babysitter();
-            model.payment = db.Payments.ToList();
-            model.users = db.Users.ToList();
-            int paymentId = Int32.Parse(Request.Form["paymentId"]);
-            int userId = Int32.Parse(Request.Form["userId"]);
-            var dataPayment = db.Payments.FirstOrDefault(x => x.PaymentId == paymentId);
-            if (dataPayment != null)
-            {
-                dataPayment.Status = true;
-            }
 
-            var dataUser = db.Users.FirstOrDefault(x => x.UserId == userId);
-            if (dataUser != null)
-            {
-                dataUser.Status = 1;
+                var dataUser = db.Users.FirstOrDefault(x => x.UserId == userId);
+                if (dataUser != null)
+                {
+                    dataUser.Status = 1;
+                }
+                db.SaveChanges();
+                return View(model);
             }
-            db.SaveChanges();
-            return View(model);
+            return RedirectToAction("Login", "Account");
         }
 
         public IActionResult AdminUserManagement()

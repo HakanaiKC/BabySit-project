@@ -50,26 +50,26 @@
 
 
                 @*Contract*@
-            <div class="contract col-md-4 card" style="margin:auto;">
-                <h3>Mức lương yêu cầu</h3>
-                <strong>@Html.DisplayFor(model => item.SalaryPerHour) VND/ giờ</strong>
-                <div class="card-body">
-                    @Html.ActionLink("Tạo hợp đồng", "CreateContract", new { id = item.UserId }, new { @class = "btn btn-success btn-block" })
-                </div>
-                @if (ViewBag.role == 1)
-                {
-                    <button type="button" class="btn btn-link" data-toggle="modal" data-target="#exampleModal">
-                        feedback
-                    </button>
-                }
-                <div class="col-md-4">
-                    <form asp-controller="Home" asp-action="Favorite" method="get">
-                        <button type="button" class="btn btn-default btn-sm">
-                            <i class="fas fa-heart"></i>
+                <div class="contract col-md-4 card" style="margin:auto;">
+                    <h3>Mức lương yêu cầu</h3>
+                    <strong>@Html.DisplayFor(model => item.SalaryPerHour) VND/ giờ</strong>
+                    <div class="card-body">
+                        @Html.ActionLink("Liên hệ bảo mẫu", "Chat", new { id = item.UserId }, new { @class = "btn btn-success btn-block" })
+                    </div>
+                    @if (TempData["role"] != null && (int)TempData["role"] == 1)
+                    {
+                        <button type="button" class="btn btn-link" data-toggle="modal" data-target="#exampleModal">
+                            feedback
                         </button>
-                    </form>
+                    }
+                    <div class="col-md-4">
+                        <form asp-controller="Home" asp-action="Favorite" method="get">
+                            <button type="button" class="btn btn-default btn-sm">
+                                <i class="fas fa-heart"></i>
+                            </button>
+                        </form>
+                    </div>
                 </div>
-            </div>
             </div>
 
 
