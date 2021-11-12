@@ -122,9 +122,9 @@
         <div class="card search col-md-9" style=" padding: 0;">
             <div class="box">
                 <form asp-controller="Home" asp-action="Search" method="get">
-                    <div class="container-1">
+                    <div class="container-1" style=" height: 80px; display: flex; align-content: center;">
                         <input type="search" id="search" name="searching" value="@ViewBag.search" placeholder="Tìm kiếm..." />
-                        <button class="icon" type="submit"><i class="fa fa-search"></i></button>
+                        <button class="icon" type="submit" style="padding:2px;"><i class="fa fa-search"></i></button>
                     </div>
                 </form>
             </div>
