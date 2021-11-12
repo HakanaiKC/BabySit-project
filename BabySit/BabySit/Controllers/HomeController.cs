@@ -87,9 +87,11 @@ namespace BabySit.Controllers
         {
             if (HttpContext.Session.GetString("SessionID") != null)
             {
-                var role = (JsonConvert.DeserializeObject<User>(HttpContext.Session.GetString("SessionID"))).Role;
+               var role = (JsonConvert.DeserializeObject<User>(HttpContext.Session.GetString("SessionID"))).Role;
+                var status = (JsonConvert.DeserializeObject<User>(HttpContext.Session.GetString("SessionID"))).Status;
                 if (role > 0)
                 {
+                    ViewBag.status = status;
                     ViewBag.role = role;
                 }
                 else
