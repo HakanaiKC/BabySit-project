@@ -8065,19 +8065,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\nxhai\\.nuget\\packages\\": {}
+    "C:\\Users\\Admin\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\nxhai\\OneDrive\\Desktop\\PRN Cuong\\BabySit\\BabySit\\BabySit.csproj",
+      "projectUniqueName": "D:\\Software\\Fall21\\PRN211\\Project\\Payment\\BabySit\\BabySit\\BabySit.csproj",
       "projectName": "BabySit",
-      "projectPath": "C:\\Users\\nxhai\\OneDrive\\Desktop\\PRN Cuong\\BabySit\\BabySit\\BabySit.csproj",
-      "packagesPath": "C:\\Users\\nxhai\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\nxhai\\OneDrive\\Desktop\\PRN Cuong\\BabySit\\BabySit\\obj\\",
+      "projectPath": "D:\\Software\\Fall21\\PRN211\\Project\\Payment\\BabySit\\BabySit\\BabySit.csproj",
+      "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
+      "outputPath": "D:\\Software\\Fall21\\PRN211\\Project\\Payment\\BabySit\\BabySit\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\nxhai\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
