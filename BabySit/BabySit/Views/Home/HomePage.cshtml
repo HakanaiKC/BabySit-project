@@ -48,7 +48,7 @@
         @using (Html.BeginForm("HomePage", "Home", FormMethod.Post))
         {
         <div class="khuvuc" style="padding: 1em; margin: auto;">
-            <label>Khu vực</label>@ViewBag.test1
+            <label>Khu vực</label>
         <select name="selectKhuVuc" title="Chọn khu vực" id="selectKhuVuc" class="selectpicker" data-style="btn-success" data-width="150px" data-size="10">
             <option value="100" style="font-size:18px;" selected>&#60; Tất cả </option>
             @foreach (var itemm in province)
@@ -59,7 +59,7 @@
         </div>
             
             <div class="kinhnghiem" style="padding: 1em; margin: auto;">
-                <label>Kinh nghiệm</label>@ViewBag.test2
+                <label>Kinh nghiệm</label>
                 <select  name="selectKinhNghiem" title="Yêu cầu kinh nghiệm" id="selectKinhNghiem" class="selectpicker" data-style="btn-success" data-width="150px">
                     <option value="0" style="font-size:18px;" selected> Tất cả </option>
                     <option value="1" style="font-size:18px;">&#62;&#61; 1 năm</option>
@@ -70,9 +70,9 @@
                 </select>
             </div>
 
-            @ViewBag.test5
+            
             <div class="thoigian" style="padding: 1em; margin: auto;">
-                <label>Thời gian làm việc</label>@ViewBag.test
+                <label>Thời gian làm việc</label>
                 <div class="multiselect">
                     <div class="selectBox" onclick="showCheckboxes()">
                         <select name="selectThoiGian" title="Chọn thời gian" id="selectThoiGian" class="selectpicker" data-style="btn-success" data-width="150px">
@@ -94,9 +94,9 @@
                     </div>
                 </div>
             </div>
-            @ViewBag.test6
+            
             <div class="mucluong" style="padding: 1em; margin: auto;">
-                <label>Mức lương yêu cầu</label>@ViewBag.test3
+                <label>Mức lương yêu cầu</label>
                 <select  name="selectMucLuong" title="Chọn mức lương" id="selectMucLuong" class="selectpicker" data-style="btn-success" data-width="150px" data-size="6">
                     <option value="1000000" style="font-size:18px;" selected>Tất cả </option>
                     <option value="20000" style="font-size:18px;">&#60; 20000 vnd/h</option>
@@ -117,7 +117,7 @@
         }
 
     </div>
-    @ViewBag.test4
+    
     <div class="row" style="margin-left: 300px;">
         <div class="card search col-md-9" style=" padding: 0;">
             <div class="box">
