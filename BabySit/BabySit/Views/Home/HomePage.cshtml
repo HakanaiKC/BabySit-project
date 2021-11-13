@@ -49,12 +49,12 @@
         {
         <div class="khuvuc" style="padding: 1em; margin: auto;">
             <label>Khu vực</label>
-        <select name="selectKhuVuc" title="Chọn khu vực" id="selectKhuVuc" class="selectpicker" data-style="btn-success" data-width="150px" data-size="10">
+         <select name="selectKhuVuc" title="Chọn khu vực" id="selectKhuVuc" class="selectpicker" data-style="btn-success" data-width="150px" data-size="10">
             <option value="100" style="font-size:18px;" selected>&#60; Tất cả </option>
             @foreach (var itemm in province)
             {
-        <option value="@itemm.ProvinceId" style="font-size:18px;">@itemm.ProvinceName</option>
-}
+         <option value="@itemm.ProvinceId" style="font-size:18px;">@itemm.ProvinceName</option>
+            }
         </select>
         </div>
             

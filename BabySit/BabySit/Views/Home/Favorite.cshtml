@@ -1,13 +1,14 @@
-﻿@{
+﻿@model BabySit.Database_Access.Babysitter;
+@{
     ViewData["Title"] = "Trang chủ";
-    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+
 }
-@*@model IEnumerable<BabySit.Models.Favorite>;*@
+
 <link rel="stylesheet" href="~/css/HomePage.css">
 
-<div>
+<div style="margin-top: 200px">
     <div class="row" style="margin-left: 320px; padding-top:20px;">
-        
+
         @foreach (var item in Model.users)
         {
 
@@ -20,13 +21,14 @@
                         <div class="col-lg-8">
                             <div class="card-body">
                                 <div class="info-1 row">
-                                    <h3 class="card-title col-md-12">@item.Name</h3>
-                                    <p class="col-md-6">Nơi làm việc: @item.Province.ProvinceName</p>
+                                    <h3 class="card-title col-md-12" href="~/Home/Babysitter/@item.UserId">@item.Name</h3>
+
                                     @{
                                         var age = DateTime.UtcNow.Year - Int32.Parse(item.BirthOfDate.Value.ToString("yyyy"));
                                         <p class="col-md-6">@Html.DisplayFor(model => age) tuổi</p>
                                     }
-                                    <p class="col-md-6">Đánh giá</p>
+                                    <p class="col-md-6">@item.SalaryPerHour</p>
+                                    <p class="col-md-6">@item.Gender</p>
 
                                     @if (item.YearsOfExperience < 1)
                                     {

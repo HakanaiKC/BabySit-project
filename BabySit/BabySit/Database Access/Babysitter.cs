@@ -16,5 +16,7 @@ namespace BabySit.Database_Access
         public IFormFile Avatar { get; set; }
         public IEnumerable<Shift> shift { get; set; }
         public IEnumerable<Payment> payment { get; set; }
+        public IEnumerable<FeedBack> feedBacks { get; set; }
+        public IEnumerable<Favorite> favorites { get; set; }
     }
 }

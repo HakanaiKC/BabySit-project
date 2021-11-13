@@ -34,47 +34,61 @@
                 <img src="~/images/logo.png" alt="BabySit">
             </a>
         }
-        <ul class="navbar-nav ml-auto">
+    <ul class="navbar-nav ml-auto">
+        @if (TempData["role"] != null && (int)TempData["role"] == 3)
+        {
+            <li>
+                <a class="nav-item" href="@Url.Action("Logout","Account")">
+                    Đăng xuất
+                </a>
+            </li>
+        }
+        @if (TempData["role"] != null && (int)TempData["role"] != 3)
+        {
             <li class="nav-item">
                 <a class="nav-link" asp-controller="Home" asp-action="ContactUs">Liên hệ</a>
             </li>
-            @if (TempData["role"] != null)
-            {
-                <li class="nav-item dropdown ml-1 ml-md-3">
-                    <a class="nav-link dropdown-toggle"
-                       data-toggle="dropdown"
-                       href="#"
-                       role="button">
-                        <img src="~/images/@TempData["ava"]"
-                             alt="Avatar"
-                             class="rounded-circle"
-                             width="40">
+            <li class="nav-item dropdown ml-1 ml-md-3">
+                <a class="nav-link dropdown-toggle"
+                   data-toggle="dropdown"
+                   href="#"
+                   role="button">
+                    <img src="~/images/@TempData["ava"]"
+                         alt="Avatar"
+                         class="rounded-circle"
+                         width="40">
+                </a>
+                <div class="dropdown-menu dropdown-menu-right">
+                    <a class="dropdown-item" asp-controller="Home" asp-action="EditProfile">
+                        Chỉnh sửa thông tin
                     </a>
-                    <div class="dropdown-menu dropdown-menu-right">
-                        <a class="dropdown-item" asp-controller="Home" asp-action="EditProfile">
-                            Chỉnh sửa thông tin
+                    <a class="dropdown-item" asp-controller="Home" asp-action="Payment">
+                        Mua Premium
+                    </a>
+                    @if ((int)TempData["role"] == 1)
+                    {
+                        <a class="dropdown-item" asp-controller="Home" asp-action="LoadFavorite" method="get">
+                            Bảo mẫu yêu thích
                         </a>
-                        <a class="dropdown-item" asp-controller="Home" asp-action="Payment">
-                            Mua Premium
-                        </a>
-                        <a class="dropdown-item" asp-controller="Home" asp-action="History">
-                            Lịch sử thanh toán
-                        </a>
-                        <a class="dropdown-item" href="@Url.Action("Logout","Account")">
-                            Đăng xuất
-                        </a>
-                    </div>
-                </li>
-            }
-            else
-            {
-                <li class="nav-item">
-                    <a class="nav-link" asp-controller="Account" asp-action="Login">Đăng nhập</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" asp-controller="Account" asp-action="Register">Đăng ký</a>
-                </li>
-            }
+                    }
+                    <a class="dropdown-item" asp-controller="Home" asp-action="History">
+                        Lịch sử thanh toán
+                    </a>
+                    <a class="dropdown-item" href="@Url.Action("Logout","Account")">
+                        Đăng xuất
+                    </a>
+                </div>
+            </li>
+        }
+        @if (TempData["role"] == null )
+        {
+            <li class="nav-item">
+                <a class="nav-link" asp-controller="Account" asp-action="Login">Đăng nhập</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" asp-controller="Account" asp-action="Register">Đăng ký</a>
+            </li>
+        }
         </ul>
     </nav>
 

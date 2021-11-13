@@ -70,6 +70,7 @@ namespace BabySit.Controllers
             {
                 TempData["ava"] = (JsonConvert.DeserializeObject<User>(HttpContext.Session.GetString("SessionID"))).Avatar;
                 TempData["role"] = (JsonConvert.DeserializeObject<User>(HttpContext.Session.GetString("SessionID"))).Role;
+                TempData["status"] = (JsonConvert.DeserializeObject<User>(HttpContext.Session.GetString("SessionID"))).Status;
             }
             var model = new Babysitter();
             model.users = db.Users.Where(x => x.Role == 2 && x.Gender != null && x.SalaryPerHour != null && x.ProvinceId != null).ToList();
@@ -92,7 +93,8 @@ namespace BabySit.Controllers
                                    Province = baby.Province,
                                    Description = baby.Description,
                                    YearsOfExperience = baby.YearsOfExperience,
-                                   SalaryPerHour = baby.SalaryPerHour
+                                   SalaryPerHour = baby.SalaryPerHour,
+                                   Email = baby.Email
                                });
 
             var babySkill = (from baby in model.users
@@ -101,10 +103,13 @@ namespace BabySit.Controllers
                              where baby.UserId == id
                              select new Skill { SkillName = skills.SkillName, SkillId = skills.SkillId });
 
+            var feedback = db.FeedBacks.Where(c => c.BabySitterId == id).ToList();
+
             Babysitter babysitter = new Babysitter()
             {
                 users = babyDetails,
-                skills = babySkill
+                skills = babySkill,
+                feedBacks = feedback
             };
             ViewBag.Shift = db.Shifts.Where(c => c.BabySitterId == id).ToList();
             return View(babysitter);
@@ -431,7 +436,90 @@ namespace BabySit.Controllers
             //return View("Nhap");
             return Redirect("Babysitter/" + babysitterId);
         }
+        [HttpGet]
+        public ActionResult LoadFavorite()
+        {
+            if (HttpContext.Session.GetString("SessionID") != null)
+            {
+                TempData["ava"] = (JsonConvert.DeserializeObject<User>(HttpContext.Session.GetString("SessionID"))).Avatar;
+                TempData["role"] = (JsonConvert.DeserializeObject<User>(HttpContext.Session.GetString("SessionID"))).Role;
+                var parentID = (JsonConvert.DeserializeObject<User>(HttpContext.Session.GetString("SessionID"))).UserId;
+                var model = new Babysitter();
+                model.users = db.Users.Where(x => x.Role == 2 && x.Gender != null && x.SalaryPerHour != null && x.ProvinceId != null).ToList();
+                model.skills = db.Skills.ToList();
+                model.locations = db.Locations.ToList();
+                model.userskills = db.UserSkills.ToList();
+                model.favorites = db.Favorites.ToList();
 
+                var babydetails = (from baby in model.users
+                                   join favorite in model.favorites
+                                     on baby.UserId equals favorite.BabysitterId
+                                   where favorite.ParentsId == parentID
+                                   select new User()
+                                   {
+                                       UserId = baby.UserId,
+                                       Name = baby.Name,
+                                       Avatar = baby.Avatar,
+                                       BirthOfDate = baby.BirthOfDate,
+                                       Gender = baby.Gender,
+                                       YearsOfExperience = baby.YearsOfExperience,
+                                       SalaryPerHour = baby.SalaryPerHour,
+
+                                   });
+
+
+
+                Babysitter babysitter = new Babysitter()
+                {
+                    users = babydetails
+
+                };
+                return View("Favorite", babysitter);
+            }
+
+            return RedirectToAction("Login", "Account");
+        }
+
+        [HttpPost]
+        public ActionResult AddFavorite(int babysitterID)
+        {
+            int babyID = Int32.Parse(Request.Form["babysitterID"]);
+            if (HttpContext.Session.GetString("SessionID") != null)
+            {
+                var role = (JsonConvert.DeserializeObject<User>(HttpContext.Session.GetString("SessionID"))).Role;
+                if (role > 0)
+                {
+                    ViewBag.role = role;
+                }
+                else
+                {
+                    ViewBag.role = 0;
+                }
+            }
+            int parentId = (JsonConvert.DeserializeObject<User>(HttpContext.Session.GetString("SessionID"))).UserId;
+            var favorite = db.Favorites.ToList();
+            var favor = (from b in favorite
+                         where (b.ParentsId == parentId && b.BabysitterId == babysitterID)
+                         select b).FirstOrDefault();
+            Favorite babyFavor = new Favorite();
+            babyFavor.ParentsId = parentId;
+            babyFavor.BabysitterId = babyID;
+
+
+            if (favor == null)
+            {
+                // khong ton tai thi insert;
+                db.Favorites.Add(babyFavor);
+            }
+            else
+            {
+                //ton tai thi delete
+                db.Favorites.Remove(favor);
+            }
+            db.SaveChanges();
+
+            return Redirect("Babysitter/" + babysitterID);
+        }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

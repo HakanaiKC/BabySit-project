@@ -34,11 +34,19 @@
                         </div>
                     </div>
                     <div class="col-lg-2">
-                        <form asp-controller="Home" asp-action="Favorite" method="get" style=" margin-top: 20px; float: right; margin-right: 10px;">
+                        @*<form asp-controller="Home" asp-action="Favorite" method="get" style=" margin-top: 20px; float: right; margin-right: 10px;">
                             <button type="button" class="btn btn-default btn-sm">
                                 <i class="fas fa-heart"></i>
                             </button>
-                        </form>
+                        </form>*@
+                        @using (Html.BeginForm("AddFavorite", "Home", FormMethod.Post))
+                        {
+                            <input hidden value="@item.UserId" name="babysitterID" />
+                            <button type="submit" class="btn btn-default btn-sm" style=" margin-top: 20px; float: right; margin-right: 10px; color: lightpink;">
+                                <i class="fas fa-heart"></i>
+                            </button>
+
+                        }
                     </div>
                 </div>
             </div>
@@ -57,23 +65,28 @@
             <div class="contract col-md-4 card" style="margin:auto;">
                 <h3>Mức lương yêu cầu</h3>
                 <strong>@Html.DisplayFor(model => item.SalaryPerHour) VND/ giờ</strong>
-                @if (ViewBag.role == 1 && ViewBag.status != 1) {
-            <div class="card-body">
-                @Html.ActionLink("Liên hệ", "Chat", new { id = item.UserId }, new { @class = "btn btn-success btn-block" })
-
-            </div>
-                }
-            
-                @if (ViewBag.role == 1 && ViewBag.status == 1)
+                @if (TempData["role"] != null && TempData["status"] != null)
                 {
-            <div class="card-body row">
-                <label class="col-12">Liên hệ:</label>
-                <label class="col-12">Số điện thoại:</label>
-                <label class="col-12">Email:</label>
-            </div>
-                                <button type="button" class="btn btn-link" data-toggle="modal" data-target="#exampleModal">
-                                    feedback
-                                </button>}
+                    @*@if ((int)TempData["role"] == 1 && (int)TempData["status"] == 1)
+                    {
+                        <div class="card-body">
+                            @Html.ActionLink("Liên hệ", "Chat", new { id = item.UserId }, new { @class = "btn btn-success btn-block" })
+
+                        </div>
+                    }*@
+
+                    @if ((int)TempData["role"] == 1 && (int)TempData["status"] == 1)
+                    {
+                        <div class="card-body row">
+                            <label class="col-12">Liên hệ: </label>
+                            <label class="col-12">Số điện thoại: @Html.DisplayFor(model => item.Phone)</label>
+                            <label class="col-12">Email: @Html.DisplayFor(model => item.Email)</label>
+                        </div>
+                        <button type="button" class="btn btn-link" data-toggle="modal" data-target="#exampleModal">
+                            feedback
+                        </button>}
+
+                }
 
             </div>
             </div>
@@ -227,25 +240,34 @@
         </div>
         <br />
         @*Rate*@
-        <div class="rate">
-            <h3>Đánh giá</h3>
+    <div class="rate">
+        <h3>Đánh giá</h3>
+        @foreach (var item in Model.feedBacks)
+        {
+           
+                ProjectPRNContext db = new ProjectPRNContext();
+                var parent = db.Users.Where(c => c.UserId == item.ParentId).FirstOrDefault();
+           
             <div class="no-gutters row">
                 <div class="col-lg-1">
-                    <img style="padding: 20px; height:100px; width:100px;" data-holder-rendered="true" class="card-img rounded-circle" src="https://mdbootstrap.com/img/Photos/Avatars/img%20(31).jpg">
+                    <img style="padding: 20px; height:100px; width:100px;" data-holder-rendered="true" class="card-img rounded-circle" src="~/images/@parent.Avatar">
                 </div>
                 <div class="star row col-lg-3">
-                    <label class="col-md-12" style=" display: flex; align-items: flex-end;">Tên</label>
-                    <label class="col-md-12" ><span class="rate-total" data-rating="4.8" id="starrate"></span></label>
+
+                    <label class="col-md-12" style=" display: flex; align-items: flex-end;">@parent.Name</label>
+                    <label class="col-md-12"><span class="rate-total" data-rating="@item.Rate" id="starrate"></span></label>
                 </div>
                 <div class="row col-lg-3" style=" display: flex; align-items: flex-end;">
-                    <div class="date-time col-md-12">Ngày</div>
+                    <div class="date-time col-md-12">@item.DateComment</div>
                     <div class="date-time1 col-md-12"></div>
                 </div>
                 <div class="col-lg-12">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+                    <p>@item.Comment</p>
                 </div>
             </div>
-        </div>
+        }
+
+    </div>
     </div>
     }
 </section>

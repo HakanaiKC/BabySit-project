@@ -72,16 +72,6 @@ namespace BabySit.Controllers
             {
                 TempData["role"] = (JsonConvert.DeserializeObject<User>(HttpContext.Session.GetString("SessionID"))).Role;
                 TempData["ava"] = (JsonConvert.DeserializeObject<User>(HttpContext.Session.GetString("SessionID"))).Avatar;
-
-                var avatar = (JsonConvert.DeserializeObject<User>(HttpContext.Session.GetString("SessionID"))).Avatar;
-                if (avatar!=null)
-                {
-                    ViewBag.avatar = "~/images/" + avatar;
-                }
-                else
-                {
-                    ViewBag.avatar = "~/images/" + "sample-avatar.jpg";
-                }
             }
             return View();
         }
@@ -102,11 +92,13 @@ namespace BabySit.Controllers
                 if (userDetails != null && userDetails.Role == 3)
                 {
                     HttpContext.Session.SetString("SessionAdmin", JsonConvert.SerializeObject(userDetails));
-                    return RedirectToAction("AdminDashboard", "Admin");
+                    TempData["role"] = (JsonConvert.DeserializeObject<User>(HttpContext.Session.GetString("SessionAdmin"))).Role;
+                    return RedirectToAction("AdminConfirmPremium", "Admin");
                 }
                 else if (userDetails != null && (userDetails.Role == 1 || userDetails.Role == 2))
                 {
                     HttpContext.Session.SetString("SessionID", JsonConvert.SerializeObject(userDetails));
+                    TempData["role"] = (JsonConvert.DeserializeObject<User>(HttpContext.Session.GetString("SessionID"))).Role;
                     if (TempData["path"] != null)
                     {
                         string url = (string)TempData["path"];
