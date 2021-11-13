@@ -235,77 +235,61 @@ namespace BabySit.Controllers
         {
             if (HttpContext.Session.GetString("SessionID") != null)
             {
-                TempData["ava"] = (JsonConvert.DeserializeObject<User>(HttpContext.Session.GetString("SessionID"))).Avatar;
-                TempData["role"] = (JsonConvert.DeserializeObject<User>(HttpContext.Session.GetString("SessionID"))).Role;
+                var role = (JsonConvert.DeserializeObject<User>(HttpContext.Session.GetString("SessionID"))).Role;
+                if (role > 0)
+                {
+                    ViewBag.role = role;
+                }
+                else
+                {
+                    ViewBag.role = 0;
+                }
             }
             try
             {
                 var model = new Babysitter();
-                model.users = db.Users.Where(x => x.Role == 2 && x.Gender != null && x.SalaryPerHour != null
-               && x.ProvinceId != null).ToList();
                 model.locations = db.Locations.ToList();
-                model.shift = db.Shifts.ToList();
-
                 int Location = Int32.Parse(Request.Form["selectKhuVuc"]);
                 int Year = Int32.Parse(Request.Form["selectKinhNghiem"]);
-                String Time = Request.Form["selectTime"];
+                String Time = "4";
+                Time += Request.Form["selectTime"];
                 int Salary = Int32.Parse(Request.Form["selectMucLuong"]);
-
-                bool night = true, morning = true, afternoon = true;
-
-                if (!Time.Contains("1"))
-                {
-                    morning = false;
-                }
-                if (!Time.Contains("2"))
-                {
-                    afternoon = false;
-                }
-                if (!Time.Contains("3"))
-                {
-                    night = false;
-                }
-
-                var babyDetails = (from baby in model.users
-                                   join localtion in model.locations
-                                   on baby.ProvinceId equals localtion.ProvinceId
-                                   join shift in model.shift on baby.UserId equals shift.BabySitterId
-                                   where baby.ProvinceId == Location
-                                   && Year == baby.YearsOfExperience && baby.SalaryPerHour <= Salary
-                                   && shift.Morning == morning && shift.Afternoon == afternoon && shift.Night == night
-                                   select new User()
-                                   {
-                                       Name = baby.Name,
-                                       UserId = baby.UserId,
-                                       Avatar = baby.Avatar,
-                                       Gender = baby.Gender,
-                                       BirthOfDate = baby.BirthOfDate,
-                                       Phone = baby.Phone,
-                                       Province = baby.Province,
-                                       Description = baby.Description,
-                                       YearsOfExperience = baby.YearsOfExperience,
-                                       SalaryPerHour = baby.SalaryPerHour
-                                   });
-
-                babysitter = new Babysitter()
-                {
-                    users = babyDetails
-                };
+                string shift = "";
                 ViewBag.test = Time;
+                ViewBag.test1 = Location;
+                ViewBag.test2 = Year;
+                ViewBag.test3 = Salary;
 
-                return View(babysitter);
-            }
+                if (Time.Contains("1"))
+                {
+                    shift += "1";
+                }
+                if (Time.Contains("2"))
+                {
+                    shift += "2";
+                }
+                if (Time.Contains("3"))
+                {
+                    shift += "3";
+                }
+
+                ViewBag.test6 = shift;
+                // = db.GetBabysitters(Location, Location, shift, Salary);
+                model.users = db.GetBabysitters(Location, Year, shift, Salary);
+                ViewBag.test4 = "test 4" ;
+                return View(model);
+        }
             catch
             {
                 var model = new Babysitter();
-                model.users = db.Users.Where(x => x.Role == 2 && x.Gender != null && x.SalaryPerHour != null
+        model.users = db.Users.Where(x => x.Role == 2 && x.Gender != null && x.SalaryPerHour != null
                 && x.ProvinceId != null).ToList();
-                model.skills = db.Skills.ToList();
-                model.locations = db.Locations.ToList();
-                model.userskills = db.UserSkills.ToList();
+
+        model.locations = db.Locations.ToList();
+                ViewBag.test5 = "test 5";
                 return View(model);
-            }
-        }
+    }
+}
 
         public static string convertToUnSign3(string s)
         {
