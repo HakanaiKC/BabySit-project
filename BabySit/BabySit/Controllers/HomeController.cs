@@ -212,17 +212,24 @@ namespace BabySit.Controllers
             return RedirectToAction("Login", "Account");
         }
 
-        [HttpGet]
+                [HttpGet]
         public IActionResult HomePage()
         {
             if (HttpContext.Session.GetString("SessionID") != null)
             {
-                TempData["ava"] = (JsonConvert.DeserializeObject<User>(HttpContext.Session.GetString("SessionID"))).Avatar;
-                TempData["role"] = (JsonConvert.DeserializeObject<User>(HttpContext.Session.GetString("SessionID"))).Role;
+                var role = (JsonConvert.DeserializeObject<User>(HttpContext.Session.GetString("SessionID"))).Role;
+                if (role > 0)
+                {
+                    ViewBag.role = role;
+                }
+                else
+                {
+                    ViewBag.role = 0;
+                }
             }
             var model = new Babysitter();
             model.users = db.Users.Where(x => x.Role == 2 && x.Gender != null && x.SalaryPerHour != null
-            && x.ProvinceId != null).ToList();
+            && x.ProvinceId != null &&x.BirthOfDate != null && x.Status ==1).ToList();
             model.skills = db.Skills.ToList();
             model.locations = db.Locations.ToList();
             model.userskills = db.UserSkills.ToList();
@@ -270,7 +277,7 @@ namespace BabySit.Controllers
                     shift += "3";
                 }
 
-                
+               
                 // = db.GetBabysitters(Location, Location, shift, Salary);
                 model.users = db.GetBabysitters(Location, Year, shift, Salary);
                 
@@ -280,8 +287,7 @@ namespace BabySit.Controllers
             {
                 var model = new Babysitter();
         model.users = db.Users.Where(x => x.Role == 2 && x.Gender != null && x.SalaryPerHour != null
-                && x.ProvinceId != null).ToList();
-
+            && x.ProvinceId != null && x.BirthOfDate != null && x.Status == 1).ToList();
         model.locations = db.Locations.ToList();
                 
                 return View(model);
