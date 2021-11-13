@@ -255,10 +255,7 @@ namespace BabySit.Controllers
                 Time += Request.Form["selectTime"];
                 int Salary = Int32.Parse(Request.Form["selectMucLuong"]);
                 string shift = "";
-                ViewBag.test = Time;
-                ViewBag.test1 = Location;
-                ViewBag.test2 = Year;
-                ViewBag.test3 = Salary;
+                
 
                 if (Time.Contains("1"))
                 {
@@ -273,10 +270,10 @@ namespace BabySit.Controllers
                     shift += "3";
                 }
 
-                ViewBag.test6 = shift;
+                
                 // = db.GetBabysitters(Location, Location, shift, Salary);
                 model.users = db.GetBabysitters(Location, Year, shift, Salary);
-                ViewBag.test4 = "test 4" ;
+                
                 return View(model);
         }
             catch
@@ -286,7 +283,7 @@ namespace BabySit.Controllers
                 && x.ProvinceId != null).ToList();
 
         model.locations = db.Locations.ToList();
-                ViewBag.test5 = "test 5";
+                
                 return View(model);
     }
 }
