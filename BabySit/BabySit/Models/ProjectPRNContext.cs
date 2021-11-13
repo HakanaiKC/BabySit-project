@@ -325,6 +325,105 @@ AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
 
             return result;
         }
+        
+        public Location GetLocation(int provinceID)
+        {
+            Location location = new Location();
+            connection = new SqlConnection(GetConnectionString());
+            string sql = "select * from Location where ProvinceID = @provinceID";
+            command = new SqlCommand(sql, connection);
+            command.Parameters.AddWithValue("@provinceID", provinceID);
+            try
+            {
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader(CommandBehavior.CloseConnection);
+                if (reader.HasRows == true)
+                {
+                    while (reader.Read())
+                    {
+                        location.ProvinceId = reader.GetInt32("ProvinceID");
+                        location.ProvinceName = reader.GetString("ProvinceName");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return location;
+        }
+
+        public List<User> GetBabysitters(int location, int year, string shift, int salary)
+        {
+            List<User> babysitters = new List<User>();
+            ProjectPRNContext db = new ProjectPRNContext();
+            connection = new SqlConnection(GetConnectionString());
+            string sql = "select  u.UserID,u.Name,u.Avatar,u.BirthOfDate,u.ProvinceID, u.SalaryPerHour,u.Status,u.YearsOfExperience " +
+                "from[user] u join Shift s on u.UserID = s.BabySitterID join Location l on u.ProvinceID = l.ProvinceID ";
+            if (location != 100)
+            {
+                sql += " where u.ProvinceID = @location ";
+            }
+            sql += " and u.Role = 2 " +
+                "and u.YearsOfExperience >= @year and u.SalaryPerHour <= @salary ";
+            if (shift.Contains("1")) {
+                sql += " and s.Morning =1 ";
+            }
+            if (shift.Contains("2"))
+            {
+                sql += " and s.Afternoon =1 ";
+            }
+            if (shift.Contains("3"))
+            {
+                sql += " and s.Night =1 ";
+            }
+            sql += " group by u.UserID,u.Name,u.Avatar,u.BirthOfDate,u.ProvinceID, u.SalaryPerHour,u.Status,u.YearsOfExperience,l.ProvinceName";
+
+            command = new SqlCommand(sql, connection);
+            if (location != 100)
+            {
+                command.Parameters.AddWithValue("@location", location);
+            }
+            command.Parameters.AddWithValue("@year", year);
+            command.Parameters.AddWithValue("@salary", salary);
+            try
+            {
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader(CommandBehavior.CloseConnection);
+                if (reader.HasRows == true)
+                {
+                    while (reader.Read())
+                    {
+                        babysitters.Add(new User
+                        {
+
+                            UserId = reader.GetInt32("UserID"),
+                            Name = reader.GetString("Name"),
+                            Avatar = reader.GetString("Avatar"),
+                            BirthOfDate = reader.GetDateTime("BirthOfDate"),
+                            ProvinceId = reader.GetInt32("ProvinceID"),
+                            //SalaryPerHour = reader.GetInt32("SalaryPerHour"),
+                            Status = reader.GetInt32("Status"),
+                            YearsOfExperience = reader.GetInt32("YearsOfExperience"),
+                            Province = db.GetLocation(reader.GetInt32("ProvinceID"))
+                        });
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return babysitters;
+        }
 
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
     }
